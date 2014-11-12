@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:x="http://www.xseam.org">
+      
+<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+	
+		<div id="passos">
+	   		
+	   		<rich:panel styleClass="informacoesUsuario">
+   		 	<h:commandButton action="#{AlunoService.anterior}" immediate="true" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo1.jpg"  value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações do Aluno e EducaCenso.
+				      </span>
+				</rich:toolTip>
+   		   </rich:panel>
+	   		
+	   		
+	   		<rich:panel styleClass="informacoesUsuario">
+		   		<h:commandButton action="#{AlunoService.validaCadastro2}" styleClass="passoicone" image="/img/passo2.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações de Filiação e Endereço.
+				      </span>
+				</rich:toolTip>
+			</rich:panel>
+	   		
+		   	
+		   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton action="#{AlunoService.validaCadastro2}" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo3.jpg" value="" />
+	   		<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Documentos do aluno (parte 1).
+				      </span>
+			</rich:toolTip>
+	   		</rich:panel>
+		   	
+		    
+		    <rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina4" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo4.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 2).
+				 </span>
+			</rich:toolTip>
+	    	</rich:panel>
+		   
+		   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina5" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo5.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Informações de contato.
+				 </span>
+			</rich:toolTip>
+	   	    </rich:panel>
+		   
+		    <rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina6" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo6.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Resumo do cadastro.
+				 </span>
+			</rich:toolTip>
+		    </rich:panel>
+		   	
+		</div>
+		
+		<div id="topoBotao">
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" image="/img/anterior.jpg" action="#{AlunoService.anterior}" value="#{messages['rotulo.anterior']}" immediate="true"/>	
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/proximo.jpg" action="#{AlunoService.validaCadastro2}" value="#{messages['rotulo.proximo']}" />
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" action="#{AlunoService.concluirCadastro}" value="#{messages['rotulo.gravar']}" />
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/cancelar.jpg" action="#{AlunoService.cancelar}" value="" immediate="true"/>
+		</div>
+	
+	</ui:define>
+	
+	<ui:define name="conteudo">
+	<f:view>
+	<div id="cadastroUnico">
+	
+			<table width="750" border="0">
+		  <tr>
+		    <td><h:outputText styleClass="campoPequeno" value="Codigo da Pasta:" /></td>
+		    <td><h:outputText styleClass="campoPequeno" value="Autorizados a Buscar:" /></td>
+		    <td><h:outputText styleClass="campoPequeno" value="Melhor Horario Reuniao" /></td>		    
+		  </tr>
+		  
+		<tr>
+		    <td> <h:inputText style="width: 230px;" styleClass="input" value="#{alunoEntity.codpasta}" maxlength="11" converter="#{EmptyConverter}"/> </td>
+		    <td> <h:inputText style="width: 230px;" styleClass="input" value="#{alunoEntity.autorizadosbuscar}" converter="#{EmptyConverter}"/> </td>
+		    <td> <h:inputText style="width: 230px;" styleClass="input" value="#{alunoEntity.horarioreuniao}" maxlength="5" converter="#{EmptyConverter}"/></td>
+		    	 
+		</tr>
+		<tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="750" border="0">
+		<tr>
+			<td><h:outputText styleClass="campoPequeno" value="Usa Transporte Publico? " />
+			
+			<h:selectBooleanCheckbox styleClass="inputwidth15" value="#{alunoEntity.usatransppublico}" >
+		     	<a4j:support event="onchange" reRender="areaResponsavelTransporte1,areaResponsavelTransporte2" ajaxSingle="true"/>
+		     </h:selectBooleanCheckbox>
+		     </td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="750" border="0">
+		<tr> 
+			<h:panelGroup id="areaResponsavelTransporte1">
+				<h:panelGroup rendered="#{alunoEntity.usatransppublico}">
+		    		<td><h:outputText styleClass="campoPequeno" value="Responsavel pelo Transporte" /></td>
+		    	 </h:panelGroup>
+		     </h:panelGroup>
+		</tr>
+		
+		<tr>
+		<td> <h:panelGroup id="areaResponsavelTransporte2">
+				 <h:panelGroup rendered="#{alunoEntity.usatransppublico}">
+			     <h:inputText value="#{alunoEntity.resptransporte}" style="width:725px;" id="transporte" label="Responsável pelo Transporte" required="true" converter="#{EmptyConverter}">
+			     	<rich:jQuery selector="#transporte" query="capitalize()" timing="onload"/>				    
+				    </h:inputText>
+				     
+				 </h:panelGroup>
+			 </h:panelGroup>
+		</td>
+		
+		</tr>
+		
+		</table>
+	
+		<table width="750" border="0">
+		
+		</table>
+		
+		<br/>
+		<rich:separator />
+		<br/>
+
+		
+		<table width="750px">
+			<tr>
+			
+			<h:panelGroup id="panelCEP">
+				<tr>
+					<td><h:outputText styleClass="textoTitulo" value="Dados de Endereco do Aluno"/></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+				<tr>
+					<td><h:outputText value="Digite CEP residencial do Aluno:" /></td>
+				</tr>
+				<tr>
+					<td>
+						<h:inputText styleClass="inputwidth210" id="cepResidencial" label="Cep Residencial do Aluno" value="#{AlunoService.cepResidencial}" converter="#{EmptyConverter}"  disabled="#{not AlunoService.enderecoViaCEP}">
+						   	<rich:jQuery selector="#cepResidencial" query="mask('99999-999')" timing="onload"/>
+				    	</h:inputText>
+			    	</td>
+		    	</tr>
+		    	<tr class="espacoFormulario"></tr>
+		    	<tr>
+		    		<td><a4j:commandButton action="#{AlunoService.desativaUsoCEP}" value="Não Possuo CEP" rendered="#{AlunoService.enderecoViaCEP}" reRender="panelEndereco,panelCEP"/></td>
+		    		<td><a4j:commandButton action="#{AlunoService.ativaUsoCEP}" value="Possuo  CEP" rendered="#{not AlunoService.enderecoViaCEP}" reRender="panelEndereco,panelCEP" immediate="true"/></td>
+		    	</tr>
+			</h:panelGroup>
+		</tr>
+		</table>
+		
+		<h:panelGroup id="panelEndereco">
+		 <h:panelGroup rendered="#{not AlunoService.enderecoViaCEP}">
+			<table width="750" border="0">
+				<tr>
+					<td><h:outputText value="Estado:" /></td>
+					<td><h:outputText value="Cidade:" /></td>
+					<td><h:outputText value="Bairro:" /></td>
+					<td><h:outputText value="Rua:" /></td>
+				</tr>
+				
+				<tr>
+					<td>
+						<x:selectOneState value="#{enderecoEntity.estado}" reRender="cidade"/>
+					</td>
+					<td>
+						<x:selectOneCity name="cidade" value="#{enderecoEntity.cidade}" selectedState="#{enderecoEntity.estado}" />
+					</td>
+					<td><h:inputText styleClass="campoPequeno" value="#{enderecoEntity.bairro}" id="campobairro" converter="#{EmptyConverter}" required="false" label="bairro">
+						<rich:jQuery selector="#campobairro" query="capitalize()" timing="onload" />
+						</h:inputText>
+					</td>
+					<td><h:inputText styleClass="campoPequeno" value="#{enderecoEntity.rua}" id="campoendereco" converter="#{EmptyConverter}" required="false" label="rua">
+						<rich:jQuery selector="#campoendereco" query="capitalize()" timing="onload" />
+						</h:inputText>
+					</td>
+				</tr>
+				
+				
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<table width="750" border="0">
+				<tr>
+					<td><h:outputText value="Numero:" /></td>
+					<td><h:outputText value="Complemento:" /></td>
+					<td><h:outputText value="Distrito:" /></td>
+					<td><h:outputText value="Zona:" /></td>
+				</tr>
+				
+				<tr>
+					<td><h:inputText styleClass="campoPequeno" value="#{enderecoEntity.numero}" required="false" label="numero"/></td>
+					<td><h:inputText styleClass="campoPequeno" value="#{enderecoEntity.complemento}" converter="#{EmptyConverter}" /></td>
+					<td><h:inputText styleClass="campoPequeno" value="#{enderecoEntity.distrito}" id="campodistrito" converter="#{EmptyConverter}">
+						<rich:jQuery selector="#campodistrito" query="capitalize()" timing="onload" />
+						</h:inputText>
+					</td>
+					<td>
+						<h:selectOneMenu style="width: 165px;" value="#{enderecoEntity.zona}" label="Zona">
+							<s:selectItems var="item" value="#{TiposdeZonas}" label="#{item}" noSelectionLabel=" "/>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+			</table>
+		
+		  </h:panelGroup>
+		</h:panelGroup>
+
+		
+	</div>
+	</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

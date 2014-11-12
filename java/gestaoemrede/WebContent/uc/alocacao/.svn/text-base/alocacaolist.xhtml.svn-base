@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		</ui:define>
+
+
+		<ui:define name="conteudo">
+			
+			<ui:include src="/uc/include/loading_inc.xhtml" />
+			<br/>
+			<table width="750px;">
+				<tr>
+					<td><h:graphicImage value="/img/alocacaodealuno.jpg" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<h:outputText value="Não existem matrículas, impossível realizar alocação de aluno. "  styleClass="SomenteNegrito" rendered="#{empty AlocacaoList.anosDiponiveisMatricula}"/>
+			
+			<h:panelGroup rendered="#{not empty AlocacaoList.anosDiponiveisMatricula}">
+				<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+							<h:panelGroup id="areaTurno">
+								<h:panelGroup>
+									<h:outputText value="1. Turno *: " /> <br />
+									
+									<a4j:region id="regiao1">
+										<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.turnoSelecionado}" required="true" label="Turno">
+											<a4j:status for="regiao1" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+											<a4j:support event="onchange" ajaxSingle="true" reRender="areaEnsino,areaSerie,areaTipoMatricula,areaTipoTurma,areaTurma,areaDisciplina,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro3Alocacao}"/>
+											<s:selectItems var="turnoItem" value="#{AlocacaoList.turnosDeMatriculasByAnoSelecionado}" label="#{turnoItem.nome}" noSelectionLabel="selecione.."/>
+											<s:convertEntity/>
+										</h:selectOneMenu>
+									</a4j:region>
+									
+								</h:panelGroup>				
+							</h:panelGroup>
+						</td>
+					</tr>
+			</table>		
+			</h:panelGroup>
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaEnsino">
+										<h:panelGroup rendered="#{not empty AlocacaoList.turnoSelecionado}">
+											<h:outputText value="2. Ensino *: " /><br />
+											<a4j:region id="regiao2">
+											<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.ensinoSelecionado}" required="true" label="Ensino">
+												<a4j:status  for="regiao2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+												<a4j:support event="onchange" ajaxSingle="true"  reRender="areaSerie,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro4Alocacao}"/>
+												<s:selectItems var="ensinoItem" value="#{AlocacaoList.ensinosDeMatriculasByTurnoSelecionado}" label="#{ensinoItem.nome}" noSelectionLabel="selecione.."/>
+												<s:convertEntity/>
+											</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+			</table>
+			
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaSerie">
+										<h:panelGroup rendered="#{not empty AlocacaoList.ensinoSelecionado}">
+											<h:outputText styleClass="inputwidth165sm2" value="3. Série *: " /> <br />
+											<a4j:region id="regiao3">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.serieSelecionado}" required="true" label="Série">
+													<a4j:status  for="regiao3" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true" reRender="areaTipoMatricula,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro5Alocacao}"/>
+													<s:selectItems var="serieItem" value="#{AlocacaoList.seriesDeMatriculasByEnsinoSelecionado}" label="#{serieItem.nome}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+					
+				</table>
+
+								
+
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaTipoMatricula">
+										<h:panelGroup rendered="#{not empty AlocacaoList.serieSelecionado}">
+											<h:outputText styleClass="inputwidth165sm2" value="4. Matrícula* : " /> <br />
+											<a4j:region id="regiao4">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.tipoMatriculaSelecionada}" required="true" label="Tipo de Matrícula">
+													<a4j:status  for="regiao4" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDisciplina,areaTipoTurma,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro6Alocacao}"/>
+													<s:selectItems var="matItem" value="#{AlocacaoList.tiposMatriculas}" label="#{matItem}" noSelectionLabel="selecione.."/>
+													<s:convertEnum/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>
+			
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaTipoTurma">
+										<h:panelGroup rendered="#{not empty AlocacaoList.tipoMatriculaSelecionada}">
+											<h:outputText styleClass="inputwidth165sm2" value="5. Tipo da Turma* : " /> <br />
+											<a4j:region id="regiao5">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.tipoFormacaoTurmaSelecionado}" required="true" label="Tipo da Turma">
+													<a4j:status  for="regiao5" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDisciplina,areaTurma,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro7Alocacao}"/>
+													<s:selectItems var="tipoTurmaItem" value="#{AlocacaoList.tiposFormacaoTurma}" label="#{tipoTurmaItem}" noSelectionLabel="selecione.."/>
+													<s:convertEnum/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>
+
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaTurma">
+										<h:panelGroup rendered="#{not empty AlocacaoList.tipoFormacaoTurmaSelecionado}">
+											<h:outputText id="idRotuloTurma" styleClass="inputwidth165sm2" value="6. Turma* : " /> <br />
+											<a4j:region id="regiao6">
+												<h:selectOneMenu  styleClass="inputwidth165sm2"  value="#{AlocacaoList.turmaSelecionado}" required="true" label="Turma">
+													<a4j:status  for="regiao6" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDisciplina,areaAlunosAlocados,areaDataTable" actionListener="#{AlocacaoList.limpaSelecaoAposTurma}" action="#{AlocacaoList.carregaGrids}"/>
+													<s:selectItems var="turmaItem" value="#{AlocacaoList.turmasByFiltroTipoTurma}" label="#{turmaItem.nome} #{turmaItem.tooltip}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+											<rich:toolTip for="idRotuloTurma">
+												<h:outputText value="LEGENDA DA TURMA" styleClass="SomenteNegrito"/>
+												<br/>
+												<h:outputText value="- Turnos: M = Manhã, N = Noite , T = Tarde, I = Integral"/>
+												<br/>
+												<h:outputText value="- Ensinos: FUND = Fundamental, MED = Médio, EJA = EJA"/>
+												<br/>
+												<h:outputText value="- Tipo Turmas: REG=Regular, DIS=Disciplina, MULT=Multi-Seriada, MULT-D=Multi-Seriada Por Disciplina"/>
+												<br/>
+												<h:outputText value="- Séries: 1,2,3,4,5,6,7,8,9"/>
+												<br/>
+											</rich:toolTip>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>			
+								
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaDisciplina">
+										<h:panelGroup rendered="#{AlocacaoList.renderizaComboDisciplina}">
+											<h:outputText styleClass="inputwidth165sm2" value="7. Disciplina* : " /> <br />
+											<a4j:region id="regiao7">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.disciplinaSelecionado}" required="true" label="Disciplina">
+													<a4j:status  for="regiao7" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDataTable,areaAlunosAlocados" action="#{AlocacaoList.carregaGrids}"/>
+													<s:selectItems var="discItem" value="#{AlocacaoList.turmaSelecionado.disciplinas}" label="#{discItem.nome}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>	
+			
+		
+				
+				<table width="750px">
+					<tr>
+						<td style="width: 330px; float: left;margin-top: 30px; margin-left: 30px;">
+							<h:panelGroup id="areaDataTable">
+							
+								<h:panelGroup rendered="#{AlocacaoList.renderizaDatatables}">
+
+								
+										<h:panelGroup rendered="#{empty AlocacaoList.alunosNaoAlocados}">
+											<center>
+												<br/>
+												<h:outputText value="Não existem alunos não alocados."/>
+											</center>	
+										</h:panelGroup>
+								
+										<br/>
+										
+										
+										<h:panelGroup>
+										
+											<s:div id="idControlesUp">
+												<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/ultima.png" style="width: 92px; height: 15px; border:0px; float: right;" value="ultimo"    actionListener="#{easy1.ultimo}" rendered="#{conversation.longRunning and easy1.existeUltimo}" reRender="areaDataTable" ajaxSingle="true"/></div>
+												<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/proxima.png" style="width: 92px; height: 15px; border:0px; float: right; margin-right:0px;"  value="Proximo"  actionListener="#{easy1.proximo}" rendered="#{conversation.longRunning and easy1.existeProximo}" reRender="areaDataTable" ajaxSingle="true"/></div>
+												<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/anterior.png" style="width: 92px; height: 15px; border:0px; float: right;" value="Anterior"  actionListener="#{easy1.anterior}" rendered="#{conversation.longRunning and easy1.existeAnterior}" reRender="areaDataTable" ajaxSingle="true"/></div>
+												<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/primeira.png" style="width: 92px; height: 15px; border:0px; float: right;" value="primeiro"  actionListener="#{easy1.primeiro}" rendered="#{conversation.longRunning and easy1.existeAnterior}" reRender="areaDataTable" ajaxSingle="true"/></div>
+											 </s:div>
+											
+											<div id="botaoIncluirMatricula">
+												 <h:panelGroup id="idAlocarPanel">
+												 	<h:panelGroup rendered="#{AlocacaoList.existeAlunosNaoAlocadosSelecionados}">
+													 	<a4j:commandButton action="#{AlocacaoList.carregaGrids}" image="/img/alocar.jpg" styleClass="botaoNavegacaoIncluir" actionListener="#{AlocacaoService.alocar()}" reRender="areaDataTable,areaAlunosAlocados" ajaxSingle="false" rendered="#{AlocacaoList.diarioAberto}"/>
+													 	<a4j:commandButton action="#{AlocacaoList.carregaGrids}" image="/img/admitir.jpg" styleClass="botaoNavegacaoIncluir" actionListener="#{AlocacaoService.alocar()}" reRender="areaDataTable,areaAlunosAlocados" ajaxSingle="false" rendered="#{not AlocacaoList.diarioAberto}"/>
+												 	</h:panelGroup>
+												 </h:panelGroup>
+											 </div>
+											
+												<rich:dataTable width="330px" var="alunoItem" value="#{AlocacaoList.alunosNaoAlocados}" rowClasses="ClasseCss2,ClasseCss1">
+									                    <f:facet name="header">
+									                        <h:outputText value="Alunos Não Alocados " styleClass="SomenteNegrito" />
+									                    </f:facet>
+												
+										                <rich:column>
+										                    <f:facet name="header">
+										                        <h:outputText value=" " />
+										                    </f:facet>
+										                    <h:selectBooleanCheckbox styleClass="inputwidth15" style="border: 0px" value="#{alunoItem.selecionado}" >
+										                    	<a4j:support event="onchange" ajaxSingle="true" reRender="idAlocarPanel"/>
+										                    </h:selectBooleanCheckbox>
+										                </rich:column>
+														
+														<rich:column>
+															<f:facet name="header">
+																<h:outputText value="Nome" />
+															</f:facet>
+															
+															<h:outputText id="label1" value="#{alunoItem.nome}">
+																<rich:toolTip for="label1">
+																	<h:outputText value="#{alunoItem.nome}" styleClass="SomenteNegrito"/>
+																	<br/>
+																	<h:outputText value="Data Nascimento: " styleClass="SomenteNegrito"/>
+																	<h:outputText value="#{alunoItem.dtNascimento}" />
+																	<br/>
+																	<h:outputText value="Mãe: " styleClass="SomenteNegrito"/>
+																	<h:outputText value="#{alunoItem.nomeMae}" />
+																</rich:toolTip>
+															</h:outputText>
+															
+														</rich:column>							
+																				
+													</rich:dataTable>
+													
+													<div id="topoTabelamenor">
+														<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/ultima.png" style="width: 92px; height: 15px; border:0px; float: right;" value="ultimo"    actionListener="#{easy1.ultimo}" rendered="#{conversation.longRunning and easy1.existeUltimo}" reRender="areaDataTable" ajaxSingle="true"/></div>
+														<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/proxima.png" style="width: 92px; height: 15px; border:0px; float: right; margin-right:0px;"  value="Proximo"   actionListener="#{easy1.proximo}" rendered="#{conversation.longRunning and easy1.existeProximo}" reRender="areaDataTable" ajaxSingle="true"/></div>
+														<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/anterior.png" style="width: 92px; height: 15px; border:0px; float: right;" value="Anterior"  actionListener="#{easy1.anterior}" rendered="#{conversation.longRunning and easy1.existeAnterior}" reRender="areaDataTable" ajaxSingle="true"/></div>
+														<div id="botaoPesquisaNavegacao"><a4j:commandButton image="/img/primeira.png" style="width: 92px; height: 15px; border:0px; float: right;" value="primeiro"  actionListener="#{easy1.primeiro}" rendered="#{conversation.longRunning and easy1.existeAnterior}" reRender="areaDataTable" ajaxSingle="true"/></div>
+													 </div>
+												
+											  </h:panelGroup>
+											
+										</h:panelGroup>
+										
+									</h:panelGroup>
+							</td>
+						
+							<td style="width: 330px; float: right; margin-top: 30px; margin-left: 30px;">
+						
+						
+						<!-- termina aqui primeira colua -->
+							
+							<h:panelGroup id="areaAlunosAlocados">
+								<h:panelGroup rendered="#{AlocacaoList.renderizaDatatables}">
+							
+									<h:panelGroup id="idStatusDiario">
+										<h:panelGroup rendered="#{AlocacaoList.renderizaDiario}">
+										   <h:outputText value="Diário:" styleClass="SomenteNegrito"/>
+										   <h:outputText value="#{AlocacaoList.statusDiario}" />
+										   <br/>
+										   <a4j:commandButton action="#{AlocacaoList.carregaGrids}" image="/img/abrirdiario.jpg" styleClass="botaoDefaultCss" actionListener="#{AlocacaoService.abrirDiario}" value="Abrir Diario" reRender="idStatusDiario,areaDataTable,areaAlunosAlocados" ajaxSingle="true" rendered="#{not AlocacaoList.diarioAberto}"/>
+										   <a4j:commandButton action="#{AlocacaoList.carregaGrids}" image="/img/fechardiario.jpg" styleClass="botaoDefaultCss" actionListener="#{AlocacaoService.fecharDiario}" value="Fechar Diario" reRender="idStatusDiario,areaDataTable,areaAlunosAlocados" ajaxSingle="true" rendered="#{AlocacaoList.diarioAberto}"/>
+									   </h:panelGroup>
+								   </h:panelGroup>
+
+									<h:panelGroup>								   
+									   <h:commandButton id="idBotaoRemanejar" action="remanejar"  image="/img/remanejar.jpg" styleClass="botaoDefaultCss" actionListener="#{AlocacaoService.swapRemanejamento}" value="Remanejar" rendered="#{not empty AlocacaoList.alunosAlocadosSelecionados and not AlocacaoList.diarioAberto}"/>
+									   
+										<h:commandButton id="idBotaoRemover" action="#{AlocacaoList.carregaGrids}" actionListener="#{AlocacaoService.removerAlocacao}" image="/img/remover.jpg" rendered="#{not empty AlocacaoList.alunosAlocadosSelecionados and AlocacaoList.diarioAberto}" styleClass="botaoDefaultCss" onclick="return confirm('Deseja realmente remover a alocação do(s) aluno(s) selecionado(s) abaixo? ')">
+											<a4j:support event="onclick" reRender="areaAlunosAlocados,areaDataTable" ajaxSingle="true"/>
+										</h:commandButton>
+									</h:panelGroup>
+									
+									<br/>
+										<h:outputText value="Não existem alunos alocados." rendered="#{empty AlocacaoList.alunosAlocados}"/>
+												<rich:dataTable width="330px" var="alunoItem" value="#{AlocacaoList.alunosAlocados}" rowClasses="ClasseCss2,ClasseCss1">
+									                    <f:facet name="header">
+									                        <h:outputText value="Alunos Alocados " styleClass="SomenteNegrito" />
+									                    </f:facet>
+												
+										                <rich:column>
+										                    <f:facet name="header">
+										                        <h:outputText value=" " />
+										                    </f:facet>
+										                    <h:selectBooleanCheckbox styleClass="inputwidth15" style="border: 0px" value="#{alunoItem.selecionado}" onclick="return confirm('Confirma a remoção da alocação dos alunos selecionados da turma #{AlocacaoList.turmaSelecionado.nome} ?')" disabled="#{not empty alunoItem.motivoEncerramentoMatricula or alunoItem.remanejado}">
+										                    	<a4j:support event="onclick" ajaxSingle="true" reRender="areaAlunosAlocados"/>
+										                    </h:selectBooleanCheckbox>
+										                </rich:column>
+														
+														<rich:column>
+															<f:facet name="header">
+																<h:outputText value="Nome" />
+															</f:facet>
+															
+															<h:panelGroup rendered="#{alunoItem.flagItemDiarioAberto}">
+															    
+															    <h:panelGroup rendered="#{empty alunoItem.motivoEncerramentoMatricula}">
+																	<h:outputText id="nome1" value="#{alunoItem.nome}" styleClass="#{alunoItem.cssStyleClass}">
+																		<rich:toolTip for="nome1">
+																			<h:panelGroup rendered="#{alunoItem.remanejado}">
+																				<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+																				<br/>
+																			</h:panelGroup>
+																			<h:outputText value="#{alunoItem.nome}" styleClass="SomenteNegrito"/>
+																			<br/>
+																			<h:outputText value="Data Nascimento: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.dtNascimento}" />
+																			<br/>
+																			<h:outputText value="Mãe: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.nomeMae}" />
+																		</rich:toolTip>
+																	</h:outputText>
+																</h:panelGroup>
+
+															    <h:panelGroup rendered="#{not empty alunoItem.motivoEncerramentoMatricula}">
+																	<h:outputText id="nome2" value="#{alunoItem.nome}" styleClass="#{alunoItem.cssStyleClass}">
+																		<rich:toolTip for="nome2">
+																			<h:panelGroup rendered="#{alunoItem.remanejado}">
+																				<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+																				<br/>
+																			</h:panelGroup>
+																			<h:outputText value=" **  Matrícula Encerrada: **"  styleClass="styleAlunoRemanejado,SomenteNegrito" />
+																			<h:outputText value="#{alunoItem.motivoEncerramentoMatricula}" />
+																			<br/>
+																			<h:outputText value="#{alunoItem.nome}" styleClass="SomenteNegrito"/>
+																			<br/>
+																			<h:outputText value="Data Nascimento: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.dtNascimento}" />
+																			<br/>
+																			<h:outputText value="Mãe: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.nomeMae}" />
+																		</rich:toolTip>
+																	</h:outputText>
+																</h:panelGroup>
+																
+															
+															</h:panelGroup>
+															
+															<h:panelGroup rendered="#{not alunoItem.flagItemDiarioAberto}">
+															
+															    <h:panelGroup rendered="#{empty alunoItem.motivoEncerramentoMatricula}">
+																	<h:outputText id="nome3" value="#{alunoItem.nome}" styleClass="#{alunoItem.cssStyleClass}">
+																		<rich:toolTip for="nome3">
+																			<h:panelGroup rendered="#{alunoItem.remanejado}">
+																				<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+																				<br/>
+																			</h:panelGroup>
+																			<h:outputText value="#{alunoItem.nome}" styleClass="SomenteNegrito"/>
+																			<br/>
+																			<h:outputText value="Data Nascimento: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.dtNascimento}" />
+																			<br/>
+																			<h:outputText value="Mãe: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.nomeMae}" />
+																		</rich:toolTip>
+																	</h:outputText>
+																</h:panelGroup>
+
+															    <h:panelGroup rendered="#{not empty alunoItem.motivoEncerramentoMatricula}">
+															    	
+																	<h:outputText id="nome4" value="#{alunoItem.nome}" styleClass="#{alunoItem.cssStyleClass}">
+																		<rich:toolTip for="nome4">
+																			<h:panelGroup rendered="#{alunoItem.remanejado}">
+																				<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+																				<br/>
+																			</h:panelGroup>
+																			<h:outputText value=" **  Matrícula Encerrada: **"  styleClass="styleAlunoRemanejado,SomenteNegrito" />
+																			<h:outputText value="#{alunoItem.motivoEncerramentoMatricula}" />
+																			<br/>
+																			<h:outputText value="#{alunoItem.nome}" styleClass="SomenteNegrito"/>
+																			<br/>
+																			<h:outputText value="Data Nascimento: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.dtNascimento}" />
+																			<br/>
+																			<h:outputText value="Mãe: " styleClass="SomenteNegrito"/>
+																			<h:outputText value="#{alunoItem.nomeMae}" />
+																		</rich:toolTip>
+																	</h:outputText>
+																</h:panelGroup>
+															</h:panelGroup>
+														</rich:column>							
+													</rich:dataTable>
+								</h:panelGroup>
+							</h:panelGroup>
+							
+						</td>
+							
+						</tr>		
+				</table>			
+		</ui:define>	
+
+
+
+	</ui:composition>
+
+</html>

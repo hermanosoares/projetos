@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template.xhtml">
+	
+	<ui:define name="navegacao">
+					<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true" action="#{EtapaService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+	</ui:define>
+	
+	<ui:define name="conteudo">
+			<ui:include src="/uc/include/loading_inc.xhtml" />
+
+				<table width="750px;" style="margin:0 auto;">
+					<tr class="espacoFormulario"></tr>
+					<tr>
+						<td><h:graphicImage value="/img/etapa.jpg" alt="Etapa" /></td>
+					</tr>
+					<tr class="espacoFormulario"></tr>
+				</table>
+				
+				
+				
+				<table width="150px;" style="float: left;">
+					<tr>    
+						<td>
+							<h:panelGroup id="areaTurno">
+								<h:panelGroup>
+									<h:outputText value="1. Selecione o Turno*: " />
+									
+									<a4j:region id="regiao1">
+										<h:selectOneMenu styleClass="inputwidth220sm" value="#{FiltroSelecaoService.turnoSelecionado}" required="true" label="Turno">
+											<a4j:status for="regiao1" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+											<a4j:support event="onchange" ajaxSingle="true" reRender="areaEnsino"/>
+											<s:selectItems var="turnoItem" value="#{TurnoList.turnos}" label="#{turnoItem.nome}" noSelectionLabel="selecione.."/>
+											<s:convertEntity/>
+										</h:selectOneMenu>
+									</a4j:region>
+									
+								</h:panelGroup>				
+							</h:panelGroup>
+						</td>
+					</tr>
+				</table>
+				<table width="150px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaEnsino">
+										<h:panelGroup rendered="#{not empty FiltroSelecaoService.turnoSelecionado}">
+											<h:outputText value="2. Selecione o Ensino*: " /> <br/>
+											<a4j:region id="regiao2">
+											<h:selectOneMenu styleClass="inputwidth220sm" value="#{FiltroSelecaoService.ensinoSelecionado}" required="true" label="Ensino">
+												<a4j:status  for="regiao2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+												<a4j:support event="onchange" ajaxSingle="true"  reRender="areaSerie"/>
+												<s:selectItems var="ensinoItem" value="#{FiltroSelecaoService.turnoSelecionado.ensinos}" label="#{ensinoItem.nome}" noSelectionLabel="selecione.."/>
+												<s:convertEntity/>
+											</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+				</table>
+				
+				<table width="150px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaSerie">
+										<h:panelGroup rendered="#{not empty FiltroSelecaoService.ensinoSelecionado}">
+											<h:outputText value="3. Selecione a Série*: " /><br/>
+											<h:selectOneMenu styleClass="inputwidth220sm" value="#{FiltroSelecaoService.serieSelecionado}" required="true" label="Série">
+												<a4j:support event="onchange" ajaxSingle="true"  action="#{EtapaService.edita(FiltroSelecaoService.serieSelecionado)}" onsubmit="Richfaces.showModalPanel('panel_loading')"/>
+												<s:selectItems var="serieItem" value="#{FiltroSelecaoService.ensinoSelecionado.series}" label="#{serieItem.nome}" noSelectionLabel="selecione.."/>
+												<s:convertEntity/>
+											</h:selectOneMenu>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+					
+				</table>
+			
+				
+	</ui:define>
+
+</ui:composition>
+
+</html>

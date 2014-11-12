@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram model-entity="SeamPagesDiagram">
+ <item ID="#uc#cadastro#aluno#cadastro1.xhtml"
+  NAME="#xuc#xcadastro#xaluno#xcadastro1.xhtml"
+  PATH="/uc/cadastro/aluno/cadastro1.xhtml" SHAPE="24,17,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/cadastro/aluno/cadastro2.xhtml" NAME="output"
+   PATH="/uc/cadastro/aluno/cadastro2.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xcadastro2.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/aluno/cadastro2.xhtml" NAME="output1"
+   PATH="/uc/cadastro/aluno/cadastro2.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xcadastro2.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/aluno/cadastro1.xhtml" NAME="output2"
+   PATH="/uc/cadastro/aluno/cadastro1.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xcadastro1.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/aluno/cadastro2.xhtml" NAME="output3"
+   PATH="/uc/cadastro/aluno/cadastro2.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xcadastro2.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xcadastro#xaluno#xcadastro2.xhtml"
+  PATH="/uc/cadastro/aluno/cadastro2.xhtml" SHAPE="440,17,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+</diagram>

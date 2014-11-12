@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/basictemplate.xhtml">
+	
+   		 <ui:define name="navegacao">
+   		 
+   		 <div id="topoBotao">
+   		 	<h:panelGroup id="grupoNavegacao">
+					<h:commandButton styleClass="botaoNavegacao" image="/img/anterior.jpg" action="#{UsuarioService.anterior2}" value="gravar"/>
+					<h:commandButton styleClass="botaoNavegacao" image="/img/gravar.jpg" action="#{UsuarioService.gravar}" value="gravar"/>
+					<h:commandButton styleClass="botaoNavegacao" image="/img/cancelar.jpg" action="#{UsuarioService.cancela}" value="cancelar" immediate="true"/>
+			</h:panelGroup>	
+		 </div>
+		
+		</ui:define>
+
+		<ui:define name="conteudo">
+			<div id="topocadastrologin">
+				<h:outputText value="criando login: #{usuarioEntity.login} com permissão de acesso à #{usuarioEntity.usuarioinstituicao.size} instituições. " styleClass="SomenteNegrito" rendered="#{UsuarioService.papelSelecionadoNaoTecnico}"/>
+				<h:outputText value="criando login: #{usuarioEntity.login} com permissão de acesso à TODAS instituições da rede. " styleClass="SomenteNegrito" rendered="#{not UsuarioService.papelSelecionadoNaoTecnico}"/>
+			</div>
+			
+			<div id="conteudocadastrologin">
+				<table width="750" border="0">
+					<tr>
+						<td><h:outputText value="Email *:" /></td>
+						<td><h:outputText value="Confirmação Email*:" /></td>
+					</tr>
+
+					<tr>
+						<td><h:inputText styleClass="inputwidth340sm" value="#{contatoEntity.email1}" label="Email do usuário" /></td>
+						<td><h:inputText styleClass="inputwidth340sm" value="#{contatoEntity.confirmacaoEmail1}" label="Confirmacao de Email do usuário" /></td>
+					</tr>
+
+					<tr>
+						<td><h:outputText value="Email (secundário):" /></td>
+						<td><h:outputText value="Confirmação Email (secundário):" /></td>
+					</tr>
+
+					<tr>
+						<td><h:inputText styleClass="inputwidth340sm" value="#{contatoEntity.email2}" label="Email secundário do usuário" /></td>
+						<td><h:inputText styleClass="inputwidth340sm" value="#{contatoEntity.confirmacaoEmail2}" label="Confirmacao de Email secundário do usuário" /></td>
+					</tr>
+
+					<tr>
+						<td><h:outputText value="Telefone*:" /></td>
+						<td><h:outputText value="Telefone (secundário):" /></td>
+					</tr>
+					<tr>
+						<td><h:inputText styleClass="inputwidth250sm" value="#{contatoEntity.telfixo1}" id="telefone1" label="Telefone Fixo 1" converter="#{PhoneMaskConverter}">
+							<rich:jQuery selector="#telefone1" query="mask('(99)9999.9999')" timing="onload" /></h:inputText>
+						</td>
+						<td><h:inputText styleClass="inputwidth250sm" value="#{contatoEntity.telfixo2}" id="telefone2" converter="#{PhoneMaskConverter}">
+							<rich:jQuery selector="#telefone2" query="mask('(99)9999.9999')" timing="onload" /></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputText styleClass="campoPequeno" value="Nova Senha*: " /></td>
+						<td><h:outputText styleClass="campoPequeno" value="Confirme Nova senha*: " /></td>
+					</tr>
+					
+					<tr>
+						<td><h:inputSecret styleClass="inputwidth250sm" value="#{usuarioEntity.senha}"  label="Nova Senha" /></td>
+						<td><h:inputSecret styleClass="inputwidth250sm" value="#{usuarioEntity.confirmacaoNovaSenha}" label="Confirme sua nova senha" /></td>
+					</tr>
+
+					<tr>
+						<td><h:outputText styleClass="campoPequeno" value="Pergunta Secreta*: " /></td>
+						<td><h:outputText styleClass="campoPequeno" value="Resposta*: " /></td>
+					</tr>
+
+					<tr>
+						<td><h:inputText styleClass="inputwidth340sm" value="#{usuarioEntity.pergsecreta}" label="Pergunta Secreta" /></td>
+						<td><h:inputText styleClass="inputwidth340sm" value="#{usuarioEntity.respsecreta}" label="Resposta da Pergunta Secreta" /></td>
+					</tr>
+
+				</table>
+
+				<table width="743" border="0">
+					<tr>
+						<td><h:outputText styleClass="campoPequeno" value="Nome :*" /></td>
+						<td><h:outputText styleClass="campoPequeno" value="Sexo:*" /></td>
+						<td><h:outputText styleClass="campoPequeno" value="Data de Nascimento:*" /></td>
+					</tr>
+
+					<tr>
+						<td><h:inputText id="camponome" value="#{pessoaEntity.nome}" autocomplete="false" styleClass="inputwidth340sm" validator="ValidatorCampoNome" label="Nome do Aluno" converter="#{EmptyConverter}">
+							<f:attribute name="nomedocampo" value="Nome do Usuário" />
+							<rich:jQuery selector="#camponome" query="capitalize()" timing="onload" /> </h:inputText>
+						</td>
+
+						<td><h:selectOneMenu id="campoSexoid" value="#{pessoaEntity.sexo}" styleClass="inputwidth170sm2" validator="ValidatorCampoSexo" label="#{messages['rotulo.sexo']}">
+							<s:selectItems var="s" value="#{FabricaSexo}" label="#{s}" noSelectionLabel=" " />
+							<a4j:support event="onblur" reRender="campoSexoid" ajaxSingle="true" />
+							<s:validate />
+							</h:selectOneMenu>
+						</td>
+						<td><h:inputText styleClass="inputwidth160sm2" id="campodtnascimento" label="Dt. Nasc. Aluno" value="#{pessoaEntity.dtNascimento}" validator="ValidatorCampoDtNascimento" converter="#{EmptyConverter}">
+							<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy" />
+							<rich:jQuery selector="#campodtnascimento" query="mask('99/99/9999')" timing="onload" />
+							</h:inputText>
+						</td>
+					</tr>
+					<tr class="espacoFormulario"></tr>
+
+					<tr>
+						<td><h:outputText value="CPF: " /></td>
+						</tr>
+					<tr>
+						<td><h:inputText styleClass="inputwidth200sm" id="campoCPF" value="#{pessoaEntity.cpf}" autocomplete="false" maxlength="14"  label="CPF">
+							<rich:jQuery selector="#campoCPF" query="mask('999.999.999-99')" timing="onload" /> </h:inputText></td>
+					</tr>
+				</table>
+
+				<table width="738" border="0">
+					<tr>
+						<td><h:outputText value="Nome da Mãe:*" /></td>
+						<td><h:outputText value="Data de Nascimento:*" /></td>
+					</tr>
+					<tr>
+						<td><h:inputText styleClass="inputwidth500sm" value="#{pessoaEntity.nomeMae}" id="camponomemae" label="Nome da Mãe" converter="#{EmptyConverter}" validator="ValidatorCampoNome">
+							<rich:jQuery selector="#camponomemae" query="capitalize()" timing="onload" />
+							<f:attribute name="nomedocampo" value="Nome da Mãe" />
+							</h:inputText>
+						</td>
+						<td><h:inputText styleClass="inputwidth170sm" id="campodtnascimento2" label="Dt. Nascimento da Mãe" value="#{pessoaEntity.dtNascimentoMae}" validator="ValidatorCampoDtNascimento" maxlength="10">
+							<rich:jQuery selector="#campodtnascimento2" query="mask('99/99/9999')" timing="onload" />
+							</h:inputText>
+						</td>
+					</tr>
+				</table>
+
+				<table width="738" border="0">
+					<tr>
+						<td><h:outputText value="Nome do Pai:" /></td>
+						<td><h:outputText value="Data de Nascimento:" /></td>
+					</tr>
+
+					<tr>
+						<td><h:inputText styleClass="inputwidth500sm" value="#{pessoaEntity.nomePai}" id="camponomepai" converter="#{EmptyConverter}" validator="ValidatorCampoNome">
+							<f:attribute name="nomedocampo" value="Nome do Pai" />
+							<rich:jQuery selector="#camponomepai" query="capitalize()" timing="onload" />
+							</h:inputText>
+						</td>
+						<td><h:inputText styleClass="inputwidth170sm" id="campodtnascimento1" label="#{messages['rotulo.dt.nascimento']}" value="#{pessoaEntity.dtNascimentoPai}" validator="ValidatorCampoDtNascimento" maxlength="10">
+							<rich:jQuery selector="#campodtnascimento1" query="mask('99/99/9999')" timing="onload" />
+							</h:inputText>
+						</td>
+					</tr>
+				</table>
+		</div>
+				
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

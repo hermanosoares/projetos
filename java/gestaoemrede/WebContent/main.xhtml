@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+
+<body>
+
+<f:view>
+
+
+
+
+<ui:composition template="/template.xhtml">
+
+
+	<ui:define name="conteudo">
+
+	
+	
+	<rich:panel>
+        <f:facet name="header">
+		        <h:outputText value="Informativos do Sistema"	/> 
+        </f:facet>
+        
+       	<h:outputText value="Area de informativos técnicos do sistema. " style=""/> 
+    </rich:panel>
+	
+	<br/>
+	<br/>
+	
+	<rich:panel>
+        <f:facet name="header">
+		          <h:outputText value="Comunicados da Instituição"/>
+        </f:facet>
+       	<h:outputText value="Area de Comunicados da Instituição."/> 
+    </rich:panel>
+	
+	<br/>
+	<br/>
+	
+	
+		
+	<rich:panel id="idPanelBar" rendered="false">
+	
+		<f:facet name="header">
+			<h:outputText value="Caixa de Entrada" />				
+		</f:facet>
+		<h:outputText value="" />	
+		<rich:panelBar>
+		
+			<rich:panelBarItem id="idAlvoPanelBarItem1" label="Assunto 1">
+				<h:outputText value="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+				<br/>
+				<h:commandLink value="visualizar" />
+			</rich:panelBarItem>
+			
+			<rich:panelBarItem id="idAlvoPanelBarItem2" label="Assunto 2">
+			 	<h:outputText value="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+			 	<br/>
+			 	<h:commandLink value="visualizar" />
+			</rich:panelBarItem>	
+	
+			<rich:panelBarItem id="idAlvoPanelBarItem3" label="Assunto 3">
+				<h:outputText value="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+				<br/>
+				<h:commandLink value="visualizar" />
+			</rich:panelBarItem>	
+				
+		</rich:panelBar>
+	
+	</rich:panel>
+	
+    
+	<br/>    
+	</ui:define>
+
+	
+</ui:composition>
+
+
+
+</f:view>
+</body>
+</html>

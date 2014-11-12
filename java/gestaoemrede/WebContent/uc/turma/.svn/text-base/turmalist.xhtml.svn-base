@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="navegacao">
+	
+		<table width="500px;" style="margin:0 auto;">
+			<tr>
+				<td><h:graphicImage value="/img/cadastroTurma.png" alt="Espaço Físico" /></td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="500px;" style="margin:0 auto;">
+			<tr>
+				<td><h:commandButton action="#{TurmaService.novo}" image="/img/novo.jpg" styleClass="botaoNavegacao"/></td>
+			</tr>
+		</table>
+	</ui:define>
+		
+	<ui:define name="conteudo">
+		<table width="750px;" style="margin:0 auto;">
+			<rich:dataTable width="500px" style="margin:0 auto;" var="turmaItem" value="#{TurmaList.turmasDaConfAtiva}" rendered="#{not empty TurmaList.turmasDaConfAtiva}">
+			
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Nome da Turma" />
+					</f:facet>
+					<h:outputText value="#{turmaItem.nome} #{turmaItem.tooltip}" />
+				</rich:column>
+
+	
+				<rich:column headerClass="removerEditar">
+					<f:facet name="header">
+						<h:outputText value="Editar" />			
+					</f:facet>
+						<h:commandButton image="/img/editar.png" styleClass="cssBotaoEditar" action="#{TurmaService.edita(turmaItem)}"/>	
+				</rich:column>
+	
+	
+				<rich:column headerClass="removerEditar">
+					<f:facet name="header">
+						<h:outputText value="Remover" />			
+					</f:facet>
+						<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{TurmaService.removeTurma(turmaItem)}" onclick="return confirm('Confirma a exclusão da turma #{turmaItem.nome} da #{nomeInstituicaoLogada} ?')"/>	
+				</rich:column>
+				
+			</rich:dataTable>
+					
+			<h:outputText value=" Não existem turmas." rendered="#{empty TurmaList.turmasDaConfAtiva}"/>
+		</table>
+	</ui:define>
+
+</ui:composition>
+
+</html>

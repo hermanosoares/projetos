@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      action="#{ConversationHelper.BeginJoinConversationManual}">
+
+	
+
+	<navigation from-action="#{MultiplaInstituicaoService.acessar}">
+		<rule if-outcome="main">
+			<end-conversation/>
+			<redirect view-id="/main.xhtml"/>
+		</rule>
+		
+		<rule if-outcome="MesmaPagina">
+			<end-conversation/>
+			<redirect view-id="/login/instituicoesensino.xhtml"/>
+		</rule>
+	</navigation>
+	
+	<navigation>
+	
+			<rule if-outcome="crudConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/configuracaolist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudTipoEnsino">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipoensino/tipoensinolist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudSerie">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/serie/serielist.xhtml"/>
+			</rule>							
+	
+			<rule if-outcome="crudDisciplina">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/disciplina/disciplinalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudEtapas">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/etapa/etapalist.xhtml"/>
+			</rule>
+	
+			<rule if-outcome="cancela">
+				<begin-conversation join="true"/>
+				<raise-event type="InstituicaoList.evento.recarregar"/>
+			</rule>
+			
+			<rule if-outcome="CadastroInstituicao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/admin/instituicao/cadastro.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="CadastroUsuario">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/admin/usuario/cadastro.xhtml"/>
+			</rule>
+
+			<rule if-outcome="editaInstituicaoEnsino">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/instituicao/edita.xhtml"/>
+			</rule>
+
+			<rule if-outcome="gerenciarUsuarios">
+				<begin-conversation join="true"/>
+				<redirect view-id="/admin/usuario/usuariolist.xhtml"/>
+			</rule>
+			
+			
+	</navigation>
+	
+</page>

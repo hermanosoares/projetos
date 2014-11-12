@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			 <div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" 
+						image="/img/gravar.jpg" value="gravar" action="#{PeriodoLetivoService.grava(PeriodoLetivoService.ensinoSelecionado)}" rendered="#{not empty PeriodoLetivoService.ensinoSelecionado.periodosLetivos}">
+					</h:commandButton>
+					
+					<h:commandButton styleClass="botaoNavegacao" immediate="true"
+					 action="list" value="cancelar" image="/img/cancelar.jpg" />
+			</div>
+
+						
+		</ui:define>
+	
+	<ui:define name="conteudo">
+	
+	
+			
+	
+		<table width="750px;" style="margin:0 auto;">
+			<tr class="espacoFormulario"></tr>
+			<tr>
+				<td> <h:graphicImage value="/img/periodoLetivo.jpg" alt="Período Letivo" /> </td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="750px;" style="margin:0 auto;">
+			<tr>
+				<td><h:outputText value="Tipo de Ensino: #{PeriodoLetivoService.ensinoSelecionado.nome}" /></td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="750px;" style="margin:0 auto;">	
+			<tr>
+				<td> <h:outputText value="Descrição Período Letivo:" /> </td>
+				<td> <h:outputText value="Data Fechamento Diário" /> </td>
+			</tr>
+			
+			<tr>
+				<td> <h:inputText styleClass="inputwidth510" value="#{periodoLetivoEntity.nome}" maxlength="25" label="Descrição"/> </td>
+				<td>
+					<h:inputText styleClass="inputwidth200" id="idCampoFechamento" label="Dt. Fechamento Diário" value="#{periodoLetivoEntity.dtFechamentoDiario}"  maxlength="10" >
+					  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				   		<rich:jQuery selector="#idCampoFechamento" query="mask('99/99/9999')" timing="onload"/>
+					</h:inputText>
+				</td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+	</table>		
+			
+	<table width="400px;" style="float: left;">
+			<tr>
+				<td><h:outputText value="Data Início Periodo Letivo" /> </td>
+				<td><h:outputText value="Data Término Periodo Letivo" /> </td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:inputText style="width:180px; margin-right:10px; margin-left:0px;" id="idCampoInicio" label="Dt. Início Período Letivo" value="#{periodoLetivoEntity.dtInicio}"  maxlength="10" >
+					  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				   		<rich:jQuery selector="#idCampoInicio" query="mask('99/99/9999')" timing="onload"/>
+					</h:inputText>
+				</td>
+				
+				<td>
+					<h:inputText style="width:180px; margin-right:10px; margin-left:0px;" id="idCampoFim" label="Dt. Fim Período Letivo" value="#{periodoLetivoEntity.dtTermino}"  maxlength="10">
+					  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				   		<rich:jQuery selector="#idCampoFim" query="mask('99/99/9999')" timing="onload"/>
+					</h:inputText>
+				</td>
+				<td><h:commandButton action="#{PeriodoLetivoService.addPeriodoLetivo}" style="width:113px; margin:0px; border:0px; " image="/img/adicionar.jpg" value="add"/> </td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+			
+			
+		</table>
+
+		<div id="tabelacentelizada500px">
+		
+		<table width="500px;" >
+			<tr class="espacoFormulario"></tr>
+		
+				<rich:dataTable styleClass="tabelaperioletivo" value="#{PeriodoLetivoService.ensinoSelecionado.periodosLetivos}" var="pl" rendered="#{not empty PeriodoLetivoService.ensinoSelecionado.periodosLetivos}" rowKeyVar="i">
+						
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value=" " />
+								</f:facet>					
+								<h:outputText value="#{i+1}" />
+							</rich:column>
+		
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Descrição" />
+								</f:facet>					
+								<rich:inplaceInput value="#{pl.nome}"/>
+							</rich:column>
+		
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Dt. Início" />
+								</f:facet>					
+								<h:outputText value="#{pl.dtInicio}">
+									<f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>						
+								</h:outputText>
+							</rich:column>
+		
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Dt. Término" />
+								</f:facet>					
+								<h:outputText value="#{pl.dtTermino}">
+									<f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>						
+								</h:outputText>
+								
+							</rich:column>
+		
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Dt. Fechamento Diário" />
+								</f:facet>					
+								<h:outputText value="#{pl.dtFechamentoDiario}">
+									<f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>						
+								</h:outputText>
+								
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value=" " />
+								</f:facet>					
+								<h:commandButton action="#{PeriodoLetivoService.removeDetalhe(PeriodoLetivoService.ensinoSelecionado.periodosLetivos, pl)}" value="remover" image="/img/removerX.jpg" immediate="true" styleClass="botaoRemoverX"/>								
+							</rich:column>
+							
+						</rich:dataTable>
+		</table>		
+	
+	</div>			
+				
+	</ui:define>
+
+
+	</ui:composition>
+
+</html>

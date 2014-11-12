@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+
+		<ui:define name="navegacao">
+			<h:commandButton action="#{LoginService.grava}" style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" rendered="#{not empty LoginService.loginSelecionado}"/>
+			<h:commandButton action="cancela" image="/img/cancelar.jpg" immediate="true" style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;"/>
+		</ui:define>
+
+		<ui:define name="conteudo">
+		
+			<br/>
+			<br/>
+			<h:outputText value="Logins da #{nomeInstituicaoLogada}" rendered="#{not empty UsuariosInstituicaoList.usuariosInstituicao}"/>
+			<br/>
+			<h:outputText value="não existem logins para  #{nomeInstituicaoLogada}" rendered="#{empty UsuariosInstituicaoList.usuariosInstituicao}"/>
+			<br/>
+			<br/>
+			<rich:dataTable var="item" value="#{UsuariosInstituicaoList.usuariosInstituicao}" rendered="#{not empty UsuariosInstituicaoList.usuariosInstituicao}">
+			
+				<rich:column sortBy="#{item.auxLogin}">
+					<f:facet name="header">
+						<h:outputText value="Login" />
+					</f:facet>
+						<h:outputText value="#{item.auxLogin}" />					
+				</rich:column>	
+
+				<rich:column sortBy="#{item.papel}">
+					<f:facet name="header">
+						<h:outputText value="Nível de Acesso" />
+					</f:facet>
+					<h:outputText value="#{item.papel}" />
+				</rich:column>	
+
+				<rich:column sortBy="#{item.papel}">
+					<f:facet name="header">
+						<h:outputText value="Dt. Criação Login" />
+					</f:facet>
+						<h:outputText value="#{item.dtIngresso}">
+							<f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>						
+						</h:outputText>					
+				</rich:column>	
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="editar " />
+					</f:facet>
+					<h:commandButton action="#{LoginService.edita(item)}" value="Editar" image="/img/editar.png" style="width:20px; height:20px; border: 0px; margin:0 10px 0 10px;"/>
+				</rich:column>
+								
+			</rich:dataTable>
+			
+			<h:panelGroup rendered="#{not empty LoginService.loginSelecionado}">
+				<br/>
+				<h:outputText value="substituir o nível de acesso de #{LoginService.loginSelecionado} :" styleClass="SomenteNegrito"/>
+				<br/>
+				<h:selectOneMenu value="#{LoginService.papelSelecionado}" converter="#{PapelConverter}" required="true" label="Nível de Acesso de #{LoginService.loginSelecionado}">
+					<s:selectItems var="it" value="#{FabricaPapeisBaseadoNasCredenciais}" label="#{it}"/>
+				</h:selectOneMenu>
+			</h:panelGroup>
+		</ui:define>
+
+	</ui:composition>
+
+</html>

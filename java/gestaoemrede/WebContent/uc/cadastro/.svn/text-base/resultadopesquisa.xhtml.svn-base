@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+<f:subview id="subvisao">
+	
+	
+	
+	<h:panelGroup id="painelPrincipal">
+		<h:panelGroup  rendered="#{PessoaService.resultadoPesquisaPessoas.size > 0}">
+		
+			<h:panelGroup rendered="#{easyPaginacao.numPaginas.size>1}">
+				<h:outputText value="página:" style="float: left"/>
+				<a4j:region id="regiaoCombo">
+					<h:selectOneMenu value="#{easyPaginacao.pageSelecionada}" style="width: 50px;float: left">
+						<s:selectItems var="count" value="#{easyPaginacao.numPaginasPaginado}" label="#{count}"/>
+						<a4j:support eventsQueue="default"  event="onchange" reRender="painelPrincipal"  action="#{PessoaService.pesquisaByAjax}" actionListener="#{easyPaginacao.processaPaginaSelecionada}"/>
+						<a4j:status for="regiaoCombo" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>						
+					</h:selectOneMenu>
+				</a4j:region>
+			</h:panelGroup>
+			
+			<div id="topoTabelaPesquisa">
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoUltimo">
+						<a4j:commandButton image="/img/ultima.png" style="width: 92px; height: 15px; border:0px; float: right;" value="ultimo"   action="#{PessoaService.pesquisaByControleNavegacao('ultimo')}" actionListener="#{easyPaginacao.ultimo}" rendered="#{conversation.longRunning and easyPaginacao.existeUltimo}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoUltimo" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>					
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoProximo">
+						<a4j:commandButton id="idProximo" image="/img/proxima.png" style="width: 92px; height: 15px; border:0px; float: right; margin-right:0px;"  value="Proximo"  action="#{PessoaService.pesquisaByControleNavegacao('proximo')}" actionListener="#{easyPaginacao.proximo}" rendered="#{conversation.longRunning and easyPaginacao.existeProximo}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status  for="regiaoProximo" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoAnterior">
+						<a4j:commandButton id="idAnterior" image="/img/anterior.png" style="width: 92px; height: 15px; border:0px; float: right;" value="Anterior" action="#{PessoaService.pesquisaByControleNavegacao('anterior')}" actionListener="#{easyPaginacao.anterior}" rendered="#{conversation.longRunning and easyPaginacao.existeAnterior}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoAnterior" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoPrimeiro">
+						<a4j:commandButton image="/img/primeira.png" style="width: 92px; height: 15px; border:0px; float: right;" value="primeiro" action="#{PessoaService.pesquisaByControleNavegacao('primeiro')}" actionListener="#{easyPaginacao.primeiro}" rendered="#{conversation.longRunning and easyPaginacao.existeAnterior}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoPrimeiro" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+			 </div>
+
+						 
+	    	<rich:dataTable id="datatablePessoasPesquisadas" value="#{PessoaService.resultadoPesquisaPessoas}" var="item"
+	    	 rows="10" rowClasses="ClasseCss2,ClasseCss1" rowKeyVar="indiceResultado" >
+
+	    		<rich:column headerClass="tablelaNome">
+	    			<f:facet name="header">
+	    				<h:outputText value=" "/>
+	    			</f:facet>
+	    			<h:outputText value="#{indiceResultado+1+easyPaginacao.currentPosition}" />
+				</rich:column>
+   				
+
+	    		<rich:column headerClass="tablelaNome">
+	    			<f:facet name="header">
+	    				<h:outputText value=" "/>
+	    			</f:facet>
+	   				
+	   				<h:graphicImage id="img1" value="/img/alunoEditar.png" rendered="#{not empty item.idAluno}">
+							<rich:toolTip for="img1">
+							     <span style="white-space:nowrap">
+										Indica que esta pessoa é um Aluno da #{nomeInstituicaoLogada}.
+							      </span>
+							</rich:toolTip>
+					</h:graphicImage>	
+					<br/>   				
+	   				<h:graphicImage id="img2" value="/img/docenteEditar.png" rendered="#{not empty item.idFuncionario}">
+							<rich:toolTip for="img2">
+							     <span style="white-space:nowrap">
+										Indica que esta pessoa é um Funcionário da #{nomeInstituicaoLogada}.
+							      </span>
+							</rich:toolTip>
+					</h:graphicImage>	   				
+					<br/>   				
+	   				<h:graphicImage id="img3" value="/img/registronarede.png" rendered="#{empty item.idFuncionario and empty item.idAluno}">
+							<rich:toolTip for="img3">
+							     <span style="white-space:nowrap">
+										Indica que esta pessoa existe na rede e não possui vínculos com a #{nomeInstituicaoLogada}.
+							      </span>
+							</rich:toolTip>
+					</h:graphicImage>	   				
+	   				
+	    		</rich:column>
+				
+	    		<rich:column sortBy="#{item.nome}" headerClass="tablelaNome">
+	    			<f:facet name="header">
+	    				<h:outputText value=" Nome "/>
+	    			</f:facet>
+	   				<h:outputText  value="#{item.nome}"/>
+	   				<br/>
+	    		</rich:column>
+		
+				<rich:column headerClass="tablelaNome">
+					<f:facet name="header">
+						<h:outputText value="Sexo" />
+					</f:facet>
+					<h:outputText style="text-align: center;" value="#{item.sexo}"/>
+				</rich:column>
+				
+				<rich:column headerClass="tablelaNome" sortBy="#{item.dtNascimento}">
+					<f:facet name="header">
+						<h:outputText value="Dt. Nasc." />
+					</f:facet>
+	    			<h:outputText value="#{item.dtNascimento}">
+	    				<f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
+	    			</h:outputText> 
+				</rich:column>
+				
+	    		<rich:column sortBy="#{item.nomeMae}" headerClass="tablelaPaiMae">
+	    			<f:facet name="header">
+	    				<h:outputText value="Mãe"/>
+	    			</f:facet>
+	    			<h:outputText value="#{item.nomeMae}" rendered="#{not empty item.nomeMae}"/>
+	    			<h:outputText value="não informado."  rendered="#{empty item.nomeMae}" />
+	    		</rich:column>
+
+	    		<rich:column  sortBy="#{item.nomePai}" headerClass="tablelaPaiMae">
+	    			<f:facet name="header">
+	    				<h:outputText value="Pai"/>
+	    			</f:facet>
+	    			<h:outputText value="#{item.nomePai}" rendered="#{not empty item.nomePai}"/>
+	    			<h:outputText value="não informado."  rendered="#{empty item.nomePai}" />
+	    		</rich:column>
+	
+	    		<rich:column headerClass="tablelaDocumento">
+	    			<f:facet name="header">
+	    				<h:outputText value="Documentos"/>
+	    			</f:facet>
+	    			
+	    			<h:outputText value="CPF:" rendered="#{not empty item.cpf}" styleClass="SomenteNegrito"/>
+	    			<br/>
+	    			<h:outputText value="#{item.cpf}" rendered="#{not empty item.cpf}"/>
+	    			<h:outputText value="CPF: -" rendered="#{empty item.cpf}" styleClass="SomenteNegrito"/>
+	    			<br/>
+	    			<br/>
+	    			<h:outputText value="RG:" rendered="#{not empty item.rg}" styleClass="SomenteNegrito"/>
+	    			<br/>
+	    			<h:outputText value="#{item.rgOrgaoExpedidor}-#{item.rg}" rendered="#{not empty item.rg}"/>
+	    			<h:outputText value="RG: -" rendered="#{empty item.rg}" styleClass="SomenteNegrito"/>
+	    		</rich:column>
+	
+	    		<rich:column sortBy="#{item.naturalidade}" headerClass="tablelaDocumento">
+	    			<f:facet name="header">
+	    				<h:outputText value="Natural"/>
+	    			</f:facet>
+	    			<h:outputText value="-"  rendered="#{empty item.naturalidade}"/>
+	    			<h:outputText value="#{item.naturalidade}"/>
+	    		</rich:column>
+
+			
+	    	<rich:column id="idColunaFoto" headerClass="tablelaDocumento">
+	    		<f:facet name="header">
+	    				<h:outputText value="Foto"/>
+	    		</f:facet>
+	    			
+				<s:graphicImage fileName="#{item.fileNameImage}" value="#{item.foto}" rendered="#{not empty item.foto}">
+		        	<s:transformImageSize height="55" maintainRatio="true" />
+				</s:graphicImage>
+				
+				<h:graphicImage value="/img/semfoto.png" rendered="#{empty item.foto}" />						
+			</rich:column>
+
+			
+		    	<rich:column headerClass="tablelaEdicao" rendered="#{permiteExibirMenuAcao}">
+		    			<f:facet name="header">
+		    				<h:outputText value=" MENU " styleClass="SomenteNegrito"/>
+		    			</f:facet>
+		    			
+					<rich:toolBar>
+	    			<rich:dropDownMenu >
+			                <f:facet name="label"> 
+			                    <h:panelGroup>
+			                        <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+			                        <h:outputText value=" AÇÃO "/>
+			                    </h:panelGroup>
+			                </f:facet>
+		                	
+		                	<rich:menuGroup value="Aluno">
+			                	<rich:menuItem submitMode="server" value="Editar" action="#{AlunoService.edita(item)}" rendered="#{permiteExibirCadastroAluno and not empty item.idAluno}"/>
+			                	<h:panelGroup rendered="false">
+				                	<rich:menuItem submitMode="server" value="Remover" action="#{AlunoService.remove(item)}" rendered="#{not empty item.idAluno}" onclick="return confirm('Deseja remover o aluno: #{item.nome} da #{nomeInstituicaoLogada} ?')"/>
+				                	<rich:menuItem submitMode="server" value="Incluir" action="#{AlunoService.insere(item)}" rendered="#{empty item.idAluno}"/>
+			                	</h:panelGroup>
+		                	</rich:menuGroup>
+
+		                	<rich:menuGroup value="Funcionário" >
+			                	<rich:menuItem submitMode="server" value="Editar" action="#{FuncionarioService.edita(item)}" rendered="#{permiteExibirCadastroFuncionario and not empty item.idFuncionario}"/>
+			                	
+			                	<h:panelGroup rendered="false">
+				                	<rich:menuItem submitMode="server" value="Remover" action="#{FuncionarioService.remove(item)}" rendered="#{not empty item.idFuncionario}" onclick="return confirm('Deseja remover o Funcionário #{item.nome} da #{nomeInstituicaoLogada} ?')"/>
+				                	<rich:menuItem submitMode="server" value="Inclur" action="#{FuncionarioService.insere(item)}" rendered="#{empty item.idFuncionario and item.maiorIdade}"/>
+				                	<rich:menuItem submitMode="server" value="Inclur" action="#{FuncionarioService.insere(item)}" rendered="#{empty item.idFuncionario and not item.maiorIdade}" onclick="return confirm('Deseja Realmente Inserir o aluno: #{item.nome} como Funcionário da #{nomeInstituicaoLogada}, mesmo sendo MENOR DE IDADE?')"/>
+			                	</h:panelGroup>
+							</rich:menuGroup>		                	
+							
+		                	<rich:menuGroup value="Gerenciar" rendered="false">
+			                	<rich:menuItem submitMode="server" value="Acesso" action="#{UsuarioService.edita(item)}" rendered="#{not empty item.idAluno or not empty item.idFuncionario and permiteGerenciarAcesso}"/>
+		                	</rich:menuGroup>
+
+		                	<rich:menuGroup value="Matrícula" rendered="#{permiteExibirMatricula}">
+			                	<rich:menuItem submitMode="server" value="Criar" action="criar-matricula" actionListener="#{SeletorHelper.selectAluno(item.idAluno, '/uc/matricula/matricula.xhtml')}" rendered="#{not empty item.idAluno}"/>
+			                	<h:panelGroup rendered="false">
+			                		<rich:menuItem submitMode="server" value="Detalhes" />
+			                	</h:panelGroup>
+		                	</rich:menuGroup>
+		                	
+	                </rich:dropDownMenu>
+	               	</rich:toolBar>
+               		
+				</rich:column>
+				
+	    	</rich:dataTable>
+
+
+			<div id="topoTabelaPesquisa">
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoUltimo2">
+						<a4j:commandButton image="/img/ultima.png" style="width: 92px; height: 15px; border:0px; float: right;" value="ultimo"   action="#{PessoaService.pesquisaByControleNavegacao('ultimo')}" actionListener="#{easyPaginacao.ultimo}" rendered="#{conversation.longRunning and easyPaginacao.existeUltimo}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoUltimo2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>					
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoProximo2">
+						<a4j:commandButton id="idProximo2" image="/img/proxima.png" style="width: 92px; height: 15px; border:0px; float: right; margin-right:0px;"  value="Proximo"  action="#{PessoaService.pesquisaByControleNavegacao('proximo')}" actionListener="#{easyPaginacao.proximo}" rendered="#{conversation.longRunning and easyPaginacao.existeProximo}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status  for="regiaoProximo2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoAnterior2">
+						<a4j:commandButton id="idAnterior2" image="/img/anterior.png" style="width: 92px; height: 15px; border:0px; float: right;" value="Anterior" action="#{PessoaService.pesquisaByControleNavegacao('anterior')}" actionListener="#{easyPaginacao.anterior}" rendered="#{conversation.longRunning and easyPaginacao.existeAnterior}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoAnterior2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoPrimeiro2">
+						<a4j:commandButton image="/img/primeira.png" style="width: 92px; height: 15px; border:0px; float: right;" value="primeiro" action="#{PessoaService.pesquisaByControleNavegacao('primeiro')}" actionListener="#{easyPaginacao.primeiro}" rendered="#{conversation.longRunning and easyPaginacao.existeAnterior}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoPrimeiro2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+			 </div>
+			
+		</h:panelGroup>
+			
+	</h:panelGroup>
+
+</f:subview>
+</html>

@@ -1,0 +1,6 @@
+#centroPag{
+	margin: 0 auto;
+	_margin:0 auto;
+	width: 750px;
+	height: auto;
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+		<div id="matriculaTop">
+			<h:commandButton action="list" image="/img/voltar.jpg" styleClass="botaoNavegacao" immediate="true" />		
+			<h:commandButton action="#{MatriculaService.encerraMatricula}" image="/img/encerrar.jpg"  value="" styleClass="botaoNavegacao" onclick="return confirm('Deseja realmente Encerrar Matrícula de : #{MatriculaService.alunoSelecionado.nome} ?')"/>
+		</div>
+		
+		</ui:define>
+		
+		<ui:define name="conteudo">
+			<table width="750">
+				<tr class="espacoFormulario"></tr>
+					<tr>
+						<td>
+							<h:outputText value="Encerrando Matrícula de: "  styleClass="SomenteNegrito"/>
+							<h:outputText value="#{MatriculaService.alunoSelecionado.nome}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+						 	<h:outputText value="Ano da Matrícula: " styleClass="SomenteNegrito" />
+						 	<h:outputText value="#{MatriculaService.matriculaSelecionada.anoAdm}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Tipo de Matrícula: " styleClass="SomenteNegrito" />
+							<h:outputText value="#{MatriculaService.matriculaSelecionada.tipoMatricula}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Turno: " styleClass="SomenteNegrito"/>
+							<h:outputText value="#{MatriculaService.matriculaSelecionada.turno}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Ensino: " styleClass="SomenteNegrito"/>
+							<h:outputText value="#{MatriculaService.matriculaSelecionada.ensino}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Série: " styleClass="SomenteNegrito" />
+							<h:outputText value="#{MatriculaService.matriculaSelecionada.serie}" />					
+						</td>
+					</tr>
+					
+				<tr class="espacoFormulario"></tr>
+			</table>
+			<table>
+				<tr>
+					<td><h:outputText styleClass="campoEncerrar"  value="Motivo de Encerramento Matrícula:"/></td>
+					<td><h:outputText styleClass="campoEncerrar"  value="Data Encerramento da Matrícula:" /></td>
+				</tr>
+				
+				<tr>
+					<td><h:selectOneMenu styleClass="campoEncerrar" value="#{matriculaEntity.tipoencerramentoMatricula}" label="Motivo de Encerramento Matrícula" required="true">
+					<s:selectItems var="i" value="#{TipoEncerramentoMatriculaList.tiposEncerramentoMatricula}" label="#{i.nome}" noSelectionLabel="selecione"/>
+					<s:convertEntity/>
+				    </h:selectOneMenu></td>
+				    
+				    <td> <h:panelGroup>
+					 <h:inputText styleClass="campoEncerrar"  id="dtencerramentoId" label="Data de Encerramento da Matrícula" value="#{matriculaEntity.dtEncerramento}" validator="ValidatorCampoDtNascimento" maxlength="10" converter="#{EmptyConverter}">
+					  	<f:attribute name="paramMsg" value="Dt. Encerramento"/>
+					  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				    	<rich:jQuery selector="#dtencerramentoId" query="mask('99/99/9999')" timing="onload"/>
+			    	  </h:inputText>
+				 </h:panelGroup> </td>
+				</tr>
+				
+			</table>
+			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="conteudo">
+	
+	<table width="500px;" style="margin:0 auto;">
+		<tr class="espacoFormulario"></tr>
+		<tr>
+			<td><h:graphicImage value="/img/relatorioDeConfiguracao.png" alt="Relatório de Configuração" /></td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+	<rich:dataTable styleClass="tabelaTamanhoCentralizado"  value="#{TurnoList.turnos}" var="turnoItem" rendered="#{not empty TurnoList.turnos}">
+	
+		<h:column headerClass="colunaTurno">
+			<f:facet name="header">
+				<h:outputText value="Turno" />
+			</f:facet>
+			<h:outputText value="#{turnoItem.nome}" />			
+		</h:column>	
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value=" " />
+			</f:facet>
+
+			<rich:dataTable value="#{turnoItem.ensinos}" var="ensinoItem">
+				<h:column headerClass="tipoEnsino">
+					<f:facet name="header">
+						<h:outputText value="Tipo Ensino" />
+					</f:facet>
+					
+					<h:outputText value="#{ensinoItem.nome}" />
+				</h:column>
+				
+				<h:column>
+					<rich:dataTable value="#{ensinoItem.series}" var="serieItem">
+					
+						<h:column headerClass="colunaSerie">
+							<f:facet name="header">
+								<h:outputText value="Série " />
+							</f:facet>
+							<h:outputText value="#{serieItem.nome}" />
+						</h:column>
+						
+						<h:column headerClass="colunaTurma">
+							<f:facet name="header">
+								<h:outputText value="Turma" />
+							</f:facet>
+							<rich:dataTable styleClass="retiraBorda" value="#{serieItem.turmas}" var="turmaItem">
+								<h:column>
+									<h:outputText value="#{turmaItem.nome}" />
+								</h:column>								
+							</rich:dataTable>
+							<h:outputText value="não existe." rendered="#{empty serieItem.turmas}"/>
+						</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Disciplina" />
+						</f:facet>
+						<rich:dataTable styleClass="retiraBorda" value="#{serieItem.disciplinas}"	var="disciplinaItem">
+							<h:column>
+								<h:outputText value="#{disciplinaItem.nome}" />
+							</h:column>
+						</rich:dataTable>
+						<h:outputText value="não existe."
+							rendered="#{empty serieItem.disciplinas}" />
+					</h:column>
+												
+					</rich:dataTable>
+					<h:outputText value="não existe." rendered="#{empty ensinoItem.series}"/>
+				</h:column>
+
+				</rich:dataTable>
+
+		</h:column>
+		
+	</rich:dataTable>
+	
+	<h:outputText value="configuração incompleta não existem turnos!." rendered="#{empty TurnoList.turnos}"/>
+		
+	</ui:define>
+
+</ui:composition>
+
+</html>

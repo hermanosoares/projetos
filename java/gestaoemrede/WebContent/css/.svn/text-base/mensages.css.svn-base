@@ -1,0 +1,49 @@
+#rotuloMensagemPrincipal{
+	widows:800px;
+	height:auto !important;
+	float:none;
+}
+
+
+.errors {
+	font-size: small;
+	font-weight: bold;
+	text-align: left;
+	color: #063;
+	margin-left: 15px;
+	margin: 12px;
+}
+
+.msgMultiplasInstituicoes{
+	font-size: small;
+	font-weight: bold;
+	text-align: left;
+	color: white;
+	margin-left: 15px;
+	margin: 12px;
+}
+
+.errorslogin{
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	margin-left: 15px;
+	background: #F00;
+	margin: 2px;
+}
+
+.errors img {
+	float: right;
+}
+
+.errors div {
+	text-align: center;
+	color: #FC3;
+}
+.errors input {
+	border: 1px solid #600;
+}
+.errors ul {
+	list-style: none;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+<body>
+
+	<table width="750px;" style="margin:0 auto;">
+		<tr>
+			<td>
+				<h:panelGroup id="areaEnsino">
+					<h:panelGroup rendered="#{not empty FiltroSelecaoService.turnoSelecionado}">
+						<h:outputText value="Selecione o Ensino*: " />
+						 <h:selectOneMenu value="#{FiltroSelecaoService.ensinoSelecionado}" required="true" label="Ensino">
+						 	<s:selectItems var="ensinoItem" value="#{SerieList.getEnsinos(FiltroSelecaoService.turnoSelecionado)}" noSelectionLabel="selecione.." label="#{ensinoItem.nome}"/>
+						 	<s:convertEntity/>
+						 </h:selectOneMenu>
+					 </h:panelGroup>
+				 </h:panelGroup>
+			</td>
+		</tr>
+	</table>
+	
+</body>	
+</html>

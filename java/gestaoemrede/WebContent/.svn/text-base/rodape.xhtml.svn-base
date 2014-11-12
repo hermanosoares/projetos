@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition>
+	
+		<div id="footer" style="width: 730px;">
+			<h5> Gestão Escolar Pública na Web 2.0 </h5>
+			<a href="http://www.bulktecnologia.com.br/" target="_blank"> Bulk Tecnologia Ltda.</a> - Todos os direitos reservados.
+			<br/>
+			<h:outputText styleClass="versaoCss" value=" #{AppServerStartupListener.versaoSoftware} "/>
+			<h:outputText value=" #{usuariosOnlineAutenticados} #{usuariosOnlineNaoAutenticados}"/>
+		</div>
+		 
+		
+	</ui:composition>
+	
+</html>

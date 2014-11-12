@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:rich="http://richfaces.org/rich"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:a4j="http://richfaces.org/a4j">
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>#{messages['nome.sistema']}</title>
+	<link href="#{facesContext.externalContext.request.contextPath}/favicon.ico" rel="icon" type="image/x-icon" />
+	<link href="css/estiloGestaoemRede.css" rel="stylesheet" type="text/css" />
+	<link href="css/mensages.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jscapslock.js"/>
+</head>
+
+<body>
+
+<f:view>
+
+<div id="cabecalho">
+		
+	<ul>
+		<li> <s:link  value="Esqueci Senha" view="/esquecisenha.xhtml"/>  </li>
+		<li>|</li>
+		<li><a href="http://www.gestaoemrede.com.br/contato.htm" target="_blank">Contato</a></li>
+		<li>|</li>
+		<li><a href="http://www.gestaoemrede.com.br" target="_blank">Sobre o Gestão em Rede</a></li>
+		<li>|</li>
+		<li><a href="http://suporte.gestaoemrede.com.br" target="_blank">Suporte</a></li>
+		<li>|</li>
+		<li><a >Fone: (31) 2512-1876</a></li>
+	</ul>
+</div>
+
+
+<div id="faixas"></div>
+
+<div id="centroHome">
+
+<div id="imagecadeado"></div>
+
+<div>
+		<br/>
+		<h3> Gestão Escolar Pública na Web 2.0 </h3>
+</div>
+			<noscript>
+			<center>
+			<b>
+			<br/>
+			<br/>
+			<br/>
+			o Javascript deste navegador encontra-se desabilitado! Habilite-o para prosseguir.
+			</b>
+			</center>
+			</noscript>
+							
+		
+	
+	<div id="loginHome" style="visibility: hidden">
+	
+	  <h:form id="login">
+	  	<s:validateAll>
+			
+			<br/>
+				<div>
+					<h:outputLabel id="UsernameLabel" for="username">#{messages['rotulo.login']}:</h:outputLabel>
+					<br/>
+					<h:inputText id="username" value="#{identity.username}" required="true" requiredMessage="Login obrigatorio!"/>
+					<h:message for="username" styleClass="errorslogin"/>
+				</div>
+				<br/>
+				<div>
+					<h:outputLabel id="PasswordLabel" for="password">#{messages['rotulo.senha']}:</h:outputLabel>
+					<br/>
+					<h:inputSecret id="password" value="#{identity.password}" required="true" requiredMessage="senha obrigatorio!" onkeydown="javascript:if (event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {document.getElementById('login:botaoLogin').click();}};"/>
+					<h:message for="password" styleClass="errorslogin"/>
+					<rich:toolTip for="password">
+						<h:outputText value="Este campo diferencia maiúsculo de minúsculo." />
+					</rich:toolTip>		
+				</div>
+				
+				<div class="errorslogin"><rich:messages id="messages" globalOnly="true" /></div>
+			
+				
+				<div id="teste"> <h:selectBooleanCheckbox id="rememberMe" value="#{rememberMe.enabled}">#{messages['login.remeberme']}</h:selectBooleanCheckbox> </div>
+				
+	
+				<h:commandButton style="width: 110px; height: 28px; border: 0px;" image="/img/botaoacessarverde.jpg" id="botaoLogin" action="#{identity.login}" value="#{messages['titulo.acessar']}"/>
+			
+			</s:validateAll>
+            </h:form>
+	
+	</div>
+	
+	<div id="marcaJini"></div>
+	
+</div>
+
+<div id="faixasFooter"></div>
+
+<div id="footer"><a href="http://www.bulktecnologia.com.br/" target="_blank"> Bulk Tecnologia Ltda.</a> - Todos os direitos reservados.
+			<br/>
+			<h:outputText styleClass="versao" value=" #{AppServerStartupListener.versaoSoftware} "/>
+			<h:outputText value=" #{usuariosOnlineAutenticados} #{usuariosOnlineNaoAutenticados}"/>
+</div>
+
+<f:verbatim>
+	<script type="text/javascript">
+	
+	//analitics tracker begin-body
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-10400162-10']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	//analitics tracker end-body
+	
+		document.getElementById('loginHome').style.visibility = 'visible';
+	
+		function setFocus(){
+			if ( document.getElementById('login:username').value == ""){
+				document.getElementById('login:username').focus();
+			}
+			else{
+				document.getElementById('login:password').focus();
+			}
+		}
+		window.onload=setFocus;
+	</script>
+	
+
+</f:verbatim>
+
+</f:view>
+</body>
+</html>

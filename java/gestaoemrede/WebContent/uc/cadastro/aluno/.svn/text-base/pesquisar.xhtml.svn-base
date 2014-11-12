@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">	
+<f:view>
+	<ui:composition template="/template.xhtml">
+	
+	
+	<ui:define name="conteudo">
+		<h:graphicImage value="/img/pesquisa.png" />
+		<br/>
+		 <h:panelGroup rendered="#{PessoaService.resultadoPesquisaPessoas.size > 0}">
+		 	<br/>
+		 	<h:outputText value="encontrado: #{easyPaginacao.count} registro(s)."  style="font-weight: bold" />
+		 	<br/>
+		 	<br/>
+		 </h:panelGroup>
+		
+	
+			<rich:hotKey key="right"  handler="#{rich:element('RootId:subvisao:idProximo')}.click()" />
+			<rich:hotKey key="left"  handler="#{rich:element('RootId:subvisao:idAnterior')}.click()" />
+			
+			<h:outputText value="pesquisar somente na minha instituição" />
+			<h:selectBooleanCheckbox value="#{PessoaService.pesquisarSomenteNaMinhaInstituicao}" label="pesquisar somente na minha instituição" style="border: 0px"/>
+			<br/>
+			<br/>
+			<div id="cadastroUnico">
+			
+		    
+		    <rich:panelBar height="350" width="770">
+		    
+		    
+        	<rich:panelBarItem label="1.  Pesquisar por dados pessoais">
+			    <div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" image="/img/pesquisar.jpg" action="#{PessoaService.pesquisa}" value="Pesquisar" actionListener="#{easyPaginacao.primeiro}" onclick="Richfaces.showModalPanel('panel_loading')"/>
+					
+					<h:commandButton styleClass="botaoNavegacao" immediate="true" action="cancelar" value="cancelar" image="/img/cancelar.jpg" />
+	      		</div>
+			
+				<table width="650" border="0">
+				  <tr>
+				    <td><h:outputText styleClass="campoPequeno" value="Nome:" /></td>
+				    <td><h:outputText styleClass="campoPequeno" value="CPF:" /></td>
+				  </tr>
+				  <tr>
+				    <td><h:inputText styleClass="inputwidth470" value="#{pessoaEntity.nome}" id="camponome" validator="ValidatorCampoNome">
+				    	<f:attribute name="nomedocampo" value="Nome do Aluno"/>
+				    	<rich:jQuery selector="#camponome" query="capitalize()" timing="onload"/>				    
+						</h:inputText>
+				    </td>
+				    <td><h:inputText styleClass="inputwidth210" id="campoCPF" value="#{pessoaEntity.cpf}">
+				    <rich:jQuery selector="#campoCPF" query="mask('999.999.999-99')" timing="onload"/>
+				    </h:inputText>
+				    </td>
+				  </tr>
+			  </table>
+		  
+		  	  <table width="650" border="0">
+				  <tr>
+				    <td><h:outputText styleClass="campoPequeno" value="RG:" /></td>
+				    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.sexo']}:" /></td>
+				    <td><h:outputText styleClass="campoPequeno" value="Data Nascimento:" /></td>
+				  </tr>
+				  <tr>
+				    <td><h:inputText styleClass="inputwidth250" value="#{pessoaEntity.rg}"/></td>
+				    <td><h:selectOneMenu styleClass="inputwidth210" value="#{pessoaEntity.sexo}" label="#{messages['rotulo.sexo']}" >
+							<s:selectItems var="s" value="#{FabricaSexo}"  label="#{s}" noSelectionLabel=" "/>
+							<s:convertEnum/>
+						 </h:selectOneMenu></td>
+				    <td><h:inputText styleClass="inputwidth210" id="campoData1" value="#{pessoaEntity.dtNascimento}" maxlength="10" >
+				    	 <rich:jQuery selector="#campoData1" query="mask('99/99/9999')" timing="onload"/>
+				    	</h:inputText>
+				    </td>
+				  </tr>
+			 </table>
+			
+		  	  <table width="650" border="0">
+				  <tr>
+				    <td><h:outputText styleClass="campoPequeno" value="Nome da Mãe:" /></td>
+				    <td><h:outputText styleClass="campoPequeno" style="margin-left:1px;" value="Nome do Pai:" /></td>
+				  </tr>
+				  <tr>
+				    <td><h:inputText style="width:347px;" value="#{pessoaEntity.nomeMae}" id="campomae">
+				    	<f:attribute name="nomedocampo" value="Nome da Mãe"/>
+				    	<rich:jQuery selector="#campomae" query="capitalize()" timing="onload"/>				    
+						</h:inputText>
+				    </td>
+				    <td><h:inputText style="width:347px;" value="#{pessoaEntity.nomePai}" id="campopai">
+				    	<f:attribute name="nomedocampo" value="Nome do Pai"/>
+				    	<rich:jQuery selector="#campopai" query="capitalize()" timing="onload"/>				    
+						</h:inputText>
+				    </td>
+				  </tr>
+			 </table>
+			</rich:panelBarItem>
+			
+			
+			<rich:panelBarItem label="2. Pesquisar por dados do Aluno">
+					<div id="topoBotao">
+						<h:commandButton styleClass="botaoNavegacao" image="/img/pesquisar.jpg" action="#{PessoaService.pesquisa}" value="Pesquisar" actionListener="#{easyPaginacao.primeiro}"/>
+						<h:commandButton styleClass="botaoNavegacao" immediate="true" action="cancelar" value="cancelar" image="/img/cancelar.jpg" />
+					 </div>
+				
+					<f:facet name="header">
+						<h:outputText value="Aluno" />				
+					</f:facet>
+					<table width="750" border="0">
+					  <tr>
+					    <td><h:outputText styleClass="campoPequeno" value="Cod. Aluno:" /></td>
+					  </tr>
+					  <tr>
+					    <td> <h:inputText id="idCampoCodEducaCensoAluno" value="#{alunoEntity.codeducacenso}" maxlength="12">
+					  			<rich:jQuery selector="#idCampoCodEducaCensoAluno" query="numeric()" timing="onload"/>
+					    	 </h:inputText>
+					     </td>
+					  </tr>
+					</table>
+		   </rich:panelBarItem>
+		   
+		   <rich:panelBarItem label="3. Pesquisar por dados do Funcionário">			
+				<div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" image="/img/pesquisar.jpg" action="#{PessoaService.pesquisa}" value="Pesquisar" actionListener="#{easyPaginacao.primeiro}"/>
+					<h:commandButton styleClass="botaoNavegacao" immediate="true" action="cancelar" value="cancelar" image="/img/cancelar.jpg" />
+				 </div>
+			
+				<f:facet name="header">
+					<h:outputText value="Funcionário" />				
+				</f:facet>
+				<table width="750" border="0">
+				  <tr>
+				    <td><h:outputText styleClass="campoPequeno" value="Cod. Funcional:" /></td>
+				  </tr>
+				  <tr>
+				    <td> <h:inputText id="idCampoCodFuncional" value="#{funcionarioEntity.codigoFuncional}" maxlength="12">
+					  			<rich:jQuery selector="#idCampoCodFuncional" query="numeric()" timing="onload"/>
+				    	 </h:inputText>
+				     </td>
+				  </tr>
+				</table>
+			</rich:panelBarItem>
+			
+			<rich:panelBarItem label="4. Pesquisar por dados do Usuário">
+				<div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" image="/img/pesquisar.jpg" action="#{PessoaService.pesquisa}" value="Pesquisar" actionListener="#{easyPaginacao.primeiro}"/>
+					<h:commandButton styleClass="botaoNavegacao" immediate="true" action="cancelar" value="cancelar" image="/img/cancelar.jpg" />
+				 </div>
+			
+				<f:facet name="header">
+					<h:outputText value="Usuário" />				
+				</f:facet>
+				<table width="750" border="0">
+				  <tr>
+				    <td><h:outputText styleClass="campoPequeno" value="Login:" /></td>
+				  </tr>
+				  <tr>
+				    <td> <h:inputText value="#{usuarioEntity.login}"/> </td>
+				  </tr>
+				</table>
+			</rich:panelBarItem>
+			
+			</rich:panelBar>
+				 
+		</div>
+
+			<ui:include src="/uc/include/loading_inc.xhtml" />
+			
+			<ui:include src="/uc/cadastro/resultadopesquisa.xhtml" />
+		
+		
+		<script language="javascript">
+			inicializaFocoCursor("RootId:camponome");
+		</script>
+		
+	</ui:define>
+	
+	</ui:composition>
+</f:view>
+</html>

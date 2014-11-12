@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram model-entity="SeamPagesDiagram">
+ <item ID="#uc#*" NAME="#xuc#x*" PATH="/uc/*" SHAPE="24,145,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/conceito/conceito.xhtml" NAME="output1"
+   PATH="/uc/conceito/conceito.xhtml"
+   TARGET="#xuc#xconceito#xconceito.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/notaefaltarec/notaefaltareclist.xhtml" NAME="output2"
+   PATH="/uc/notaefaltarec/notaefaltareclist.xhtml"
+   TARGET="#xuc#xnotaefaltarec#xnotaefaltareclist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/notaefalta/notaefaltalist.xhtml" NAME="output3"
+   PATH="/uc/notaefalta/notaefaltalist.xhtml"
+   TARGET="#xuc#xnotaefalta#xnotaefaltalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/sobreprojeto.xhtml" NAME="output4"
+   PATH="/sobreprojeto.xhtml" TARGET="#xsobreprojeto.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/etaparecuperacao/etapalist.xhtml" NAME="output5"
+   PATH="/uc/etaparecuperacao/etapalist.xhtml"
+   TARGET="#xuc#xetaparecuperacao#xetapalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/etapa/etapalist.xhtml" NAME="output6"
+   PATH="/uc/etapa/etapalist.xhtml"
+   TARGET="#xuc#xetapa#xetapalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/nivelacesso/nivelacesso.xhtml" NAME="output7"
+   PATH="/uc/nivelacesso/nivelacesso.xhtml"
+   TARGET="#xuc#xnivelacesso#xnivelacesso.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/skin/skin.xhtml" NAME="output8"
+   PATH="/uc/skin/skin.xhtml" TARGET="#xuc#xskin#xskin.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/tipodocente/tipodocentelist.xhtml" NAME="output9"
+   PATH="/uc/tipodocente/tipodocentelist.xhtml"
+   TARGET="#xuc#xtipodocente#xtipodocentelist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/periodoletivo/periodoletivolist.xhtml" NAME="output10"
+   PATH="/uc/periodoletivo/periodoletivolist.xhtml"
+   TARGET="#xuc#xperiodoletivo#xperiodoletivolist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/funcionario/cadastro1.xhtml" NAME="output11"
+   PATH="/uc/cadastro/funcionario/cadastro1.xhtml"
+   TARGET="#xuc#xcadastro#xfuncionario#xcadastro1.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/projeto/projetolist.xhtml" NAME="output12"
+   PATH="/uc/projeto/projetolist.xhtml"
+   TARGET="#xuc#xprojeto#xprojetolist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output
+   ID="/uc/tipoencerramentomatricula/tipoencerramentomatriculalist.xhtml"
+   NAME="output13"
+   PATH="/uc/tipoencerramentomatricula/tipoencerramentomatriculalist.xhtml"
+   TARGET="#xuc#xtipoencerramentomatricula#xtipoencerramentomatriculalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/matricula/matriculalist.xhtml" NAME="output14"
+   PATH="/uc/matricula/matriculalist.xhtml"
+   TARGET="#xuc#xmatricula#xmatriculalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/configuracao/relatorioconfiguracao.xhtml"
+   NAME="output15" PATH="/uc/configuracao/relatorioconfiguracao.xhtml"
+   TARGET="#xuc#xconfiguracao#xrelatorioconfiguracao.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/disciplina/disciplinalist.xhtml" NAME="output16"
+   PATH="/uc/disciplina/disciplinalist.xhtml"
+   TARGET="#xuc#xdisciplina#xdisciplinalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/turma/turmalist.xhtml" NAME="output17"
+   PATH="/uc/turma/turmalist.xhtml"
+   TARGET="#xuc#xturma#xturmalist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/serie/serielist.xhtml" NAME="output18"
+   PATH="/uc/serie/serielist.xhtml"
+   TARGET="#xuc#xserie#xserielist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/tipoensino/tipoensinolist.xhtml" NAME="output19"
+   PATH="/uc/tipoensino/tipoensinolist.xhtml"
+   TARGET="#xuc#xtipoensino#xtipoensinolist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/evento/eventolist.xhtml" NAME="output20"
+   PATH="/uc/cadastro/evento/eventolist.xhtml"
+   TARGET="#xuc#xcadastro#xevento#xeventolist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/configuracao/configuracaolist.xhtml" NAME="output21"
+   PATH="/uc/configuracao/configuracaolist.xhtml"
+   TARGET="#xuc#xconfiguracao#xconfiguracaolist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/espacofisico/espacofisicolist.xhtml"
+   NAME="output22"
+   PATH="/uc/cadastro/espacofisico/espacofisicolist.xhtml"
+   TARGET="#xuc#xcadastro#xespacofisico#xespacofisicolist.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/aluno/cadastro1.xhtml" NAME="output23"
+   PATH="/uc/cadastro/aluno/cadastro1.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xcadastro1.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/aluno/cadastro1.xhtml" NAME="output24"
+   PATH="/uc/cadastro/aluno/cadastro1.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xcadastro1.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/usuario/alterasenha.xhtml" NAME="output25"
+   PATH="/uc/cadastro/usuario/alterasenha.xhtml"
+   TARGET="#xuc#xcadastro#xusuario#xalterasenha.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/instituicao/edita.xhtml" NAME="output26"
+   PATH="/uc/instituicao/edita.xhtml"
+   TARGET="#xuc#xinstituicao#xedita.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/uc/cadastro/aluno/pesquisar.xhtml" NAME="output27"
+   PATH="/uc/cadastro/aluno/pesquisar.xhtml"
+   TARGET="#xuc#xcadastro#xaluno#xpesquisar.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/main.xhtml" NAME="output28" PATH="/main.xhtml"
+   TARGET="#xmain.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.NotLoggedInException"
+  NAME="exception:org.jboss.seam.security.NotLoggedInException"
+  PATH="org.jboss.seam.security.NotLoggedInException" SHAPE="24,273,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.faces.application.ViewExpiredException"
+  NAME="exception:javax.faces.application.ViewExpiredException"
+  PATH="javax.faces.application.ViewExpiredException" SHAPE="24,377,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{org.jboss.seam.handledException.viewId}" NAME="output"
+   PATH="#{org.jboss.seam.handledException.viewId}"
+   TARGET="##{org.jboss.seam.handledException.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.AuthorizationException"
+  NAME="exception:org.jboss.seam.security.AuthorizationException"
+  PATH="org.jboss.seam.security.AuthorizationException"
+  SHAPE="24,481,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.framework.EntityNotFoundException"
+  NAME="exception:org.jboss.seam.framework.EntityNotFoundException"
+  PATH="org.jboss.seam.framework.EntityNotFoundException"
+  SHAPE="24,17,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{org.jboss.seam.handledException.viewId}" NAME="output"
+   PATH="#{org.jboss.seam.handledException.viewId}"
+   TARGET="##{org.jboss.seam.handledException.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.persistence.OptimisticLockException"
+  NAME="exception:javax.persistence.OptimisticLockException"
+  PATH="javax.persistence.OptimisticLockException" SHAPE="24,609,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{org.jboss.seam.handledException.viewId}" NAME="output"
+   PATH="#{org.jboss.seam.handledException.viewId}"
+   TARGET="##{org.jboss.seam.handledException.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.el.ELException" NAME="exception:javax.el.ELException"
+  PATH="javax.el.ELException" SHAPE="24,713,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{org.jboss.seam.handledException.viewId}" NAME="output"
+   PATH="#{org.jboss.seam.handledException.viewId}"
+   TARGET="##{org.jboss.seam.handledException.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.hibernate.exception.ConstraintViolationException"
+  NAME="exception:org.hibernate.exception.ConstraintViolationException"
+  PATH="org.hibernate.exception.ConstraintViolationException"
+  SHAPE="24,1217,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{org.jboss.seam.handledException.viewId}" NAME="output"
+   PATH="#{org.jboss.seam.handledException.viewId}"
+   TARGET="##{org.jboss.seam.handledException.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#uc#cadastrounico#cadastro#*"
+  NAME="#xuc#xcadastrounico#xcadastro#x*"
+  PATH="/uc/cadastrounico/cadastro/*" SHAPE="920,441,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastrounico#pesquisa#*"
+  NAME="#xuc#xcadastrounico#xpesquisa#x*"
+  PATH="/uc/cadastrounico/pesquisa/*" SHAPE="472,1169,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastro#docente#cadastro2.xhtml"
+  NAME="#xuc#xcadastro#xdocente#xcadastro2.xhtml"
+  PATH="/uc/cadastro/docente/cadastro2.xhtml" SHAPE="24,3033,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastro#docente#cadastro3.xhtml"
+  NAME="#xuc#xcadastro#xdocente#xcadastro3.xhtml"
+  PATH="/uc/cadastro/docente/cadastro3.xhtml" SHAPE="344,3033,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastro#docente#cadastro4.xhtml"
+  NAME="#xuc#xcadastro#xdocente#xcadastro4.xhtml"
+  PATH="/uc/cadastro/docente/cadastro4.xhtml" SHAPE="664,3033,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastro#usuario#cadastro2.xhtml"
+  NAME="#xuc#xcadastro#xusuario#xcadastro2.xhtml"
+  PATH="/uc/cadastro/usuario/cadastro2.xhtml" SHAPE="984,3033,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastro#usuario#cadastro3.xhtml"
+  NAME="#xuc#xcadastro#xusuario#xcadastro3.xhtml"
+  PATH="/uc/cadastro/usuario/cadastro3.xhtml" SHAPE="1304,3033,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#uc#cadastro#usuario#cadastro4.xhtml"
+  NAME="#xuc#xcadastro#xusuario#xcadastro4.xhtml"
+  PATH="/uc/cadastro/usuario/cadastro4.xhtml" SHAPE="1624,3033,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="org.hibernate.StaleObjectStateException"
+  NAME="exception:org.hibernate.StaleObjectStateException"
+  PATH="org.hibernate.StaleObjectStateException" SHAPE="56,937,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xcadastro#xaluno#xpesquisar.xhtml"
+  PATH="/uc/cadastro/aluno/pesquisar.xhtml" SHAPE="472,393,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#home.xhtml" NAME="#xhome.xhtml" PATH="/home.xhtml"
+  SHAPE="600,369,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/login/instituicoesensino.xhtml" NAME="output"
+   PATH="/login/instituicoesensino.xhtml"
+   TARGET="#xlogin#xinstituicoesensino.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#main.xhtml" NAME="#xmain.xhtml" PATH="/main.xhtml"
+  SHAPE="472,121,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#esquecisenha.xhtml" NAME="#xesquecisenha.xhtml"
+  PATH="/esquecisenha.xhtml" SHAPE="24,3697,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xuc#xcadastro#xusuario#xalterasenha.xhtml"
+  PATH="/uc/cadastro/usuario/alterasenha.xhtml" SHAPE="152,913,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xcadastro#xaluno#xcadastro1.xhtml"
+  PATH="/uc/cadastro/aluno/cadastro1.xhtml" SHAPE="152,913,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xconfiguracao#xconfiguracaolist.xhtml"
+  PATH="/uc/configuracao/configuracaolist.xhtml" SHAPE="152,961,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="##{org.jboss.seam.handledException.viewId}"
+  PATH="#{org.jboss.seam.handledException.viewId}" SHAPE="344,1481,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xuc#xcadastro#xespacofisico#xespacofisicolist.xhtml"
+  PATH="/uc/cadastro/espacofisico/espacofisicolist.xhtml"
+  SHAPE="152,961,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xcadastro#xevento#xeventolist.xhtml"
+  PATH="/uc/cadastro/evento/eventolist.xhtml" SHAPE="152,985,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xtipoensino#xtipoensinolist.xhtml"
+  PATH="/uc/tipoensino/tipoensinolist.xhtml" SHAPE="152,1009,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xserie#xserielist.xhtml"
+  PATH="/uc/serie/serielist.xhtml" SHAPE="152,1033,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xturma#xturmalist.xhtml"
+  PATH="/uc/turma/turmalist.xhtml" SHAPE="152,1057,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xdisciplina#xdisciplinalist.xhtml"
+  PATH="/uc/disciplina/disciplinalist.xhtml" SHAPE="152,1081,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item
+  NAME="#xuc#xtipoencerramentomatricula#xtipoencerramentomatriculalist.xhtml"
+  PATH="/uc/tipoencerramentomatricula/tipoencerramentomatriculalist.xhtml"
+  SHAPE="152,1153,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xconfiguracao#xrelatorioconfiguracao.xhtml"
+  PATH="/uc/configuracao/relatorioconfiguracao.xhtml"
+  SHAPE="152,1153,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xprojeto#xprojetolist.xhtml"
+  PATH="/uc/projeto/projetolist.xhtml" SHAPE="152,1177,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xcadastro#xfuncionario#xcadastro1.xhtml"
+  PATH="/uc/cadastro/funcionario/cadastro1.xhtml" SHAPE="152,1225,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xtipodocente#xtipodocentelist.xhtml"
+  PATH="/uc/tipodocente/tipodocentelist.xhtml" SHAPE="152,1249,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#admin#*" NAME="#xadmin#x*" PATH="/admin/*"
+  SHAPE="24,2105,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#login#*" NAME="#xlogin#x*" PATH="/login/*"
+  SHAPE="24,2081,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="org.jboss.seam.ConcurrentRequestTimeoutException"
+  NAME="exception:org.jboss.seam.ConcurrentRequestTimeoutException"
+  PATH="org.jboss.seam.ConcurrentRequestTimeoutException"
+  SHAPE="152,1249,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{org.jboss.seam.handledException.viewId}" NAME="output"
+   PATH="#{org.jboss.seam.handledException.viewId}"
+   TARGET="##{org.jboss.seam.handledException.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xinstituicao#xedita.xhtml"
+  PATH="/uc/instituicao/edita.xhtml" SHAPE="152,1249,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xnivelacesso#xnivelacesso.xhtml"
+  PATH="/uc/nivelacesso/nivelacesso.xhtml" SHAPE="152,1249,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xskin#xskin.xhtml" PATH="/uc/skin/skin.xhtml"
+  SHAPE="152,1273,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xperiodoletivo#xperiodoletivolist.xhtml"
+  PATH="/uc/periodoletivo/periodoletivolist.xhtml" SHAPE="152,1297,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xetapa#xetapalist.xhtml"
+  PATH="/uc/etapa/etapalist.xhtml" SHAPE="152,1321,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.servlet.ServletException"
+  NAME="exception:javax.servlet.ServletException"
+  PATH="javax.servlet.ServletException" SHAPE="152,1321,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xetaparecuperacao#xetapalist.xhtml"
+  PATH="/uc/etaparecuperacao/etapalist.xhtml" SHAPE="152,1345,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xmatricula#xmatriculalist.xhtml"
+  PATH="/uc/matricula/matriculalist.xhtml" SHAPE="152,1321,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xsobreprojeto.xhtml" PATH="/sobreprojeto.xhtml"
+  SHAPE="600,825,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#ajudaonline#*" NAME="#xajudaonline#x*" PATH="/ajudaonline/*"
+  SHAPE="24,2177,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xlogin#xinstituicoesensino.xhtml"
+  PATH="/login/instituicoesensino.xhtml" SHAPE="920,929,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/login/*" NAME="output" PATH="/login/*"
+   TARGET="#xlogin#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xnotaefalta#xnotaefaltalist.xhtml"
+  PATH="/uc/notaefalta/notaefaltalist.xhtml" SHAPE="152,1369,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xuc#xconceito#xconceito.xhtml"
+  PATH="/uc/conceito/conceito.xhtml" SHAPE="152,1393,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.persistence.PersistenceException"
+  NAME="exception:javax.persistence.PersistenceException"
+  PATH="javax.persistence.PersistenceException" SHAPE="24,2873,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="#{redirect.viewId}" NAME="output"
+   PATH="#{redirect.viewId}" TARGET="##{redirect.viewId}" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="##{redirect.viewId}" PATH="#{redirect.viewId}"
+  SHAPE="344,3497,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xuc#xnotaefaltarec#xnotaefaltareclist.xhtml"
+  PATH="/uc/notaefaltarec/notaefaltareclist.xhtml" SHAPE="152,1417,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/uc/*" NAME="output" PATH="/uc/*" TARGET="#xuc#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+</diagram>

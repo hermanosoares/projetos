@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+      
+     
+      
+<head>
+	<meta name="author" CONTENT="Bulk Tecnologia Ltda"/>
+	<meta name="description" CONTENT="Inovação em Gestão Pública."/>	
+	<meta http-equiv="cache-control" CONTENT="no-cache,no-store"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="Expires" CONTENT="0"/>
+	<meta name="robots" CONTENT="ALL"/>
+	<meta name="keywords" CONTENT="Gestão Acadêmica, Gestão Educacional, Software Educacional, Solução Educacional Web, Solução Academica, Solução Escolar, Gestão Escolar Publica, Gestão Escolar Privada, Gestão em Rede, Jini, Bulk Tecnologia, Belo Horizonte, MG" />
+	<meta name="copyright" CONTENT="Bulk Tecnologia Ltda"/>	
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link href="#{facesContext.externalContext.request.contextPath}/css/screen.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/css/mensages.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/css/estiloGestaoemRede.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/css/estiloCadastro.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/favicon.ico" rel="icon" type="image/x-icon" />
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jquery.maskedinput-1.2.2.js"/>
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jquery.capitalize.js"/>
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jquery.numeric.pack.js"/>
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/geral.js"/>
+	
+
+
+	
+	<title> #{messages['nome.sistema']} </title>
+	</head>
+
+<body>
+<div id="centroPag">
+	<h:form id="RootId">
+	
+		<rich:hotKey key="ctrl+0"  handler="location.href='#{facesContext.externalContext.request.contextPath}/main.seam?actionOutcome=PesquisaAluno&amp;cid=#{conversation.id}'"/>
+		<rich:hotKey key="ctrl+1"  handler="location.href='#{facesContext.externalContext.request.contextPath}/main.seam?actionOutcome=CadastroAluno&amp;cid=#{conversation.id}'"/>
+		<rich:hotKey key="ctrl+2"  handler="location.href='#{facesContext.externalContext.request.contextPath}/main.seam?actionOutcome=CadastroFuncionario&amp;cid=#{conversation.id}'"/>
+		<rich:hotKey key="ctrl+9"  handler="location.href='#{facesContext.externalContext.request.contextPath}/main.seam?actionOutcome=main&amp;cid=#{conversation.id}'"/>
+	
+		<s:validateAll>
+			<ui:include src="/topo.xhtml" />
+			<ui:insert name="navegacao"/>
+			<ui:insert name="conteudo"/>
+			<ui:include src="/rodape.xhtml" />
+		</s:validateAll>
+	</h:form>
+	</div>
+</body>
+
+</html>

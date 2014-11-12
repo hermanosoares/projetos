@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+<f:view>
+	<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+		 <div id="topoBotao">
+				<h:commandButton styleClass="botaoNavegacao" 
+					image="/img/incluirVerde.jpg" value="inserir" action="#{EventoService.insere}" >
+				</h:commandButton>
+		</div>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+			
+			<div id="tituloMenu">
+				<h:graphicImage value="/img/eventosCadastrado.png" alt="Espaço Físico" />
+			</div>
+			
+			<rich:dataTable value="#{EventoFactory.eventos}" var="item" rowClasses="ClasseCss2,ClasseCss1" style="width: 750px;" rendered="#{EventoFactory.eventos.size>0}">
+				<rich:column style="width: 70px;" sortBy="#{item.dataInicio}">
+					<f:facet name="header">
+						<h:outputText value="Data Inicio" />
+					</f:facet>
+					<h:outputText value="#{item.dataInicio}" />
+				</rich:column>
+				
+				<rich:column style="width: 70px;"  sortBy="#{item.dataTermino}">
+					<f:facet name="header">
+						<h:outputText value="Data Termino" />
+					</f:facet>
+					<h:outputText value="#{item.dataTermino}" />
+				</rich:column>
+				<rich:column style="width: 350px;"  >
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{item.descricao}" />
+				</rich:column>
+				<rich:column style="width: 135px;" sortBy="#{item.legenda}" >
+					<f:facet name="header">
+						<h:outputText value="Legenda" />
+					</f:facet>
+					<h:outputText value="#{item.legenda}" />
+				</rich:column>
+				
+				<h:column style="width: 35px;" >
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					
+					<h:commandButton action="#{EventoService.edita(item)}" image="/img/editar.png" id="btnEditar"
+							 style="width:20px; height:20px; border: 0px; margin:0 auto;">
+					</h:commandButton>
+				</h:column>
+				
+				<h:column style="width: 35px;" >
+					<f:facet name="header">
+						<h:outputText value="Excluir" />
+					</f:facet>
+					<h:commandButton  image="/img/lixeira.png" propagation="join" onclick="return confirm('Confirma exclusão?')" 
+							action="#{EventoService.remove(item)}" style="width:20px; height:20px; border: 0px; margin:0 auto;" >
+					</h:commandButton>
+				</h:column>
+			</rich:dataTable>
+		
+		<h:panelGroup rendered="#{EventoFactory.eventos.size==0}">
+			<h:outputText value="Nao possui eventos cadastrados." />
+		</h:panelGroup>
+	</ui:define>
+	
+	</ui:composition>
+</f:view>
+</html>

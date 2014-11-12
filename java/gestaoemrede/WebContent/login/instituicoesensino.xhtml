@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:x="http://www.xseam.org">
+
+<head>
+<link href="#{facesContext.externalContext.request.contextPath}/favicon.ico" rel="icon" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>#{messages['nome.sistema']}</title>
+
+<link
+	href="#{facesContext.externalContext.request.contextPath}/css/estiloGestaoemRedeInstituicao.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="#{facesContext.externalContext.request.contextPath}/css/mensages.css"
+	rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="topo">
+	<rich:messages layout="table" globalOnly="false" styleClass="msgMultiplasInstituicoes" />
+</div>
+
+<div id="centroHome">
+
+<h:form>
+	<div id="cabecalhoInsituicao">
+		<rich:dropDownMenu rendered="#{permiteExibirPainelAdmExterno}">
+			<f:facet name="label">
+				<h:panelGroup>
+					<h:graphicImage value="/images/copy.gif" styleClass="pic" />
+					<h:outputText styleClass="botaoAdministracao" value=" Painel Administrativo" />
+				</h:panelGroup>
+			</f:facet>
+			<rich:menuItem action="CadastroInstituicao" value="Cadastrar Instituição" immediate="true" submitMode="server" />
+			<rich:menuItem action="gerenciarUsuarios" value="Gerenciar Usuários" immediate="true" submitMode="server" />
+
+                <rich:menuGroup value="Configuração Global">
+                	
+                	<rich:menuItem submitMode="server" value="Configurações"  action="crudConfiguracao"/>
+                	
+                	<rich:menuGroup value="#{nomeConfiguracaoGlobalSelecionada}" rendered="#{not empty idConfiguracaoGlobalSelecionada}">
+		                <rich:menuItem submitMode="server" value="2. Tipos de Ensino"  action="crudTipoEnsino" rendered="#{not empty idConfiguracaoGlobalSelecionada}"/>
+		                <rich:menuItem submitMode="server" value="3. Séries"  action="crudSerie" rendered="#{not empty idConfiguracaoGlobalSelecionada}"/>
+		                <rich:menuItem submitMode="server" value="4. Disciplinas"  action="crudDisciplina" rendered="#{not empty idConfiguracaoGlobalSelecionada}"/>
+		                <rich:menuItem submitMode="server" value="7. Etapas"  action="crudEtapas" rendered="#{not empty idConfiguracaoGlobalSelecionada}"/>
+                	</rich:menuGroup>
+                	
+	                
+                </rich:menuGroup>
+			
+
+		</rich:dropDownMenu> 
+		
+		<h:commandButton styleClass="sairRight"	action="#{SegurancaService.logoutAndRedirectLogin}"	image="/img/botaosair.png" value="Sair" immediate="true" actionListener="#{authenticator.NotificaTipoLogout}" />
+	</div>
+
+
+	<h:panelGroup>			
+
+		<div id="conteudoInstituicao">
+		<table width="750" border="0" class="espacoInstituicao">
+			
+			<tr>
+				<td style="text-align: center;">
+					<h:outputText styleClass="textoSelecioneInstituicao"	value="Selecione a instituição que deseja acessar: " />
+				</td>
+			</tr>
+			
+		</table>
+		<div id="bordeSelecioneInstituicao">
+	
+		<table width="750" border="0" class="espacoInstituicao">
+			<tr>
+				<td>
+					<center>
+						<a4j:region id="regiao1">
+							<h:selectOneMenu style="width:600px; height:28px; border:1px solid #362F2D; margin-top:20px; padding:3px;" value="#{MultiplaInstituicaoService.instituicaoSelecionada}"	styleClass="select">
+								<s:selectItems var="item" value="#{InstituicaoList}" label="#{item.codInstituicao} - #{item.nome}" noSelectionLabel="selecione uma instituição ... " />
+								<s:convertEntity />
+								<a4j:support  event="onchange" ajaxSingle="true" reRender="idAreaSelecaoConfiguracao" action="#{MultiplaInstituicaoService.carregaConfiguracoes}"/>
+								<a4j:status for="regiao1" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')" />
+							</h:selectOneMenu>
+						</a4j:region>
+					</center>					 
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<center>
+						<h:panelGroup id="idAreaSelecaoConfiguracao">
+							<br/>					
+							<h:panelGroup rendered="#{not empty MultiplaInstituicaoService.instituicaoSelecionada}">
+								<h:outputText value="Selecione o Ano Base:" styleClass="textoSelecioneInstituicao"/>
+								<br/>
+								<a4j:region id="regiao2">
+									<h:selectOneMenu value="#{MultiplaInstituicaoService.configuracaoEspecificaSelecionada}" required="true" label="Ano Base">
+										<a4j:support event="onchange" ajaxSingle="true" action="#{MultiplaInstituicaoService.acessar}"/>
+										<a4j:status for="regiao2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')" />
+										<s:selectItems var="configItem" value="#{MultiplaInstituicaoService.configuracoes}" label="#{configItem.ano}" noSelectionLabel="selecione.."/>
+										<s:convertEntity/>
+									</h:selectOneMenu>
+								</a4j:region>
+							</h:panelGroup>
+						</h:panelGroup>
+					</center>	
+				</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+
+					<rich:modalPanel id="panel_loading" autosized="true">
+						<h:graphicImage url="/img/carregando.gif" style="border:0px; vertical-align: middle;" />
+						<rich:spacer width="20" />
+						<h:outputText value="Aguarde..." />
+					</rich:modalPanel>
+	
+	</h:panelGroup>
+	
+</h:form>
+</div>
+
+<div id="topo">
+</div>
+
+</body>
+</html>

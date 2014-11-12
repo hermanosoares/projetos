@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      action="#{ConversationHelper.BeginJoinConversationManual}">
+	
+<navigation>
+
+	<rule if-outcome="list">
+		<begin-conversation join="true"/>
+		<raise-event type="TipoFuncaoList.evento.recarregar"/>
+		<redirect view-id="/uc/tipodocente/tipodocentelist.xhtml"/>
+	</rule>
+
+	<rule if-outcome="add_edit">
+		<begin-conversation join="true" flush-mode="MANUAL"/>
+		<redirect view-id="/uc/tipodocente/tipodocente.xhtml"/>
+	</rule>
+	
+</navigation>
+
+
+</page>

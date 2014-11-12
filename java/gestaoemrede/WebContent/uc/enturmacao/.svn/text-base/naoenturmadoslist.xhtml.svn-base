@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+	
+			<table>
+			<tr>
+				<td>
+					<h:selectOneMenu style="width:120px;" value="#{matriculaEntity.tipoMatricula}" required="true" label="Tipo Matricula" rendered="#{matriculaEntity.id != null || AlunoSemMatriculaList.alunosSemMatriculaSelecionados.size==1}">
+						<a4j:support event="onchange" reRender="panelDisciplinas,panelRotuloDisciplinas" action="#{MatriculaService.handlerSerie}" ajaxSingle="true"/>
+						<s:selectItems var="i" value="#{TiposMatriculas}" label="#{i}" noSelectionLabel="selecione"/>
+						<s:convertEnum/>
+				    </h:selectOneMenu>
+				    
+					<h:selectOneMenu style="width:120px;" value="#{matriculaEntity.tipoMatricula}" required="true" label="Tipo Matricula" rendered="#{AlunoSemMatriculaList.alunosSemMatriculaSelecionados.size>1}">
+						<f:selectItem itemLabel="Regular" itemValue="Regular"/>
+				    </h:selectOneMenu>
+			    </td>
+				<td><h:selectOneMenu style="width:100px;" value="#{matriculaEntity.anoAdm}" required="true" label="Ano">
+				<s:selectItems var="i" value="#{AnosAdministrativos}" label="#{i}" noSelectionLabel="selecione"/>
+			    </h:selectOneMenu></td>
+
+			    <td>
+			    <h:selectOneMenu style="width:120px;" value="#{matriculaEntity.turno}" required="true" label="Turno">
+					<s:selectItems var="i" value="#{TurnoList.turnos}" label="#{i.nome}" noSelectionLabel="selecione"/>
+					<a4j:support event="onchange" reRender="panelTipoEnsino,panelRotuloTipoEnsino,panelSerie,panelRotuloSerie" ajaxSingle="true"/>
+					<s:convertEntity/>
+			    </h:selectOneMenu>
+			    </td>
+			    
+				<td>
+					<h:panelGroup id="panelTipoEnsino">
+						<h:panelGroup rendered="#{matriculaEntity.turno!=null}">
+							<h:selectOneMenu style="width:120px;" value="#{matriculaEntity.ensino}" required="true" label="Tipo de Ensino">
+								<a4j:support event="onchange" reRender="panelSerie,panelRotuloSerie" ajaxSingle="true"/>
+								<s:selectItems var="i" value="#{matriculaEntity.turno.ensinos}" label="#{i.nome}" noSelectionLabel="selecione"/>
+								<s:convertEntity/>
+						    </h:selectOneMenu>
+						</h:panelGroup>
+					</h:panelGroup>
+			    </td>
+			    
+			    <td>
+				    <h:panelGroup id="panelSerie">
+						<h:panelGroup rendered="#{matriculaEntity.ensino!=null}">
+							<h:selectOneMenu value="#{matriculaEntity.serie}" required="true" label="Série">
+								<a4j:support event="onchange" reRender="panelDisciplinas,panelRotuloDisciplinas,PanelNovatoEstudos,CondicaoFinalPanel" action="#{MatriculaService.handlerSerie}" ajaxSingle="true"/>
+								<s:selectItems var="i"	value="#{matriculaEntity.ensino.series}"	label="#{i.nome}" noSelectionLabel="selecione" />
+								<s:convertEntity />
+							</h:selectOneMenu>
+						</h:panelGroup>
+					</h:panelGroup> 
+				</td>
+			</tr>
+			</table>
+			
+	</ui:define>
+
+	</ui:composition>
+
+</html>

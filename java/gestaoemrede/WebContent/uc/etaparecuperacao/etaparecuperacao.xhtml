@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			 <div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao"
+						image="/img/gravar.jpg" value="gravar" action="#{EtapaRecuperacaoService.commit}">
+					</h:commandButton>
+					
+				<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true"
+					 action="cancela" value="cancelar" image="/img/cancelar.jpg" />
+			</div>
+			
+		</ui:define>
+	
+	<ui:define name="conteudo">
+	
+			
+			<table width="750px;" style="margin:0 auto;">
+				
+				<tr>
+					<td><h:graphicImage value="/img/recuperacao.jpg" alt="recuperacao" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+				<h:outputText value="Série: " styleClass="SomenteNegrito"/>
+				<h:outputText value="#{serieEntity.nome}" />
+								
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<table width="750px;">
+				<tr>
+					<td><h:outputText value="Não existem etapas de recuperação para a série selecionada." rendered="#{empty serieEntity.etapasRecuperacao}" /></td>
+				</tr>
+			
+				<tr>
+					<td><h:commandButton action="#{EtapaRecuperacaoService.addEtapaRecuperacao}" image="/img/adicionar.jpg" styleClass="botaoNavegacao"/></td>
+				</tr>
+			</table>
+		
+		<h:panelGroup id="tabelaEtapa">
+			
+			<rich:dataTable  styleClass="tabelaTamanhoCentralizado" value="#{serieEntity.etapasRecuperacao}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{not empty serieEntity.etapasRecuperacao}">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrição da Recuperação" />			
+					</f:facet>
+					
+					<h:inputText value="#{item.nome}" label="Descrição da Recuperação" styleClass="input" style="width: 95px" converter="#{EmptyConverter}" required="true"/>
+				</h:column>
+
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Etapas da Recuperação" />			
+					</f:facet>
+					
+					<rich:dataTable value="#{item.etapas}" var="etapasItem">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="nome" />			
+							</f:facet>
+						
+							<h:outputText value="#{etapasItem.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value=" " />			
+							</f:facet>
+							
+							<h:commandButton action="#{EtapaRecuperacaoService.removeEtapaDaRecuperacao(item,etapasItem)}" value="" image="/img/removerX.jpg" style="width:20px; height:20px; border: 0px; margin:0 auto; padding-left:11px;"/>
+						</h:column>
+						
+					</rich:dataTable>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo da Recuperação" />			
+					</f:facet>
+					
+					<h:selectOneMenu value="#{item.tipoRecuperacao}">
+						<s:selectItems var="itemRec" value="#{TiposRecuperacao}" noSelectionLabel="selecione.." label="#{itemRec}"/>
+						<s:convertEnum/>
+					</h:selectOneMenu>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Etapas Disponíveis" />			
+					</f:facet>
+					
+					<h:selectOneMenu value="#{EtapaRecuperacaoService.etapaSelecionada}" >
+						<s:selectItems var="itemDisponivel" value="#{serieEntity.etapas}" noSelectionLabel="selecione.." label="#{itemDisponivel.nome}"/>
+						<s:convertEntity/>
+					</h:selectOneMenu>
+					
+					<h:commandButton styleClass="botaoNavegacaoIncluir" action="#{EtapaRecuperacaoService.addEtapaSelecionadaNaRecuperacao(item)}" image="/img/adicionar.jpg" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value=" " />			
+					</f:facet>
+					
+					<h:commandButton action="#{EtapaRecuperacaoService.removeDetalhe(serieEntity.etapasRecuperacao, item)}" value="" image="/img/removerX.jpg" style="width:20px; height:20px; border: 0px; margin:0 auto; padding-left:11px;"/>
+				</h:column>
+
+			</rich:dataTable>
+			
+			
+
+		</h:panelGroup>
+				
+				
+	</ui:define>
+
+
+	</ui:composition>
+
+</html>

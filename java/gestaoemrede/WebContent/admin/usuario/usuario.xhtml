@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="/basictemplate.xhtml">
+	<ui:define name="navegacao">
+
+		<div id="topoBotao">
+		<h:panelGroup id="grupoNavegacao">
+		
+			<h:commandButton styleClass="botaoNavegacao" image="/img/gravar.jpg" action="#{usuarioService.grava}" value="gravar" rendered="#{usuarioEntity.camposObrigatoriosPreenchidos}"/>
+			<h:commandButton styleClass="botaoNavegacao" image="/img/cancelar.jpg" action="usuariolist" value="cancelar" immediate="true" />
+		</h:panelGroup>
+		</div>
+
+	</ui:define>
+
+
+	<ui:define name="conteudo">
+
+		<f:view>
+		
+					<h:panelGroup id="areaConteudo">
+									<table width="750" border="0">
+										<tr>
+											<td>
+												<h:outputText styleClass="campoPequeno"	value="Login* :" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:inputText style="#{usuarioService.travarLogin or not empty usuarioEntity.id?'color:white;background-color: #063;':''}"  id="idCampoLogin" value="#{usuarioEntity.login}"	
+												  readonly="#{usuarioService.travarLogin or not empty usuarioEntity.id}" 	required="true" label="Login" />
+												<br/>											  
+												<h:panelGroup id="idBotaoVerificar">
+													<a4j:commandButton action="#{usuarioService.verificaDisponibilidadeLogin}"	image="/img/verificardisponibilidade.jpg" 
+													styleClass="btnverificalogin2" value="Verificar Disponibilida de" reRender="areaConteudo" rendered="#{empty usuarioEntity.id and not usuarioService.travarLogin}"/>
+												</h:panelGroup>
+												
+												<h:panelGroup id="areaBotaoAlterarLogin">
+													<h:panelGroup rendered="#{usuarioService.travarLogin}">
+														<a4j:commandButton action="#{usuarioService.destravarLogin}" styleClass="botaoNavegacaologin" image="/img/alterarlogin.jpg"
+															reRender="areaConteudo" ajaxSingle="true" immediate="true" rendered="#{empty usuarioEntity.id}"/>
+													</h:panelGroup>
+												</h:panelGroup> 
+												
+											<br/>
+											<h:outputText id="idStatus"	value="#{usuarioService.status}" styleClass="SomenteNegrito" />
+											<br/>
+											</td>
+											
+										</tr>
+									</table>
+						
+							<h:panelGroup rendered="#{usuarioService.travarLogin or not empty usuarioEntity.id}">
+								<table>
+									<tr>
+										<td>
+											<h:outputText value="Nome:" />
+											<h:inputText value="#{usuarioEntity.nome}" label="Nome">
+												<a4j:support event="onchange" reRender="areaItemsPerfil,grupoNavegacao" ajaxSingle="true"/>
+											</h:inputText>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h:outputText value="E-Mail:" />
+											<h:inputText id="idCampoEmail" value="#{usuarioEntity.email}" label="Email">
+												<a4j:support event="onchange" reRender="areaItemsPerfil,grupoNavegacao" ajaxSingle="true"/>
+											</h:inputText>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h:outputText value="Senha:" />
+											<h:panelGroup id="idCampoPwd">
+												<h:panelGroup  rendered="#{empty usuarioEntity.id or usuarioService.permiteRedefinirSenha}">
+													<h:inputSecret  value="#{usuarioEntity.senha}" label="Senha" required="#{usuarioService.permiteRedefinirSenha}">
+														<a4j:support event="onchange" reRender="areaItemsPerfil,grupoNavegacao" ajaxSingle="true"/>
+													</h:inputSecret>
+												</h:panelGroup>
+											</h:panelGroup>
+										</td>
+										<td>
+											<a4j:commandButton id="idBotaoRedefinirSenha" action="#{usuarioService.redefinirSenha}" value="#{usuarioService.permiteRedefinirSenha?'cancelar redefinição senha':'redefinir senha'}" reRender="idBotaoRedefinirSenha,idCampoPwd" ajaxSingle="true" rendered="#{not empty usuarioEntity.id}"/>
+										</td>
+									</tr>
+								</table>
+								
+							<h:panelGroup id="areaItemsPerfil">	
+								<h:panelGroup rendered="#{usuarioEntity.camposObrigatoriosPreenchidos and not usuarioEntity.global}">
+								
+								<table>	
+										<tr>
+											<td>
+												<h:outputText value="Bloqueio:" />
+												<h:inputTextarea id="idTextAreaMsgBloqueio" value="#{usuarioInstituicaoEntity.bloqueio}" style="width:200px;height:80px" converter="#{EmptyConverter}"/>
+												<rich:toolTip for="idTextAreaMsgBloqueio">
+													<h:outputText value="este campo preenchido, este usuário está automaticamente BLOQUEADO." />
+												</rich:toolTip>
+											</td>
+										</tr>
+										
+										<tr>
+											<td>
+												<h:outputText value="Data Limite Login:" />
+										    	<h:inputText styleClass="inputwidth95" id="campodtlimite" value="#{usuarioInstituicaoEntity.dtLimiteAcesso}" converter="#{EmptyConverter}" >
+												  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+											    	<rich:jQuery selector="#campodtlimite" query="mask('99/99/9999')" timing="onload"/>
+										    	</h:inputText>
+												<rich:toolTip for="campodtlimite">
+													<h:outputText value="este campo preenchido o usuário será bloqueado na data informada." />
+												</rich:toolTip>
+											</td>
+										</tr>																				
+										<tr>
+											<td>									
+											<h:selectOneMenu value="#{usuarioService.perfil}">
+												<s:selectItems var="item" value="#{Perfis}" label="#{item}" noSelectionLabel="selecione.."/>
+												<s:convertEnum/>
+											</h:selectOneMenu>
+											<h:outputText value="Adicione os Perfis: " />
+											<a4j:commandButton action="#{usuarioService.addPerfil}" image="/img/adicionar.jpg" styleClass="botaoNavegacaologin" reRender="mytable,grupoNavegacao"/>
+											</td>
+										</tr>
+									</table>
+											
+									<rich:dataTable id="mytable" var="pItem" value="#{usuarioInstituicaoEntity.perfis}" >
+												
+										<rich:column sortBy="#{pItem.perfil}">
+												<f:facet name="header">
+													<h:outputText value="Perfil" />
+												</f:facet>
+												<h:outputText value="#{pItem.perfil}" />
+										</rich:column>
+												
+										<rich:column>
+												<f:facet name="header">
+													<h:outputText value=" " />
+												</f:facet>
+												<a4j:commandButton action="#{usuarioService.removePerfil(pItem)}" reRender="mytable" image="/img/remover.jpg" styleClass="botaoNavegacaologin" ajaxSingle="true"/>
+										</rich:column>
+												
+									</rich:dataTable>
+									
+									</h:panelGroup>
+									
+								</h:panelGroup>		
+							</h:panelGroup>
+																						
+					</h:panelGroup>				
+
+		</f:view>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

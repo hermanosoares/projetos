@@ -1,0 +1,86 @@
+/* css @autor : lazaro melo --> bulk tecnologia
+   quarta-feira dezembro 2009  */
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	margin-top: 50px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:14px;
+	line-height: 1.25em;
+	color: #314630;
+	border: 0px;
+	background: url("../img/fundo.jpg") center repeat-x;
+}
+#topo{
+	background: url("../img/fioTopo.jpg") repeat-x;
+	width: 100%;
+	height: 44px;
+	margin-bottom: 20px;
+}
+
+#centroHome{
+	margin: 0 auto;
+	display:table;
+	width: 775px;
+	height: 250px;
+	padding: 0px;
+}
+
+.botaoseleciona{
+	width: 750px;
+	height: 20px;
+	float: right;
+}
+
+#centroHome table .tr {
+	margin-bottom: 10px;
+}
+
+#cabecalhoInsituicao{
+	width: 750px;
+	height: 70px;
+}
+
+#botaoSair{
+	width: 250px;
+	height: 50px;
+	float: right;
+}
+
+.sairRight{
+	float: right;
+}
+.botaoAdministracao{
+	font-size: 13px;
+}
+
+.textoSelecioneInstituicao{
+	font-size:18px;
+	width: auto;
+	height: auto;
+	background: #FFF;
+	padding: 5px;
+	font-weight: bold;
+}
+.espacoInstituicao{
+	margin-top: 20px;
+}
+
+#conteudoInstituicao{
+	width: 770px;
+	height: 140px;
+	margin: 0 auto;
+}
+
+#bordeSelecioneInstituicao{
+	width: 760px;
+	height: 120px;
+	border: 1px solid #666;
+	margin-top: -10px;
+}
+
+

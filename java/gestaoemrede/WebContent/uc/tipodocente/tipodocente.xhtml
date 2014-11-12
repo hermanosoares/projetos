@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+			 <div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" 
+						image="/img/gravar.jpg" value="gravar" action="#{TipoFuncaoDocenteService.grava(tipoFuncaoEntity)}" >
+					</h:commandButton>
+				<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true"
+					 action="#{TipoFuncaoDocenteService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+					
+			</div>
+		</ui:define>
+	
+		<ui:define name="conteudo">
+		
+		
+		
+		<table style="width: 750px; border: 0px;">
+
+			<tr>
+				<td><h:outputText value="Nome Cargo Docente*: " /></td>
+				<td><h:outputText value="Descrição :" /></td>
+			</tr>
+			
+			<tr>
+				<td><h:inputText styleClass="inputwidth280sm" value="#{tipoFuncaoEntity.nome}" required="true" label="Nome Cargo docente"/></td>
+				<td>
+				<h:inputText styleClass="inputwidth390sm" value="#{tipoFuncaoEntity.descricao}" label="descrição" converter="#{EmptyConverter}">
+				</h:inputText>
+				</td>
+			</tr>
+			</table>
+			
+			<table style="width: 450px; border:0px; margin:0 auto;">
+			
+				
+			
+			</table>			
+				
+				
+				
+				
+			
+			
+		</ui:define>
+		
+	
+	</ui:composition>
+
+</html>

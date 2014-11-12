@@ -1,0 +1,72 @@
+#cadastroUnico{
+	width: 750px;
+}
+#cadastroUnico input{
+	width:160px;
+	border: 1px solid #333;
+	color: #063;
+	margin: 0px;
+}
+
+input[type="submit"], input[type="button"] {
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #333;
+	height: 26px;
+}
+
+.matriculaBotao{
+width:110px; height:28px; float:left; margin-right:5px; border:0px;
+}
+
+.matriculaBotao2{
+width:260px; height:28px; float:left; margin-right:5px; border:0px;
+}
+
+
+.campoPequeno{
+	width: 150px;
+}
+
+
+
+.espacoformulario{
+	margin-top: 20px; 
+}
+
+.espacoFormulario{
+	width: 750px;
+	height: 10px;
+}
+
+#bordaResponsavel{
+	width: 750px;
+	height: auto;
+	border: 2px solid #CCC;
+}
+
+#passos{
+	width: 750px;
+	height: 120px;
+}
+#passos img{
+	margin-right: 12px;
+	float: left;
+}
+
+.passoicone{
+	width:110px; height:84px; border:0px; float: left; margin:5px 5px 0 0;
+}
+
+
+
+.campoPequenoPesquisa{
+	width: 150px;
+}
+
+.inputPesquisa{
+	width:150px;
+	border: 1px solid #333;
+	color: #063;
+	margin: 0px;
+}

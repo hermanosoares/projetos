@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			 <div id="topoBotao">
+					<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" 
+						image="/img/gravar.jpg" value="gravar" action="#{TipoEnsinoService.grava(turnoEntity)}" >
+					</h:commandButton>
+					
+				<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" immediate="true"
+					 action="list" value="cancelar" image="/img/cancelar.jpg" />
+					
+			</div>
+			
+		</ui:define>
+		
+		<ui:define name="conteudo">
+		
+			<table width="500px;" style="margin:0 auto;">
+				<tr>
+					<td><h:graphicImage value="/img/tiposEnsino.png" alt="Espaço Físico" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<table width="500px;" style="margin:0 auto;">
+				<tr>
+					<td><h:outputText value="Turno: #{turnoEntity.nome}" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<table width="500" border="0px;" style="margin:0 auto;">
+				
+				<tr>
+					<td>
+						<h:selectOneMenu style="width:200px; margin:0px;" value="#{TipoEnsinoService.tipoEnsinoSelecionado}">
+							<s:selectItems var="item" value="#{TiposEnsinoDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+							<s:convertEnum/>	
+						</h:selectOneMenu>
+					</td>
+					
+					<td style="width:200px; float:left;">
+						<h:commandButton image="/img/adicionar.jpg" style="width:113px; margin-left:0px; border:0px; " action="#{TipoEnsinoService.addTipoEnsino}" value="adicionar" />
+					</td>	
+				</tr>
+				<tr class="espacoFormulario"> </tr>
+			</table>
+		
+		<rich:dataTable style="width:500px; margin:0 auto;" value="#{turnoEntity.ensinos}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{not empty turnoEntity.ensinos}">
+		
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo de Ensino" />			
+				</f:facet>
+				
+				<rich:inplaceInput value="#{item.nome}"/>
+			</h:column>
+			
+			<h:column headerClass="removerEditar">
+				<f:facet name="header">
+					<h:outputText value="Remover" />			
+				</f:facet>
+					<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{TipoEnsinoService.removeDetalhe(turnoEntity.ensinos,item)}" immediate="true"/>	
+			</h:column>
+			
+		</rich:dataTable>
+			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

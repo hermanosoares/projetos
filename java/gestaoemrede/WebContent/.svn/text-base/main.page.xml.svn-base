@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd" 
+	login-required="true">
+	
+	<raise-event type="evento.seguranca.verificaMultiplasInstituicoes"/>
+		
+	<navigation>
+	
+			<rule if-outcome="notaefaltarecuperacao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/notaefaltarec/notaefaltareclist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="ConfigurarConceito">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/conceito/conceito.xhtml"/>
+			</rule>
+
+			<rule if-outcome="notaefalta">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/notaefalta/notaefaltalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="sobreprojeto">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/sobreprojeto.xhtml"/>
+			</rule>
+				
+			<rule if-outcome="crudEtapasRecuperacao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/etaparecuperacao/etapalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudEtapas">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/etapa/etapalist.xhtml"/>
+			</rule>
+	
+			<rule if-outcome="nivelAcesso">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/nivelacesso/nivelacesso.xhtml"/>
+			</rule>
+
+			<rule if-outcome="personalizarSkin">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/skin/skin.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudPeriodoLetivo">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/periodoletivo/periodoletivolist.xhtml"/>
+			</rule>
+	
+			<rule if-outcome="crudCargoDocente">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipodocente/tipodocentelist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="CadastroFuncionario">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/funcionario/cadastro1.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudProjetos">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/projeto/projetolist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="TipoEncerramentoMatricula">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipoencerramentomatricula/tipoencerramentomatriculalist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="relatorioConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/relatorioconfiguracao.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="MatriculaList">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/matricula/matriculalist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="relatorioConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/relatorioconfiguracao.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudDisciplina">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/disciplina/disciplinalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudTurma">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/turma/turmalist.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudSerie">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/serie/serielist.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudTipoEnsino">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipoensino/tipoensinolist.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudEventos">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/evento/eventolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="crudConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/configuracaolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="crudEspacoFisico">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/espacofisico/espacofisicolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="CadastroAluno">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>
+			</rule>
+
+			<rule if-outcome="CadastroInstituicao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/instituicao/cadastro.xhtml"/>
+			</rule>
+
+			<rule if-outcome="alteraSenha">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/usuario/alterasenha.xhtml"/>
+			</rule>
+
+
+			<rule if-outcome="ConfigurarInstituicao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/instituicao/edita.xhtml"/>
+			</rule>
+
+
+			<rule if-outcome="PesquisaAluno">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/aluno/pesquisar.xhtml"/>
+			</rule>
+
+			<rule if-outcome="main">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/main.xhtml"/>
+			</rule>
+
+	</navigation>
+	
+</page>

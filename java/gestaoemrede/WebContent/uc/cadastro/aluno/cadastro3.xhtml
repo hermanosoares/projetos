@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+	<ui:define name="navegacao">
+	
+	<div id="passos">
+		
+		<rich:panel styleClass="informacoesUsuario">
+   		 	<h:commandButton immediate="true" action="pagina1" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'"  image="/img/passo1.jpg"  value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações do Aluno e EducaCenso.
+				      </span>
+				</rich:toolTip>
+   		 </rich:panel>
+   		 
+   		 <rich:panel styleClass="informacoesUsuario">
+		   		<h:commandButton immediate="true" action="#{AlunoService.anterior}" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo2.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações de Filiação e Endereço.
+				      </span>
+				</rich:toolTip>
+		</rich:panel>
+		
+		<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" image="/img/passo3.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 1).
+				</span>
+		</rich:toolTip>
+	   	</rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton action="#{AlunoService.proximo}" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo4.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 2).
+				 </span>
+			</rich:toolTip>
+	    	</rich:panel>
+   		  
+   		 <rich:panel styleClass="informacoesUsuario">
+	   			<h:commandButton action="pagina5" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo5.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Informações de contato.
+				 </span>
+			</rich:toolTip>
+	   	    </rich:panel>
+	   	    
+	   	   <rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina6" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo6.jpg" value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Resumo do cadastro.
+				 </span>
+			</rich:toolTip>
+		    </rich:panel>
+   	
+	</div>
+	
+	<div id="topoBotao">
+	<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" image="/img/anterior.jpg" action="#{AlunoService.anterior}" value="#{messages['rotulo.anterior']}" />	
+	<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/proximo.jpg" action="#{AlunoService.proximo}" value="#{messages['rotulo.proximo']}" />
+	<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" action="#{AlunoService.concluirCadastro}" value="#{messages['rotulo.gravar']}" />
+	<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/cancelar.jpg" action="#{AlunoService.cancelar}" value="" immediate="true" />
+	</div>
+	</ui:define>/>
+	
+	<ui:define name="conteudo">
+	<f:view>
+	<div id="cadastroUnico">
+		<table width="750" border="0">
+		
+  <tr>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.nacionalidade']}:" /></td>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.naturalidade']}:" /></td>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.estadocivil']}:" /></td>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.etnia']}:" /></td>
+  </tr>
+  
+  <tr>
+    <td><h:selectOneMenu style="width:170px;" value="#{pessoaEntity.nacionalidade}" styleClass="select" >
+    		<s:selectItems var="n" value="#{TipoNacionalidades}" noSelectionLabel="selecione" label="#{n}"/>
+    		<s:convertEnum/>
+		</h:selectOneMenu></td>
+    
+    <td><h:inputText  value="#{pessoaEntity.naturalidade}" id="camponaturalidade" autocomplete="false" maxlength="30" styleClass="input" converter="#{EmptyConverter}">
+    	<rich:jQuery selector="#camponaturalidade" query="capitalize()" timing="onload" />
+		</h:inputText>
+    </td>
+    <td><h:selectOneMenu style="width:170px;" value="#{pessoaEntity.estadocivil}" styleClass="select">
+    	<s:selectItems var="n" value="#{TipoEstadoCivil}" noSelectionLabel="selecione" label="#{n}"/>
+    	<s:convertEnum/>
+	</h:selectOneMenu></td>
+	<td><h:selectOneMenu style="width:170px;" value="#{pessoaEntity.cor}" styleClass="select" >
+    	<s:selectItems var="n" value="#{TipoCores}" noSelectionLabel="selecione" label="#{n}"/>
+    	<s:convertEnum/>
+	</h:selectOneMenu></td>
+  </tr>
+<tr class="espacoFormulario"></tr>
+  <tr>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.rg']}:" /></td>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.rgorgaoexpedido']}:" /></td>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.rgdtemissao']}:" /></td>
+    <td><h:outputText styleClass="campoPequeno" value="#{messages['rotulo.cpf']}:" /></td>
+  </tr>
+  <tr>
+    <td><h:inputText  value="#{pessoaEntity.rg}" autocomplete="false" styleClass="input" maxlength="20" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.rgorgaoexpedido}" autocomplete="false" styleClass="input" maxlength="10" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText id="campoDataEmissao" value="#{pessoaEntity.rgdtemissao}" maxlength="10" converter="#{EmptyConverter}">
+		<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>     
+		<rich:jQuery selector="#campoDataEmissao" query="mask('99/99/9999')" timing="onload"/>
+		</h:inputText>
+	</td>
+	
+	<td><h:inputText id="campoCPF" value="#{pessoaEntity.cpf}" converter="#{EmptyConverter}">
+		<rich:jQuery selector="#campoCPF" query="mask('999.999.999-99')" timing="onload"/>
+		</h:inputText>
+    </td>
+  </tr>
+  <tr class="espacoFormulario"></tr>
+  
+  <tr>
+    <td><h:outputText value="#{messages['rotulo.religiao']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.numcarteiratrab']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.seriecarteiratrab']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.uf']}:" /></td>
+  </tr>
+  <tr>
+    <td><h:selectOneMenu style="width:170px;" value="#{pessoaEntity.religiao}" styleClass="select" >
+    		<s:selectItems var="r" value="#{TipoReligiao}" noSelectionLabel="selecione" label="#{r}"/>
+		</h:selectOneMenu></td>
+    <td><h:inputText  value="#{pessoaEntity.numcarteiratrab}" autocomplete="false" maxlength="15" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.seriecarteiratrab}" autocomplete="false" maxlength="6" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:selectOneMenu style="width:170px;" value="#{pessoaEntity.ufcarteiratrab}" styleClass="select" >
+			<s:selectItems var="n" value="#{TipoEstadosBrasileiros}" noSelectionLabel="selecione" label="#{n}"/>
+			<s:convertEnum/>
+	 </h:selectOneMenu></td>
+  </tr>
+  
+</table>
+	</div>
+	</f:view>
+				
+	</ui:define>
+			
+	</ui:composition>
+
+
+</html>

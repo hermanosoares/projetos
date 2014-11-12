@@ -1,0 +1,37 @@
+package br.com.bulktecnologia.modelo.enums;
+
+public enum TipoNacionalidade {
+	Brasil,
+	Inglaterra,
+	Estados_Unidos,
+	Canadá,
+	Austrália,
+	Nova_Zelândia,
+	França,
+	Alemanha,
+	Holanda,
+	Espanha,
+	Portugal,
+	Itália,
+	Grécia,
+	Finlândia,
+	Suécia,
+	Noruega,
+	Dinamarca,
+	Rússia,
+	Polónia,
+	Japão,
+	China,
+	Coreia_do_Sul,
+	Índia,
+	Paquistão,
+	Iraque,
+	Irão,
+	Afeganistão,
+	Turquia,
+	México,
+	Argentina,
+	Egipto,
+	África_do_Sul
+	
+}

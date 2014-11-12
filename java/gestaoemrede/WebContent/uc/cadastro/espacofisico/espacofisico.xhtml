@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+<f:view>
+	<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+		 <div id="topoBotao">
+				<h:commandButton styleClass="botaoNavegacao" 
+					image="/img/gravar.jpg" action="#{EspacoFisicoService.grava(espacoFisicoEntity)}" value="gravar" />
+		
+				<h:commandButton styleClass="botaoNavegacao" immediate="true"
+					 action="#{EspacoFisicoService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+		
+		</div>
+		
+		
+		
+		<h:panelGroup>
+		 <h:form id="cadastroSala">
+		 	
+		 	<div id="tituloMenu">
+				<h:graphicImage value="/img/espacoFisicoCadastrado.png" alt="Espaço Físico" />
+			</div>
+		 	
+	  		 <table width="750" border="0">
+	 			<tr>
+					<td><h:outputText value="Identificador do Espaço Físico*" /></td>
+					<td><h:outputText value="Localização *" /></td>
+					
+					<td><h:outputText value="Area:" /></td>
+				</tr>
+					   		 
+			    <tr>
+			    	<td><h:inputText id="camposala" value="#{espacoFisicoEntity.identificadorEspaco}" style="margin-left:0px; width:250px; float:left;" 
+			    		 styleClass="input" maxlength="10" label="Identificador do Espaço" required="true" /> 
+			    	</td>
+			    	<td><h:inputText id="campolocalizacao" value="#{espacoFisicoEntity.localizacao}" style="margin-left:0px; width:360px; float:left;"
+			   			 styleClass="input" required="true" maxlength="50" label="Localizacao"/>
+			   		</td>
+			   		
+			   		<td><h:inputText id="campoarea" required="true" value="#{espacoFisicoEntity.area}" style="margin-left:0px; width: 50px;" styleClass="input" label="Area" />
+			   			<h:outputText value=" m²" />
+			   		</td>
+			    </tr>
+
+	   		    <tr>
+	   		    	<td><h:outputText value="Tipo do Espaço Físico *" />  </td>
+				    <td><h:outputText value="Descriçao: "  /> </td>
+			    </tr>
+			    </table>
+			   
+			   <table width="750" border="0">			    
+			    <tr>
+			    	<td>
+			   			<h:selectOneMenu value="#{espacoFisicoEntity.tipoEspaco}" style="width:260px;" required="true">
+			   				<s:selectItems value="#{TiposDeEspacoFisico}" var="item" label="#{item}" />
+			   			</h:selectOneMenu>
+			   		</td>
+				    <td><h:inputText  id="campodescricao" value="#{espacoFisicoEntity.descricao}" style="margin-left:0px; width:460px;"  
+				    	 styleClass="input"  maxlength="50" label="Descricao"  />
+				    </td>
+			    </tr>
+			</table>
+	   	</h:form>
+		</h:panelGroup>
+   	</ui:define>
+	
+	</ui:composition>
+</f:view>
+</html>

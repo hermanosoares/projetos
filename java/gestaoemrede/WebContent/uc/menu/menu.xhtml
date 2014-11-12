@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+      
+      <ui:composition>
+      
+      	<h:form id="formMenu">
+      	
+        <rich:toolBar>
+                    <h:panelGroup>
+                        <h:graphicImage value="/images/copy.gif" styleClass="pic" />
+                        <s:link view="/main.xhtml" propagation="end" styleClass="rich-toolbar-item">Principal</s:link>
+                    </h:panelGroup>
+
+            <rich:dropDownMenu rendered="#{permiteExibirCadastroAluno or permiteExibirCadastroFuncionario}">
+                <f:facet name="label"> 
+                    <h:panelGroup>
+                        <h:graphicImage value="/images/copy.gif" styleClass="pic"   />
+                        <h:outputText value="Cadastro" />
+                    </h:panelGroup>
+                </f:facet>
+                
+                
+               	<rich:menuItem value="1. Aluno" action="CadastroAluno" submitMode="server" rendered="#{permiteExibirCadastroAluno}"/>
+
+                <rich:menuItem value="2. Funcionário" action="CadastroFuncionario" submitMode="server" rendered="#{permiteExibirCadastroFuncionario}"/>
+                
+            </rich:dropDownMenu>
+
+            <h:panelGroup rendered="#{permiteExibirPesquisaAlteracao}">
+                  <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+                  <s:link view="/uc/cadastro/aluno/pesquisar.xhtml" propagation="none" styleClass="rich-toolbar-item">Pesquisa / Alteração</s:link>
+            </h:panelGroup>
+            
+            <h:panelGroup rendered="#{permiteExibirMatricula}">
+                  <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+                  <s:link view="/uc/matricula/matriculalist.xhtml" propagation="none" styleClass="rich-toolbar-item">Matrícula</s:link>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{permiteExibirAlocacao}">
+                  <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+                  <s:link view="/uc/alocacao/alocacaolist.xhtml" propagation="none" styleClass="rich-toolbar-item">Alocação</s:link>
+            </h:panelGroup>
+			
+			<rich:dropDownMenu rendered="#{permiteExibirNotaEFalta}">
+                <f:facet name="label"> 
+                    <h:panelGroup>
+                        <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+                        <h:outputText value="Avaliação" />
+                    </h:panelGroup>
+                </f:facet>
+                
+                <rich:menuItem value="1. Nota/Falta" action="notaefalta" submitMode="server" rendered="#{permiteExibirNotaEFalta}" />
+                <rich:menuItem value="2. Nota/Falta de Recuperação" action="notaefaltarecuperacao"  submitMode="server" rendered="#{permiteExibirNotaEFalta}"/>
+                
+			</rich:dropDownMenu>
+			
+        </rich:toolBar>
+
+        <rich:toolBar>
+        
+                    <h:panelGroup rendered="#{permiteExibirRelatorio}">
+                        <h:graphicImage value="/images/copy.gif" styleClass="pic" />
+                        <s:link view="/uc/relatorio/relatoriolist.xhtml" propagation="end" styleClass="rich-toolbar-item">Relatórios </s:link>
+                    </h:panelGroup>
+
+					<rich:dropDownMenu rendered="#{permiteExibirGerenciarLayout or permiteExibirGerenciarSenha}">
+		                <f:facet name="label"> 
+		                    <h:panelGroup>
+		                        <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+		                        <h:outputText value="Gerenciar" />
+		                    </h:panelGroup>
+		                </f:facet>
+		                
+		                <rich:menuItem value="1. Auditoria" action="#" submitMode="server" rendered="false"/>
+		                <rich:menuItem value="2. Login" action="#" submitMode="server" rendered="false"/>
+		                <rich:menuItem value="3. Nível de Acesso" action="nivelAcesso" submitMode="server" rendered="false"/>
+		                
+		                <rich:menuItem value="4. Layout" action="personalizarSkin" submitMode="server" rendered="#{permiteExibirGerenciarLayout}"/>
+		                <rich:menuItem value="5. Senha" action="alteraSenha" submitMode="server" rendered="#{permiteExibirGerenciarSenha}"/>
+					</rich:dropDownMenu>
+
+            <rich:dropDownMenu rendered="#{permiteExibirConfiguracao}">
+                <f:facet name="label"> 
+                    <h:panelGroup>
+                        <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+                        <h:outputText value="Configuração" />
+                    </h:panelGroup>
+                </f:facet>
+
+                <rich:menuGroup value="Instituição">
+	                <rich:menuItem submitMode="server" value="1. Turnos"  action="crudConfiguracao"/>
+	                <rich:menuItem submitMode="server" value="2. Tipos de Ensino"  action="crudTipoEnsino"/>
+	                <rich:menuItem submitMode="server" value="3. Séries"  action="crudSerie"/>
+	                <rich:menuItem submitMode="server" value="4. Disciplinas"  action="crudDisciplina"/>
+	                <rich:menuItem submitMode="server" value="5. Turmas / Classe"  action="crudTurma"/>
+	                <rich:menuItem submitMode="server" value="6. Periodo Letivo"  action="crudPeriodoLetivo"/>
+	                <rich:menuItem submitMode="server" value="7. Etapas"  action="crudEtapas"/>
+	                <rich:menuItem submitMode="server" value="8. Etapas de Recuperação"  action="crudEtapasRecuperacao"/>
+	                <rich:menuSeparator/>
+	                <rich:menuItem submitMode="server" value="9. Espaços Físico"  action="crudEspacoFisico"/>
+	                <rich:menuItem submitMode="server" value="10. Eventos de Calendario"  action="crudEventos" />
+	                <rich:menuItem submitMode="server" value="11. Projetos"  action="crudProjetos"/>
+					<rich:menuItem submitMode="server" value="12. Conceitos" action="ConfigurarConceito"/>	                
+					<rich:menuItem submitMode="server" value="13. Dados de Cadastro" action="ConfigurarInstituicao"/>
+	                <rich:menuSeparator/>
+					<rich:menuItem submitMode="server" value="12. Relatório de Configuração"  action="relatorioConfiguracao"/>
+                </rich:menuGroup>
+
+                <rich:menuGroup value="Docente">
+	                <rich:menuItem submitMode="server" value="1.  Tipos de Cargo Docente"  action="crudCargoDocente"/>
+				</rich:menuGroup>
+				                
+                <rich:menuGroup value="Matrícula">
+					<rich:menuItem submitMode="server" value="1. Tipo de Encerramento" action="TipoEncerramentoMatricula" />
+                </rich:menuGroup>
+
+                
+			</rich:dropDownMenu>
+
+
+		            <rich:dropDownMenu>
+		                <f:facet name="label"> 
+		                    <h:panelGroup>
+		                        <h:graphicImage value="/images/copy.gif" styleClass="pic"/>
+		                        <h:outputText value="Ajuda"/>
+		                    </h:panelGroup>
+		                </f:facet>
+		                
+		                <rich:menuItem submitMode="server" value="1. Sobre o Projeto" action="sobreprojeto" />
+		                <rich:menuItem submitMode="server" value="2. Teclas de Atalho"  rendered="false" />
+		                <rich:menuItem submitMode="server" value="3. Manual do Usuário" rendered="false"  />
+		                
+					</rich:dropDownMenu>
+                    
+		</rich:toolBar>        
+        
+        <div id="botaoSair">
+	        <h:commandButton style="width:77px; height:38px; border:0; float:right; margin:8px; " image="/img/botaosair.png" id="idBotaoLogout" action="#{identity.logout}" actionListener="#{authenticator.NotificaTipoLogout}" value="#{messages['titulo.logout']}">
+					<rich:toolTip for="idBotaoLogout">
+					     <span style="white-space:nowrap">
+								Desconectar do sistema.
+					      </span>
+					</rich:toolTip>
+	        </h:commandButton>
+
+				<h:commandButton id="idTroca" style="width:32px; height:28px; border:0px; float:right; margin:8px;" action="#{MultiplaInstituicaoService.irTelaMultiplasInstituicoes}" image="/img/setasInstrituicao.jpg"  alt="Selecionar outra Instituição."/>
+				<rich:toolTip for="idTroca">
+				     <span style="white-space:nowrap">
+							Selecionar outro Ano Base ou Instituição.
+				      </span>
+				</rich:toolTip>
+				
+	        
+		</div>
+			
+		<div id="topoInstituicao">	
+		<div id="perfilInstituicao">
+			
+			<h:outputText value="Usuário: " style="font-weight: bold; font-size: small"/>
+			<h:outputText value="#{identity.username}"/>
+			<br/>
+			<h:outputText value="Instituição: " style="font-weight: bold; font-size: small"/>
+			<h:outputText value="#{nomeInstituicaoLogada}" />
+			<br/>
+			<h:outputText value="Ano Base: "  styleClass="SomenteNegrito"/>
+			<h:outputText value="#{AnoConfiguracaoAtiva}" styleClass="#{operandoAnoBasePassadoOuFuturo?'anoBasePassadoEFuturo':''}"/>
+		</div>	
+			
+    	</div>
+    </h:form>
+    </ui:composition>
+</html>

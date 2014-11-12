@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:x="http://www.xseam.org">
+
+	  <div id="cadastroUnico">
+	  
+	    <div id="cabecalhoInsituicao">
+			<h:graphicImage value="/img/cadastroinstituicao2.png" width="244" height="68" border="0" />
+		</div>
+		<br/>
+		<h:outputText value="Configuração Global: " />
+		<h:selectOneMenu value="#{InstituicaoService.configuracaoTemplateSelecionada}" required="true" label="Configuração Template">
+			<s:selectItems var="templateItem" value="#{ConfiguracaoList.configuracoes}" noSelectionLabel="selecione configuração global.." label="#{templateItem.nome}"/>
+			<s:convertEntity/>
+		</h:selectOneMenu>
+		
+		<table width="750" border="0" style="margin-top: 20px;">
+			<tr>
+			    <td><h:outputText value="Nome Instituição:*" /></td>
+			    <td><h:outputText value="Codigo da Instituição:*" /></td>
+			</tr>
+			
+			<tr>
+			    <td><h:inputText styleClass="inputwidth570" value="#{instituicaoEntity.nome}" id="camponomeinstituicao" required="true" label="Nome da Instituição">
+			    	<rich:jQuery selector="#camponomeinstituicao" query="capitalize()" timing="onload"/>				    
+				 	</h:inputText>
+			    </td>
+			    <td><h:inputText id="idCodInstituicao" style="width:150px;" value="#{instituicaoEntity.codInstituicao}"  required="true" maxlength="12" label="Codigo da Instituição">
+						<rich:jQuery selector="#idCodInstituicao" query="numeric()" timing="onload"/>			    	
+			    	</h:inputText>
+			    </td>
+			</tr>
+		</table>
+		
+		<table width="750" border="0">
+			<ui:include src="/uc/cadastro/endereco/endereco.xhtml" />
+		</table>
+			
+			
+	<table width="750" border="0">
+		<tr>
+			<td> <h:outputText value="Telefone 1:*"/> </td>
+			<td> <h:outputText value="Telefone 2:" /> </td>
+			<td> <h:outputText value="Fax:" /> </td>
+		</tr>
+		
+		<tr>
+			<td><h:inputText style="width: 230px; margin-right:10px;" value="#{contatoEntityInstituicao.telfixo1}" id="telefone1" required="true" label="Telefone Fixo 1" converter="#{PhoneMaskConverter}">
+				<rich:jQuery selector="#telefone1" query="mask('(99)9999.9999')" timing="onload"/>
+		    	</h:inputText>
+			</td>
+			<td><h:inputText style="width: 230px; margin-right:10px;" value="#{contatoEntityInstituicao.telfixo2}" id="telefone2" converter="#{PhoneMaskConverter}">
+				<rich:jQuery selector="#telefone2" query="mask('(99)9999.9999')" timing="onload"/>
+		    	</h:inputText>	
+			</td>
+			<td><h:inputText style="width: 230px; margin-right:10px;" value="#{contatoEntityInstituicao.telfixo3}" id="telefone3" converter="#{PhoneMaskConverter}">
+				<rich:jQuery selector="#telefone3" query="mask('(99)9999.9999')" timing="onload"/>
+		    	</h:inputText>
+			</td>	
+		</tr>	
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+	<table width="750" border="0">
+		<tr>
+			<td> <h:outputText value="Email da Instituicao:*" /> </td>
+			<td> <h:outputText value="Confirmação Email da Instituicao:*" /> </td>
+		</tr>
+		
+		<tr>
+			<td> <h:inputText style="width: 357px; margin-right:10px;" value="#{contatoEntityInstituicao.email1}" required="true" label="Email da Instituicao"/> </td>
+			<td> <h:inputText style="width: 357px; margin-right:10px;" value="#{contatoEntityInstituicao.confirmacaoEmail1}" required="true" label="Confirmacao do Email da Instituicao"/> </td>	
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+	<h:panelGroup>
+	
+	<h:commandButton action="#{InstituicaoService.novaAdesaoOnOff}" styleClass="btnnovocontrato" image="/img/contrato.jpg"  rendered="#{InstituicaoService.novaAdesao}" immediate="true">
+		<a4j:support event="onclick" reRender="divNovaAdesao,divAdesaoJaExiste" ajaxSingle="true" immediate="true"/>
+	</h:commandButton>
+	
+	<h:commandButton action="#{InstituicaoService.novaAdesaoOnOff}" styleClass="btnnovocontrato" image="/img/novocontrato.jpg"  rendered="#{!InstituicaoService.novaAdesao}" immediate="true">
+		<a4j:support event="onclick" reRender="divNovaAdesao,divAdesaoJaExiste" ajaxSingle="true" immediate="true"/>	
+	</h:commandButton>
+	<br/>
+	<br/>
+	
+	<table width="750px;">
+		<s:div id="divAdesaoJaExiste" rendered="#{!InstituicaoService.novaAdesao}">
+		<h:selectOneMenu styleClass="inputwidth340sm" value="#{InstituicaoService.adesaoSelecionada}" required="true" label="Adesão">
+		<h:outputText value="Selecione um Contrato:" /><br />
+		<s:selectItems var="item" value="#{AdesaoList.adesoes}" label="#{item.id} - #{item.estado.description} - #{item.cidade.description} - #{item.cliente}"/>
+		<s:convertEntity/>
+		</h:selectOneMenu>
+	</s:div>
+	</table>
+	<tr class="espacoFormulario"></tr>
+	
+	<s:div id="divNovaAdesao" rendered="#{InstituicaoService.novaAdesao}">
+	
+	<h:outputText value="DADOS DA NOVA ADESÃO CONTRATO" styleClass="SomenteNegrito"/>
+	<br/>
+	<br/>
+
+	<table width="750" border="0">
+
+			<tr>
+				<td> <h:outputText value="Cliente:* " /> </td>
+				<td> <h:outputText value="Telefone:*" /> </td>
+			</tr>
+
+		<tr>
+			<td> 
+				<h:inputText styleClass="inputwidth550" id="nmCliente" value="#{adesaoEntity.cliente}"  required="true" label="Cliente">
+					<rich:jQuery selector="#nmCliente" query="capitalize()" timing="onload"/>	
+				</h:inputText> 
+			</td>
+				
+			<td>
+				<h:inputText styleClass="inputwidth160" id="telefoneCliente1" value="#{adesaoEntity.telCliente}" autocomplete="false" maxlength="13" converter="#{PhoneMaskConverter}" required="true" label="Telefone Cliente"> 
+					<rich:jQuery selector="#telefoneCliente1" query="mask('(99)9999.9999')" timing="onload"/>
+		           </h:inputText>
+			</td>
+		</tr>
+		
+		<tr class="espacoFormulario"></tr>
+	</table>
+	<table width="750" border="0">	
+		<tr>
+			<td> <h:outputText value="Estado:*" /> </td>
+			<td> <h:outputText value="Cidade:*" /> </td>
+			<td> </td>
+		</tr>
+		
+		
+		<tr>
+			<td width="250px;">
+				<x:selectOneState label="" name="ufContrato" value="#{adesaoEntity.estado}" reRender="cidadeContratoAdesao" required="true"/>				
+			</td>
+			<td width="200px;">
+				<x:selectOneCity label="" name="cidadeContratoAdesao" value="#{adesaoEntity.cidade}" selectedState="#{adesaoEntity.estado}" />		
+			</td>
+			<td> </td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+	<table width="750" border="0">		
+		<tr>
+			<td> <h:outputText styleClass="inputwidth230sm" value="Tipo Adesão:" /> </td>
+			<td> <h:outputText styleClass="inputwidth230" value="Unidade:" /> </td>
+			<td> <h:outputText styleClass="inputwidth230sm" value="Período:" /> </td>
+		</tr>
+		
+		<tr>
+			<td>
+				<h:selectOneMenu styleClass="inputwidth230sm" value="#{adesaoEntity.tipoAdesao}" required="true" label="Tipo de Adesão">
+					<s:selectItems var="item" value="#{TiposAdesao}" label="#{item}"/>
+				</h:selectOneMenu>
+			</td>
+			
+			<td>
+				<h:selectOneMenu styleClass="inputwidth230" value="#{adesaoEntity.unidade}" required="true" label="Unidade">
+					<s:selectItems var="item" value="#{TiposUnidade}" label="#{item}"/>
+				</h:selectOneMenu>
+			</td>
+			
+		  	<td>
+		  	 	<h:inputText styleClass="inputwidth230" id="tempo" value="#{adesaoEntity.tempo}" required="true"  label="Período" maxlength="3" >
+		  			<rich:jQuery selector="#tempo" query="numeric()" timing="onload"/>
+		  		</h:inputText> 
+		  	</td>
+		  	
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	<table width="750" border="0">
+		<tr>
+			<td> <h:outputText value="Valor Total Contrato R$ (Ex: xxxx.xx):*" /> </td>
+		</tr>
+		 <tr>
+		 	<td>
+		  		<h:inputText styleClass="inputwidth400" label="valor" id="valor" value="#{adesaoEntity.valor}" required="true"  maxlength="8">
+		  			<rich:jQuery selector="#valor" query="numeric()" timing="onload"/>
+		  		</h:inputText>
+		  	</td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+	<table width="750" border="0">		
+			<tr>
+				<td> <h:outputText value="Nome do Responsável Contrato:*" /> </td>
+				<td> <h:outputText value="Cargo:*" /> </td>
+				<td> <h:outputText value="Telefone:*" /> </td>
+			</tr>
+	
+			<tr>
+				<td> 
+					<h:inputText styleClass="inputwidth400" id="campoNomeResponsavelContrato" value="#{adesaoEntity.responsavelContrato}"  required="true" label="Nome do Responsável Contrato">
+						<rich:jQuery selector="#campoNomeResponsavelContrato" query="capitalize()" timing="onload"/>
+					</h:inputText>
+				 </td>
+				
+				<td> 
+					<h:inputText styleClass="inputwidth170" id="campoCargo" value="#{adesaoEntity.cargoResponsavelContrato}"  required="true" label="Cargo Responsável">
+						<rich:jQuery selector="#campoCargo" query="capitalize()" timing="onload"/>
+					</h:inputText>
+				 </td>
+	
+				<td>
+					<h:inputText styleClass="inputwidth127" id="telefoneCliente2" value="#{adesaoEntity.telResponsavelContrato}" autocomplete="false" maxlength="13" converter="#{PhoneMaskConverter}" required="true" label="Telefone Responsável Contrato"> 
+						<rich:jQuery selector="#telefoneCliente2" query="mask('(99)9999.9999')" timing="onload"/>
+		            </h:inputText>
+				</td>
+			</tr>
+	
+			<tr class="espacoFormulario"></tr>
+			
+		</table>
+		
+		<table width="750" border="0">	
+			
+			<tr>
+				<td> <h:outputText value="Data Início Contrato:*" /> </td>
+				<td> <h:outputText value="Data Término Contrato: " /> </td>
+				<td> <h:outputText value="Vendedor ou como descobriu o produto?*" /> </td>
+			</tr>
+	
+			<tr>
+				<td>
+			    	<h:inputText styleClass="inputwidth200" id="dtInicioContrato" label="Dt. Início Contrato" value="#{adesaoEntity.dtIniAdesao}" validator="ValidatorCampoDtNascimento" required="true" converter="#{EmptyConverter}" >
+			    		<f:attribute name="paramDisableFuture" value="true"/>
+			    		<f:attribute name="paramMsg" value="Data do Adesão Contrato"/>
+					  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				    	<rich:jQuery selector="#dtInicioContrato" query="mask('99/99/9999')" timing="onload"/>
+			    	</h:inputText>
+				</td>
+				
+				<td>
+			    	<h:inputText styleClass="inputwidth200" id="dtTerminoContrato" label="Dt. Término Contrato" value="#{adesaoEntity.dtTerminoAdesao}" validator="ValidatorCampoDtNascimento" converter="#{EmptyConverter}" >
+			    		<f:attribute name="paramDisableFuture" value="true"/>
+			    		<f:attribute name="paramMsg" value="Data do Adesão Contrato"/>
+					  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				    	<rich:jQuery selector="#dtTerminoContrato" query="mask('99/99/9999')" timing="onload"/>
+			    	</h:inputText>
+				</td>
+	
+				<td>
+					<h:inputText styleClass="inputwidth300" id="vendedorId" value="#{adesaoEntity.nomeVendedor}" autocomplete="false" converter="#{EmptyConverter}" required="true" label="Vendedor/Como Descobriu o Produto">
+						<rich:jQuery selector="#vendedorId" query="capitalize()" timing="onload"/>
+					</h:inputText> 
+				</td>
+			</tr>
+			
+			<tr class="espacoFormulario"></tr>
+		</table>
+	</s:div>
+
+	</h:panelGroup>
+
+
+	  </div>
+	  
+
+
+</html>

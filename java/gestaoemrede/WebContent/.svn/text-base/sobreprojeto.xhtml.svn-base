@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="conteudo">
+				<rich:panel>
+				<f:facet name="header">
+					<h:outputText value="Sobre o Projeto " />
+				</f:facet>
+				
+				<h:outputText value="Gestão Escolar Pública na Web 2.0" styleClass="SomenteNegrito"/>
+				<br/>
+				<br/>
+				<h:panelGrid columns="1">
+					<h:outputLink value="http://www.gestaoemrede.com.br" target="_blank">Site do Projeto</h:outputLink>
+					<h:outputLink value="http://suporte.gestaoemrede.com.br" target="_blank">Suporte via Chat Online</h:outputLink>
+					<h:outputLink value="http://www.gestaoemrede.com.br/contato.htm" target="_blank">Mande seu Recado!</h:outputLink>
+					<h:outputLink value="http://www.twitter.com/gestaoemrede" target="_blank">Siga-nos no Twitter!</h:outputLink>
+					<h:outputText value=" "/>
+					<h:outputText value=" "/>
+					<h:outputText value=" "/>
+					<h:outputText value=" "/>					
+					<h:outputLink value="mailto://contato@bulktecnologia.com.br">contato@bulktecnologia.com.br</h:outputLink>
+					<h:outputLink value="mailto://gestaoemrede@gestaoemrede.com.br">gestaoemrede@gestaoemrede.com.br</h:outputLink>
+				</h:panelGrid>
+
+				<br/>
+				<h:outputText value=" Av. Raja Gabáglia 2708 SL 323. São Bento , Belo Horizonte/MG.  Fone: (31) 2512-1876"  styleClass="SomenteNegrito"/>
+				</rich:panel>
+			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

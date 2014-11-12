@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:x="http://www.xseam.org">
+<head>
+	<link href="#{facesContext.externalContext.request.contextPath}/favicon.ico" rel="icon" type="image/x-icon" />
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>#{messages['nome.sistema']}</title>
+		
+		<link href="#{facesContext.externalContext.request.contextPath}/css/estiloGestaoemRedeInstituicao.css" rel="stylesheet" type="text/css" />
+		<link href="#{facesContext.externalContext.request.contextPath}/css/mensages.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+	<body>
+			<center> 
+		 		<rich:messages id="idMensagemGlobal" layout="table" globalOnly="false" styleClass="errors"/>
+			</center>
+				
+		<div id="topo">
+		</div>
+		<div id="centroHome">
+		
+		<div id="cabecalhoInsituicao">
+				
+		</div>
+		<h:form>
+
+		<center>
+		
+		
+		<table width="750" border="0">
+			<tr>
+				<td>
+					<h:outputText value="Login: " />
+					<h:inputText style="width:300px; border:1px solid #003300; height:24px;" value="#{usuarioEntity.login}" required="true" label="Login"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Email: " />
+					<h:inputText style="width:300px; border:1px solid #003300; height:24px;" value="#{usuarioEntity.email}"  required="true" label="Email"/>
+				</td>	
+			</tr>
+		</table>
+		
+	</center>			
+		<h:panelGroup rendered="false">
+		
+		</h:panelGroup>
+			
+			<table width="750" border="0">
+				<h:commandButton styleClass="botaoNavegacaoSenha" style="margin-right:15px;" image="/img/enviarnovasenha.jpg" action="#{EsqueciSenhaService.redefinirSenha}" />
+				<s:button view="/main.xhtml" styleClass="botaoNavegacaoEspaco" image="img/cancelar.jpg" value="Voltar"/>
+			</table>
+			
+		</h:form>
+		</div>
+		
+		<div id="topo"> </div>
+		
+	</body>
+</html>

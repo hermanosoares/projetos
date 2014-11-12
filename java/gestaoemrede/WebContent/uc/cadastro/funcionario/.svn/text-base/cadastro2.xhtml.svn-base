@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+      
+<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+	
+		<div id="passos">
+	   		
+	   		<rich:panel styleClass="informacoesUsuario">
+   		 	<h:commandButton action="#{FuncionarioService.anterior}" immediate="true" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo1.jpg"  value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações Cadastrais do Docente.
+				      </span>
+				</rich:toolTip>
+   		   </rich:panel>
+	   		
+	   		
+	   		<rich:panel styleClass="informacoesUsuario">
+		   		<h:commandButton styleClass="passoicone" image="/img/passo2.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações de Contrato do Docente.
+				      </span>
+				</rich:toolTip>
+			</rich:panel>
+	   		
+		   	
+		   	
+		</div>
+		
+		<div id="topoBotao">
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" image="/img/anterior.jpg" action="#{FuncionarioService.anterior}" actionListener="#{FuncionarioService.validaCadastroEtapa2}"  immediate="true"/>
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" action="#{FuncionarioService.grava}" actionListener="#{FuncionarioService.validaCadastroEtapa2}"  />
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/cancelar.jpg" action="#{FuncionarioService.cancela}"  immediate="true"/>
+		</div>
+	
+	</ui:define>
+	
+	<ui:define name="conteudo">
+	<f:view>
+	<div id="cadastroUnico">
+	
+	<table width="750">
+		<tr>
+			<td><h:outputText value="Cadastrando Docente: #{pessoaEntity.nome}"  style="font-weight: bold" rendered="#{not FuncionarioService.atualizando}"/></td>
+			<td><h:outputText value="Atualizando Docente: #{pessoaEntity.nome}"  style="font-weight: bold" rendered="#{FuncionarioService.atualizando}"/></td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+		<table width="750" border="0">
+				
+					
+			 <tr>
+		 		<td><h:outputText value="Cargo:" /></td>
+		 		<td><h:outputText value="Tipo do Contrato:" /></td>
+		 		<td><h:outputText value="Regime do Contrato:" /></td>
+		 		<td><h:outputText value="Modalidade do Contrato:" /></td>
+			 </tr>
+			 
+			 <tr>
+			 	<td>
+			 		<h:selectOneMenu styleClass="inputwidth175" value="#{contratoTrabalhoEntity.tipoFuncao}" required="true" label="Cargo">
+			 			<s:selectItems var="item" value="#{TipoFuncaoList.tiposFuncao}" noSelectionLabel="selecione.." label="#{item.nome}"/>
+			 			 <s:convertEntity/>
+			 		</h:selectOneMenu>
+			 	</td>
+			 	
+			 	<td>
+					<h:selectOneMenu styleClass="inputwidth175" value="#{contratoTrabalhoEntity.tipoRegimeContratacao}" required="true" label="Tipo do Contrato">
+						<s:selectItems var="item" value="#{TiposRegimeContratacao}" label="#{item}" noSelectionLabel="selecione.."/>
+						<s:convertEnum/>
+					</h:selectOneMenu>
+				</td>
+				
+				<td>									  	
+					<h:selectOneMenu styleClass="inputwidth175" value="#{contratoTrabalhoEntity.tipoContrato}" required="true" label="Regime do Contrato">
+						<s:selectItems var="item" value="#{TiposContrato}" label="#{item}" noSelectionLabel="selecione.."/>
+						<s:convertEnum/>
+					</h:selectOneMenu>
+				</td>
+				
+				<td>									  	
+					<h:selectOneMenu styleClass="inputwidth175" value="#{contratoTrabalhoEntity.tipoModalidadeContratacao}" required="true" label="Modalidade do Contrato">
+						<s:selectItems var="item" value="#{TiposModalidadeContratacao}" label="#{item}" noSelectionLabel="selecione.."/>
+						<s:convertEnum/>
+					</h:selectOneMenu>
+				</td>
+			 </tr>
+			 <tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="750">
+			<tr>
+			    <td><h:outputText styleClass="campoPequeno" value="Data de Admissão:" /></td>
+			    <td><h:outputText styleClass="campoPequeno" value="Data de Início das Atividades:" /></td>
+			    <td><h:outputText styleClass="campoPequeno" value="Data de Demissão:" /></td>
+			    <td><h:outputText styleClass="campoPequeno" value="Data de Término das Atividades:" /></td>
+			</tr>
+			<tr>
+				<td>
+					<h:inputText styleClass="inputwidth165" id="campoDtAdmissao" label="Data de Admissão" value="#{contratoTrabalhoEntity.dtAdmissao}" converter="#{EmptyConverter}" >
+					<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				    <rich:jQuery selector="#campoDtAdmissao" query="mask('99/99/9999')" timing="onload"/>
+				    </h:inputText>
+				</td>
+				<td>
+					<h:inputText styleClass="inputwidth165" id="campoDtInicioAtividades" label="Data de Início das Atividades" value="#{contratoTrabalhoEntity.dtIniAtividade}" converter="#{EmptyConverter}" >
+					<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+					<rich:jQuery selector="#campoDtInicioAtividades" query="mask('99/99/9999')" timing="onload"/>
+				  	</h:inputText>
+				</td>
+				
+				<td>
+				  	<h:inputText styleClass="inputwidth165" id="campoDtDemissao" label="Data de Demissão" value="#{contratoTrabalhoEntity.dtDemissao}" converter="#{EmptyConverter}" >
+					<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				    <rich:jQuery selector="#campoDtDemissao" query="mask('99/99/9999')" timing="onload"/>
+				    </h:inputText>
+				</td>
+				    
+				<td>
+				  	<h:inputText styleClass="inputwidth165" id="campoDtFimAtividades" label="Data de Término das Atividades" value="#{contratoTrabalhoEntity.dtfimAtividade}" converter="#{EmptyConverter}" >
+					<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+				    <rich:jQuery selector="#campoDtFimAtividades" query="mask('99/99/9999')" timing="onload"/>
+				    </h:inputText>
+				</td>
+				    
+			</tr>
+			  
+			
+		<tr class="espacoFormulario"></tr>
+		</table>
+		
+	</div>
+	
+	</f:view>
+	</ui:define>
+
+</ui:composition>
+
+</html>

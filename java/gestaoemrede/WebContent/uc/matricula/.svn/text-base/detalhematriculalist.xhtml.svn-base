@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+			<h:commandButton action="list" image="/img/voltar.jpg" styleClass="botaoNavegacao" immediate="true" />
+			<br/>
+			<br/>
+			<br/>	
+		</ui:define>
+		
+		<ui:define name="conteudo">
+			<h:outputText value="Detalhes de Matrícula: " styleClass="SomenteNegrito" />
+			<h:outputText value="#{MatriculaService.alunoSelecionado.nome}" />
+			<br/>
+			<br/>
+			<center>
+			<rich:dataTable rowClasses="ClasseCss2,ClasseCss1" var="matItem" value="#{MatriculaService.matriculasAlunoSelecionado}" rendered="#{not empty MatriculaService.matriculasAlunoSelecionado}">
+
+				<rich:column sortBy="#{matItem.tipoMatricula}">
+					<f:facet name="header">
+						<h:outputText value="Tipo da Matrícula" />
+					</f:facet>
+					<h:outputText value="#{matItem.tipoMatricula}" />
+				</rich:column>
+
+				<rich:column sortBy="#{matItem.anoAdm}">
+					<f:facet name="header">
+						<h:outputText value="Ano" />
+					</f:facet>
+					<h:outputText value="#{matItem.anoAdm}" />
+				</rich:column>
+
+				<rich:column sortBy="#{matItem.status}">
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<h:outputText value="#{matItem.status}" style="SomenteNegrito"/>					
+				</rich:column>
+
+				<rich:column sortBy="#{matItem.turno}">
+					<f:facet name="header">
+						<h:outputText value="Turno" />
+					</f:facet>
+					<h:outputText value="#{matItem.turno}" />
+				</rich:column>
+
+				<rich:column sortBy="#{matItem.ensino}">
+					<f:facet name="header">
+						<h:outputText value="Ensino" />
+					</f:facet>
+					<h:outputText value="#{matItem.ensino}" />
+				</rich:column>
+
+				<rich:column sortBy="#{matItem.serie}">
+					<f:facet name="header">
+						<h:outputText value="Série" />
+					</f:facet>
+					<h:outputText value="#{matItem.serie}" />
+				</rich:column>
+
+				<rich:column sortBy="#{matItem.matriculaDependencia}" rendered="#{not MatriculaList.matriculaRegularSelecionado}">
+					<f:facet name="header">
+						<h:outputText value="Dependência" />
+					</f:facet>
+					
+					<rich:dataTable value="#{matItem.matriculaDependencia}" var="md" rendered="#{not empty matItem.matriculaDependencia}">
+					
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Disciplina" />
+							</f:facet>
+							<h:outputText value="#{md.disciplina.nome}" />
+						</rich:column>
+						
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Alocado" />
+							</f:facet>
+							<h:outputText value="#{md.alocado?'sim':'não'}" />
+						</rich:column>
+						
+					</rich:dataTable>
+					
+				</rich:column>
+				
+				<rich:column rendered="#{MatriculaList.matriculaRegularSelecionado}">
+					<f:facet name="header">
+						<h:outputText value="Alocado" />
+					</f:facet>
+					<h:outputText value="#{matItem.statusAlocacaoRegular}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Ativar" />
+					</f:facet>
+					
+					<h:commandButton id="idBotaoAtivar" action="#{MatriculaService.ativarMatricula(matItem)}"  image="/img/editar.png" styleClass="botaoRemoverX" rendered="#{matItem.permiteAtivarMatricula}" onclick="return confirm('Confirma Ativação da Matrícula de  #{MatriculaService.alunoSelecionado.nome}  ?')"/>
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Encerrar" />
+					</f:facet>
+					
+					<h:commandButton  action="#{MatriculaService.selecionaEncerramentoMatricula(matItem)}" id="idBotaoEncerrar" image="/img/removerX.jpg" styleClass="botaoRemoverX" rendered="#{empty matItem.dtEncerramentoMatricula}"/>
+				</rich:column>
+
+				
+				
+			</rich:dataTable>
+			</center>
+		</ui:define>		
+	</ui:composition>
+
+</html>

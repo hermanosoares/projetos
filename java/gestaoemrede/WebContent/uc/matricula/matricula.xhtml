@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+		
+		<ui:define name="navegacao">
+		
+		<div id="matriculaTop">
+			<h:commandButton action="#{MatriculaService.insereMatricula(MatriculaList.dataModelSelecionados)}" image="/img/gravar.jpg" styleClass="botaoNavegacao" rendered="#{matriculaEntity.id==null and not empty TurnoList.turnos}"/>
+			<h:commandButton action="#{MatriculaService.atualizarMatricula(matriculaEntity)}" image="/img/gravar.jpg" styleClass="botaoNavegacao" rendered="#{matriculaEntity.id!=null}"/>
+			<h:commandButton action="cancela" image="/img/cancelarmatricula.jpg" styleClass="botaoNavegacao" immediate="true"/>
+		</div>
+		</ui:define>
+		
+		
+		<ui:define name="conteudo">
+			
+		<div id="tabelacentelizada750px">
+			<br/>
+			<h:graphicImage value="/img/matricula.png" />
+				
+			<table width="750px;">
+			<tr class="espacoFormulario"></tr>
+				<h:outputText value="Atualizando Matricula de:  #{matriculaEntity.aluno.pessoa.nome}" rendered="#{matriculaEntity.id!=null}" />
+			</table>
+
+				<rich:dataTable style="width: 750px;" value="#{MatriculaService.matriculasAtiva}" var="item" rendered="#{not empty MatriculaService.matriculasAtiva}">
+		               <f:facet name="header">
+		                    <h:outputText value=" A Matricula não foi realizada, o seguinte aluno já encontra-se matriculado, verifique abaixo." rendered="#{matriculasJaAtivas.size==1}"/>
+		                    <h:outputText value=" A Matricula não foi realizada, os seguintes alunos já encontram-se matriculados, verifique abaixo." rendered="#{matriculasJaAtivas.size>1}"/>
+		               </f:facet>
+		                    
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Aluno " />
+		                    </f:facet>
+							<h:outputText value="#{item.aluno.pessoa.nome}" />
+		                </rich:column>
+		                    
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Tipo de Ensino " />
+		                    </f:facet>
+							<h:outputText value="#{item.ensino.tipoEnsino}" />
+		                </rich:column>
+
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Série " />
+		                    </f:facet>
+							<h:outputText value="#{item.serie.tipoSerie}" />
+		                </rich:column>
+		                
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Turno " />
+		                    </f:facet>
+							<h:outputText value="#{item.turno.tipoturno}" />
+		                </rich:column>
+
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Instituição Ensino " />
+		                    </f:facet>
+							<h:outputText value="#{item.instituicao.nome}" />
+		                </rich:column>
+
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Ano " />
+		                    </f:facet>
+							<h:outputText value="#{item.anoAdm}" />
+		                </rich:column>
+		                
+		                <rich:column style="windth:20px;" sortable="false">
+		                    <f:facet name="header">
+		                        <h:outputText value="Dt. Matricula " />
+		                    </f:facet>
+							<h:outputText value="#{item.dtMatricula}">
+								<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
+							</h:outputText>
+		                </rich:column>
+		                    
+				</rich:dataTable>	
+
+		<div id="alunoSelecionado">
+			<h:outputText value="Realizando Matricula de #{MatriculaList.dataModelSelecionados.size} Aluno(s). " />
+			<br/>
+			<h:selectOneListbox size="5" style="width: 300px" rendered="#{not empty MatriculaList.dataModelSelecionados}">
+				<s:selectItems var="item" value="#{MatriculaList.dataModelSelecionados}" label="#{item.nome}"/>
+			</h:selectOneListbox>
+			
+
+			</div>
+			
+			<table width="750" border="0">
+				<tr class="espacoFormulario"></tr>
+					<h:outputText value="não existem turnos, impossível realizar matrícula configuração imcompleta!"  rendered="#{empty TurnoList.turnos}"/>
+				<tr class="espacoFormulario"></tr>
+			</table>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<h:outputText value="Ano ativo: " styleClass="SomenteNegrito"/>
+		<h:outputText value="#{AnoConfiguracaoAtiva}" />
+		<br/>
+		<br/>
+				
+		<table width="750" border="0">
+			
+			<tr>
+				<td style="width:148px;"><h:outputText value="Tipo Matricula:"/></td>
+				<td style="width:148px;"><h:outputText value="Turno:"/></td>
+				
+				<td style="width:148px;">
+					<h:panelGroup id="panelRotuloTipoEnsino">
+						<h:panelGroup rendered="#{not empty matriculaEntity.turno}">
+							<h:outputText value="Tipo Ensino:"/>
+						</h:panelGroup>
+					</h:panelGroup>
+				</td>
+				
+				
+					<td style="width:187px;">
+						<h:panelGroup id="panelRotuloSerie">
+							<h:panelGroup rendered="#{matriculaEntity.ensino!=null}">
+							<h:outputText value="Série:" />
+							</h:panelGroup>
+						</h:panelGroup>	
+					</td>
+
+					
+					
+					
+				</tr>
+			
+			<tr>
+				<td style="width:187px;">
+					<h:selectOneMenu styleClass="inputwidth170sm2" value="#{matriculaEntity.tipoMatricula}"  rendered="#{matriculaEntity.id != null || MatriculaList.dataModelSelecionados.size==1}" disabled="#{not empty MatriculaService.disciplinasDependentes}">
+						<a4j:support event="onchange" reRender="panelDisciplinas,panelRotuloDisciplinas" action="#{MatriculaService.handlerSerie}" ajaxSingle="true"/>
+						<s:selectItems var="i" value="#{TiposMatriculas}" label="#{i.label}" noSelectionLabel="selecione"/>
+						<s:convertEnum/>
+				    </h:selectOneMenu>
+				    
+					<h:selectOneMenu  styleClass="inputwidth170sm2" value="#{matriculaEntity.tipoMatricula}" rendered="#{MatriculaList.dataModelSelecionados.size>1}">
+						<f:selectItem itemLabel="Regular" itemValue="Regular"/>
+				    </h:selectOneMenu>
+			    </td>
+
+			    <td style="width:187px;">
+			    <h:selectOneMenu  styleClass="inputwidth170sm2" value="#{matriculaEntity.turno}" disabled="#{not empty MatriculaService.disciplinasDependentes}">
+					<s:selectItems var="i" value="#{TurnoList.turnos}" label="#{i.nome}" noSelectionLabel="selecione"/>
+					<a4j:support event="onchange" reRender="panelTipoEnsino,panelRotuloTipoEnsino,panelSerie,panelRotuloSerie" ajaxSingle="true"/>
+					<s:convertEntity/>
+			    </h:selectOneMenu>
+			    </td>
+			    
+				<td style="width:187px;">
+					<h:panelGroup id="panelTipoEnsino">
+						<h:panelGroup rendered="#{matriculaEntity.turno!=null}">
+							<h:selectOneMenu styleClass="inputwidth170sm2" value="#{matriculaEntity.ensino}" disabled="#{not empty MatriculaService.disciplinasDependentes}">
+								<a4j:support event="onchange" reRender="panelSerie,panelRotuloSerie" ajaxSingle="true"/>
+								<s:selectItems var="i" value="#{matriculaEntity.turno.ensinos}" label="#{i.nome}" noSelectionLabel="selecione"/>
+								<s:convertEntity/>
+						    </h:selectOneMenu>
+						</h:panelGroup>
+					</h:panelGroup>
+			    </td>
+			    
+			    <td style="width:187px;">
+				    <h:panelGroup id="panelSerie">
+						<h:panelGroup rendered="#{matriculaEntity.ensino!=null}">
+							<h:selectOneMenu styleClass="inputwidth170sm2" value="#{matriculaEntity.serie}" disabled="#{not empty MatriculaService.disciplinasDependentes}">
+								<a4j:support event="onchange" reRender="idCondicaoFinal,panelDisciplinas,panelRotuloDisciplinas" action="#{MatriculaService.handlerSerie}" ajaxSingle="true"/>
+								<s:selectItems var="i"	value="#{matriculaEntity.ensino.series}"	label="#{i.nome}" noSelectionLabel="selecione" />
+								<s:convertEntity />
+								<s:conversationPropagation/>
+							</h:selectOneMenu>
+						</h:panelGroup>
+					</h:panelGroup> 
+				</td>
+				</tr>
+				</table>
+				
+				<table>
+				<tr>
+					<td style="width:148px;">
+						<h:panelGroup id="panelRotuloDisciplinas">
+							<h:panelGroup rendered="#{matriculaEntity.matriculaDependenciaSelecionada and matriculaEntity.serie!=null}">
+							<h:outputText value="Dependência:" />
+							</h:panelGroup>
+						</h:panelGroup>	
+					</td>
+				</tr>
+				<tr>
+			    <td style="width:187px;">
+				    <h:panelGroup id="panelDisciplinas">
+				    
+						<h:panelGroup rendered="#{matriculaEntity.matriculaDependenciaSelecionada and matriculaEntity.serie!=null}">
+							<h:selectOneMenu styleClass="inputwidth170sm2" value="#{MatriculaService.disciplinaDependente}">
+								<s:selectItems var="i"	value="#{matriculaEntity.serie.disciplinas}" label="#{i.nome}" noSelectionLabel="selecione" />
+								<s:convertEntity />
+							</h:selectOneMenu>
+								<td><h:commandButton styleClass="botaoNavegacao" action="#{MatriculaService.AddDependencia}"  image="/img/adicionardisciplina.jpg" /></td>
+
+							<rich:dataTable styleClass="tabelamatricula" value="#{MatriculaService.disciplinasDependentes}" var="d" rendered="#{not empty MatriculaService.disciplinasDependentes}">
+							
+								<rich:column sortBy="#{d.nome}">
+									<f:facet name="header">
+										<h:outputText value="Disciplina" />
+									</f:facet>
+									<h:outputText value="#{d.nome}" />								
+								</rich:column>
+														
+								<rich:column headerClass="removerEditar">
+									<f:facet name="header">
+										<h:outputText value="Remover" />			
+									</f:facet>
+										<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{MatriculaService.disciplinasDependentes.remove(d)}" immediate="true"/>	
+								</rich:column>
+														
+							</rich:dataTable>						
+							
+						</h:panelGroup>
+						
+					</h:panelGroup> 
+				</td>
+				
+							
+			</tr>
+			
+			
+		</table>
+		
+		
+
+		<s:div id="idCondicaoFinal">   	
+			<table width="750" border="0">
+						<tr>
+							<td>
+								<h:panelGroup rendered="#{matriculaEntity.novatoEstudos}">
+										<h:outputText value="Aluno Novato" styleClass="SomenteNegrito" />
+								</h:panelGroup>
+							</td>
+						</tr>
+						
+							<h:panelGroup rendered="#{not empty matriculaEntity.novatoEstudos and not matriculaEntity.novatoEstudos}">
+							<tr>
+								<td>
+									<h:outputText value="Condição Final Ult. Ano:"/>				
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<h:selectOneMenu value="#{matriculaEntity.tipoCondicaoFinalUltAno}" label="Condição Final Ult. Ano">
+										<s:selectItems var="i" value="#{CondicoesFinaisUltAno}" label="#{i}" noSelectionLabel="selecione"/>
+										<s:convertEnum/>
+									</h:selectOneMenu>
+								</td>
+							</tr>
+							</h:panelGroup>
+						
+					
+			</table>
+		</s:div>	
+		</div>			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

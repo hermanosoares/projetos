@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			<div id="botaoIncluirMatricula">
+				<h:panelGroup id="botaoIncluirPanel">
+					<h:panelGroup rendered="#{MatriculaList.modoNaoMatriculadoSelecionado and not empty MatriculaList.dataModelSelecionados}">
+						<h:commandButton id="idBotaoIncluirMat" action="add_edit" image="/img/incluir.jpg" styleClass="botaoNavegacaoIncluir" />
+						<rich:toolTip for="idBotaoIncluirMat">
+							<h:outputText value="Incluir Matrícula" />
+						</rich:toolTip>
+					</h:panelGroup>
+				</h:panelGroup>
+			</div>
+		</ui:define>
+
+
+	<ui:define name="conteudo">
+		
+		
+		
+		<ui:include src="/uc/include/loading_inc.xhtml" />
+	
+		<table width="750px;">
+			<tr>
+				<td><h:graphicImage value="/img/matricula.png" /></td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+			 	<tr>
+					<td>
+						<h:panelGroup id="idNotFound">
+								<h:panelGroup rendered="#{empty MatriculaList.anosDiponiveisMatricula and MatriculaList.modoMatriculadoSelecionado}">
+										<h:outputText  value="Não existem matrículas."  styleClass="SomenteNegrito"/>
+								</h:panelGroup>
+						</h:panelGroup>
+					</td>
+				</tr>
+		</table>
+		
+		<table width="750px;">
+		
+		<a4j:region id="regiao1">
+			<table width="230px;" style="float: left;">
+			<tr>
+				<td>
+				<h:outputText value="Aluno: " /><br/>
+					<h:selectOneMenu styleClass="inputwidth180" value="#{MatriculaList.modoVisualizacaoMatriculaSelecionado}" required="true" label="Aluno">
+						<a4j:status for="regiao1" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+						<a4j:support event="onchange" ajaxSingle="true" reRender="idNotFound,panelMatriculados,areaDatatableMatriculados,panelRefresh" actionListener="#{MatriculaList.cleanupCompleto}"/>
+						<s:selectItems var="item" value="#{ModosVisualizacaoMatricula}" label="#{item.label}" noSelectionLabel="selecione.."/>
+						<s:convertEnum/>
+					</h:selectOneMenu>
+					
+					<h:panelGroup id="panelRefresh">
+						<h:panelGroup rendered="#{not empty MatriculaList.modoVisualizacaoMatriculaSelecionado and not empty MatriculaList.anosDiponiveisMatricula}">
+							<h:commandButton id="idBotaoRefresh" action="list" actionListener="#{MatriculaList.cleanupDataModel}" image="/img/refresh.png" styleClass="botaoAtualizar" alt="Atualizar" />
+							<rich:toolTip for="idBotaoRefresh">
+								<h:outputText value="Atualizar" />
+							</rich:toolTip>
+						</h:panelGroup>
+					</h:panelGroup>
+				</td>
+				</tr>
+			</table>	
+			</a4j:region>
+		
+		
+		
+			<h:panelGroup id="panelMatriculados">
+			
+					<h:panelGroup rendered="#{MatriculaList.modoMatriculadoSelecionado}">
+					
+	
+						<h:panelGroup id="areaTipoSelecaoMatricula">
+							<h:panelGroup >
+								<a4j:region id="regiao3">
+								<table width="180px;" style="float: left;">
+									<tr>
+									<td>
+										<h:outputText value="Tipo da Matricula: " /> <br />
+										
+										<h:selectOneMenu styleClass="inputwidth150" value="#{MatriculaList.tipoMatriculaSelecionada}" required="true" label="Tipo da Matricula"> 
+											<a4j:support  event="onchange" ajaxSingle="true" reRender="areaTipoMatricula,areaDatatableMatriculados" actionListener="#{MatriculaList.cleanupDataModel}"/>
+											<a4j:status for="regiao3" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+											<s:selectItems var="item" value="#{TiposMatriculas}" noSelectionLabel="selecione.." label="#{item.label}"/>
+											<s:convertEnum/>
+										</h:selectOneMenu>
+									</td>
+									</tr>
+								</table>
+								</a4j:region>
+							</h:panelGroup>
+						</h:panelGroup>
+						
+						<h:panelGroup id="areaTipoMatricula">
+							<h:panelGroup rendered="#{not empty MatriculaList.tipoMatriculaSelecionada}">
+								<a4j:region id="regiao4">
+									<table width="180px;" style="float: left;">
+										<tr>
+										<td>
+											<h:outputText value="Status da Matrícula: " />
+											<h:selectOneMenu styleClass="inputwidth150" value="#{MatriculaList.tipoSelecaoMatricula}" required="true" label="Status da Matrícula"> <br />
+												<a4j:status for="regiao4" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+												<a4j:support event="onchange" ajaxSingle="true" reRender="areaDatatableMatriculados,areaDatatableMatriculados" actionListener="#{MatriculaList.cleanupDataModel}"/>
+												<s:selectItems var="item" value="#{TiposSelecaoMatricula}" noSelectionLabel="selecione.." label="#{item}"/>
+												<s:convertEnum/>
+											</h:selectOneMenu>
+										</td>
+										</tr>
+									</table>
+								</a4j:region>
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+			</h:panelGroup>
+		
+	</table>
+			<table width="550px;" style="margin: 0 auto;">
+				<tr>
+					<td>
+					<h:panelGroup id="areaDatatableMatriculados">
+							
+								<h:panelGroup rendered="#{not empty MatriculaList.dataModel}">
+								
+									<rich:dataTable var="alunoItem" value="#{MatriculaList.dataModel}" rowClasses="ClasseCss2,ClasseCss1">
+									
+					                <rich:column rendered="#{MatriculaList.modoNaoMatriculadoSelecionado}">
+					                
+					                    <f:facet name="header">
+													<h:panelGrid columns="2">
+													
+														<a4j:commandButton id="idCheckAll" action="#{MatriculaList.select(true)}" value="" image="/img/checked.png" reRender="areaDatatableMatriculados,botaoIncluirPanel" rendered="#{MatriculaList.modoNaoMatriculadoSelecionado}" style="width: 15px; height: 15px; border : 0px">
+															<rich:toolTip for="idCheckAll">
+																<h:outputText value="Marcar Todos" />
+															</rich:toolTip>
+														</a4j:commandButton>
+	
+														<a4j:commandButton id="idUncheckAll" action="#{MatriculaList.select(false)}" value="" image="/img/unchecked.png"  reRender="areaDatatableMatriculados,botaoIncluirPanel" rendered="#{MatriculaList.modoNaoMatriculadoSelecionado}" style="width: 15px; height: 15px; border : 0px">
+															<rich:toolTip for="idUncheckAll">
+																<h:outputText value="Desmarcar Todos" />
+															</rich:toolTip>
+														</a4j:commandButton>
+														
+													</h:panelGrid>					                    
+												
+					                    </f:facet>
+					                    
+					                    <h:selectBooleanCheckbox styleClass="inputwidth15" value="#{alunoItem.selecionado}" >
+					                    	<a4j:support event="onclick" ajaxSingle="true" reRender="botaoIncluirPanel" ignoreDupResponses="true" />
+					                    </h:selectBooleanCheckbox>
+					                </rich:column>
+									
+										<rich:column sortBy="#{alunoItem.codAluno}">
+											<f:facet name="header">
+												<h:outputText value="Cod. Aluno" />
+											</f:facet>
+											<h:outputText value="#{alunoItem.codAluno}" />
+										</rich:column>
+										
+										<rich:column sortBy="#{alunoItem.nome}">
+											<f:facet name="header">
+												<h:outputText value="Nome" />
+											</f:facet>
+											
+											<h:outputText id="outputNome" value="#{alunoItem.nome}">
+												<rich:toolTip for="outputNome">
+													<h:outputText value="Mãe:"  styleClass="SomenteNegrito"/>
+													<br/>
+													<h:outputText value="#{alunoItem.nomeMae}" />
+												</rich:toolTip>											
+											</h:outputText>
+											
+										</rich:column>							
+		
+										<rich:column sortBy="#{alunoItem.sexo}">
+											<f:facet name="header">
+												<h:outputText value="Sexo" />
+											</f:facet>
+											
+											<h:outputText value="#{alunoItem.sexo}" />
+										</rich:column>							
+		
+		
+										<rich:column sortBy="#{alunoItem.dtNascimento}">
+											<f:facet name="header">
+												<h:outputText value="Data Nasc." />
+											</f:facet>
+											<h:outputText value="#{alunoItem.dtNascimento}">
+							    				<f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
+											</h:outputText>
+										</rich:column>							
+										
+										<rich:column rendered="#{MatriculaList.modoMatriculadoSelecionado}">
+											<f:facet name="header">
+												<h:outputText value="Detalhes" />
+											</f:facet>
+											<h:commandButton id="idBotaoDetalhes" image="/img/lupa.gif" styleClass="botaoRemoverX" action="#{MatriculaService.detalhes(alunoItem)}"/>
+											<rich:toolTip for="idBotaoDetalhes">
+												<h:outputText value="ver detalhes de matrícula(s)." />
+											</rich:toolTip>						
+										</rich:column>
+					
+									</rich:dataTable>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{MatriculaList.todosFiltrosPreenchidos and empty MatriculaList.dataModel}">
+									<h:outputText value="nenhum registro encontrado." />
+							</h:panelGroup>
+					</h:panelGroup>
+					</td>
+					</tr>
+				</table>
+	</ui:define>	
+
+	</ui:composition>
+
+</html>

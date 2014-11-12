@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+			
+			<table width="750px;" style="margin:0 auto;">
+				<h:panelGroup rendered="#{empty turmaEntity.id}">
+				<tr>
+					<td><h:outputText value="Nome da Turma:" /></td>
+					<td><h:outputText value="Máximo de Alunos:" /></td>
+					<td><h:outputText value="Ordenação:" /></td>
+					<td><h:outputText value="Tipo da Turma* :" /></td>
+				</tr>
+			
+				<tr>
+					<td width="185px;"><h:inputText styleClass="inputwidth165sm2" value="#{turmaEntity.nome}"/></td>
+					<td width="185px;"><h:inputText id="idMaxAluno" styleClass="inputwidth165sm2" value="#{turmaEntity.maxAlunos}" maxlength="2">
+						<rich:jQuery selector="#idMaxAluno" query="numeric()" timing="onload"/></h:inputText>
+					</td>
+					<td width="185px;"><h:selectOneMenu styleClass="inputwidth165sm2" value="#{turmaEntity.tipoOrdenacao}" required="true" label="Ordenação">
+						<s:selectItems var="item" value="#{TiposOrdenacao}" label="#{item.label}" noSelectionLabel="selecione.."/>
+						<s:convertEnum/></h:selectOneMenu>
+					</td>
+					
+					<td width="185px;"><h:selectOneMenu styleClass="inputwidth165sm2" value="#{turmaEntity.tipoTurma}" required="true" label="Tipo da Turma" disabled="#{not empty turmaEntity.series or not empty turmaEntity.disciplinas}">
+						<a4j:support event="onchange" ajaxSingle="true" reRender="areaPrincipal"/>
+						<s:selectItems var="it" value="#{TipoTurmaDefault}" noSelectionLabel="selecione.." label="#{it}"/>
+						<s:convertEnum/> </h:selectOneMenu>				
+					</td>
+				</tr>
+			</h:panelGroup>
+		</table>
+						
+			<h:panelGroup  id="areaPrincipal">
+				
+				<table width="750" border="0px;" style="margin:0 auto;">
+				
+				<h:panelGroup rendered="#{not empty turmaEntity.tipoTurma and empty turmaEntity.id}">
+					<tr>    
+						<td width="185px;">
+							<h:panelGroup id="areaTurno">
+								<h:panelGroup>
+									<h:outputText value="1. Selecione Turno*: " /><br/>
+										<h:selectOneMenu styleClass="inputwidth165sm2" value="#{FiltroSelecaoService.turnoSelecionado}" label="Turno" disabled="#{TurmaService.disabilitarComboTurno or TurmaService.tipoDisciplinaSelecionado and turmaEntity.disciplinas.size gt 0 }">
+											<a4j:support event="onchange" ajaxSingle="true" reRender="areaEnsino"/>
+											<s:selectItems var="turnoItem" value="#{TurnoList.turnos}" label="#{turnoItem.nome}" noSelectionLabel="selecione.."/>
+											<s:convertEntity/>
+										</h:selectOneMenu>
+								</h:panelGroup>				
+							</h:panelGroup>
+						</td>
+						
+						<td width="185px;">
+							<h:panelGroup id="areaEnsino">
+								<h:panelGroup rendered="#{not empty FiltroSelecaoService.turnoSelecionado}">
+									<h:outputText value="2. Selecione Ensino*: " /><br/>
+										<h:selectOneMenu styleClass="inputwidth165sm2"  value="#{FiltroSelecaoService.ensinoSelecionado}" label="Ensino" disabled="#{TurmaService.tipoDisciplinaSelecionado and turmaEntity.disciplinas.size gt 0}">
+										<a4j:support event="onchange" ajaxSingle="true"  reRender="areaSerie,idBotaoAddSerie"/>
+										<s:selectItems var="ensinoItem" value="#{FiltroSelecaoService.turnoSelecionado.ensinos}" label="#{ensinoItem.nome}" noSelectionLabel="selecione.."/>
+										<s:convertEntity/>
+										</h:selectOneMenu>
+								</h:panelGroup>
+								</h:panelGroup>
+						</td>
+						
+						<td width="185px;">
+							<h:panelGroup id="areaSerie">
+								<h:panelGroup rendered="#{not empty FiltroSelecaoService.ensinoSelecionado}">
+									<h:outputText value="3. Selecione Série(s)*:" /><br/>
+									<h:selectOneMenu styleClass="inputwidth165sm2" value="#{TurmaService.serieSelecionada}" label="série" disabled="#{TurmaService.tipoDisciplinaSelecionado and turmaEntity.disciplinas.size gt 0}">
+										<a4j:support event="onchange" actionListener="#{TurmaService.validaSelecaoSerie}" reRender="areadisciplinas,idBotaoAddSerie,idBotaoAddDisciplina" ajaxSingle="true"/>
+										<s:selectItems var="sItem" value="#{FiltroSelecaoService.ensinoSelecionado.series}" label="#{sItem.nome}" noSelectionLabel="selecione.."/>
+										<s:convertEntity/>
+										</h:selectOneMenu>
+										</h:panelGroup>
+							</h:panelGroup>
+						</td>
+
+						<td width="185px;">
+							<h:panelGroup id="idBotaoAddSerie">
+								<h:commandButton  action="#{TurmaService.addSerieNaTurma}" image="/img/adicionarserie.jpg" styleClass="botaoaddserie" rendered="#{not empty TurmaService.serieSelecionada and (TurmaService.tipoMultiSeriadaSelecionado or TurmaService.tipoRegularSelecionado)}" />
+							</h:panelGroup>	
+						</td>
+						</tr>
+						<tr>
+						<td width="185px;">
+						
+									<h:panelGroup id="areadisciplinas">
+										<h:panelGroup rendered="#{not empty TurmaService.serieSelecionada and (TurmaService.tipoMultiSeriadaEPorDisciplinaSelecionado or TurmaService.tipoDisciplinaSelecionado)}">
+											<h:outputText value="4. Selecione Disciplina(s)*:" /><br/>
+											<h:selectOneMenu styleClass="inputwidth165sm2" value="#{TurmaService.disciplinaSelecionado}" label="Disciplina">
+												<a4j:support event="onchange" ajaxSingle="true" reRender="idBotaoAddDisciplina"/>
+												<s:selectItems var="sItem" value="#{TurmaService.serieSelecionada.disciplinas}" label="#{sItem.nome}" noSelectionLabel="selecione.."/>
+												<s:convertEntity/>
+											</h:selectOneMenu>
+										</h:panelGroup>
+									</h:panelGroup>
+								
+						</td>
+						<td width="185px;">
+								<h:panelGroup id="idBotaoAddDisciplina">
+									<h:commandButton action="#{TurmaService.addDisciplinaNaTurma}"  styleClass="botaoNavegacao" image="/img/adicionardisciplina.jpg" rendered="#{not empty TurmaService.disciplinaSelecionado and (TurmaService.tipoMultiSeriadaEPorDisciplinaSelecionado or TurmaService.tipoDisciplinaSelecionado)}"/>
+								</h:panelGroup>
+						</td>
+						</tr>
+
+					</h:panelGroup>
+					<tr class="espacoFormulario"/>
+						</table>					
+			</h:panelGroup>
+			
+							<rich:dataTable style="width:500px; margin: 0 auto;" value="#{turmaEntity.series}" var="serieItem2" rowClasses="ClasseCss2,ClasseCss1" rendered="#{not empty turmaEntity.series}">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Séries da Turma #{turmaEntity.nome}"/>
+									</f:facet>
+									<h:outputText value="#{serieItem2.nome}" />
+								</h:column>
+								<h:column headerClass="removerEditar" rendered="#{empty turmaEntity.id}">
+									<f:facet name="header">
+										<h:outputText value="Remover" />			
+									</f:facet>
+										<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{TurmaService.removeSerieDaTurma(serieItem2,turmaEntity)}" immediate="true"/>	
+								</h:column>
+							</rich:dataTable>
+							<br/>
+							<br/>
+							<rich:dataTable style="width:500px; margin: 0 auto;" value="#{turmaEntity.disciplinas}" var="disciplinaItem" rowClasses="ClasseCss2,ClasseCss1" rendered="#{not empty turmaEntity.disciplinas}">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Disciplinas da Turma #{turmaEntity.nome}"/>
+									</f:facet>
+									<h:outputText value="#{disciplinaItem.nome}" />
+								</h:column>
+								<h:column headerClass="removerEditar">
+									<f:facet name="header">
+										<h:outputText value="Remover" />			
+									</f:facet>
+										<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{TurmaService.removeDisciplinaDaTurma(disciplinaItem,turmaEntity)}" immediate="true"/>	
+								</h:column>
+							</rich:dataTable>
+
+
+</html>

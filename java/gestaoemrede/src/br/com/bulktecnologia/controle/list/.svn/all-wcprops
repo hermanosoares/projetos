@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/bulk/global/!svn/ver/409/gestaoemrede/src/br/com/bulktecnologia/controle/list
+END
+TurnoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/list/TurnoList.java
+END
+TipoFuncaoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/292/gestaoemrede/src/br/com/bulktecnologia/controle/list/TipoFuncaoList.java
+END
+SerieList.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/bulk/global/!svn/ver/336/gestaoemrede/src/br/com/bulktecnologia/controle/list/SerieList.java
+END
+EspacoFisicoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/292/gestaoemrede/src/br/com/bulktecnologia/controle/list/EspacoFisicoList.java
+END
+GenericList.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/336/gestaoemrede/src/br/com/bulktecnologia/controle/list/GenericList.java
+END
+TipoEncerramentoMatriculaList.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/bulk/global/!svn/ver/292/gestaoemrede/src/br/com/bulktecnologia/controle/list/TipoEncerramentoMatriculaList.java
+END
+MatriculaList.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/controle/list/MatriculaList.java
+END
+ConfiguracaoGlobalList.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/list/ConfiguracaoGlobalList.java
+END
+ProjetoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/322/gestaoemrede/src/br/com/bulktecnologia/controle/list/ProjetoList.java
+END
+UsuariosInstituicaoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/list/UsuariosInstituicaoList.java
+END
+TipoEnsinoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/336/gestaoemrede/src/br/com/bulktecnologia/controle/list/TipoEnsinoList.java
+END
+UsuarioList.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/list/UsuarioList.java
+END
+TurmaList.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/list/TurmaList.java
+END
+InstituicaoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/list/InstituicaoList.java
+END
+AdesaoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/bulk/global/!svn/ver/320/gestaoemrede/src/br/com/bulktecnologia/controle/list/AdesaoList.java
+END
+EventoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/bulk/global/!svn/ver/292/gestaoemrede/src/br/com/bulktecnologia/controle/list/EventoList.java
+END
+ConfiguracaoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/list/ConfiguracaoList.java
+END
+AlocacaoList.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/409/gestaoemrede/src/br/com/bulktecnologia/controle/list/AlocacaoList.java
+END

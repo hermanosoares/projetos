@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      conversation-required="true" 
+      no-conversation-view-id="/uc/cadastro/aluno/cadastro1.xhtml">
+      
+		<navigation>
+		
+			<rule if-outcome="MesmaPagina">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro3.xhtml"/>
+			</rule>	
+			
+			<rule if-outcome="pagina1">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="proximo">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro4.xhtml"/>
+			</rule>	
+			
+			<rule if-outcome="pagina5">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro5.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="pagina6">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro6.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="anterior">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro2.xhtml"/>
+			</rule>
+			<rule if-outcome="cancelar">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>
+			</rule>
+
+			<rule if-outcome="cadastroConcluido">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>
+			</rule>
+			
+	 	</navigation>
+	 	
+</page>	
+

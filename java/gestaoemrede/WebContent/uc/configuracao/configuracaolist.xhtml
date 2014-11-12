@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+
+	<ui:define name="navegacao">
+		 <div id="topoBotao">
+				<h:commandButton styleClass="botaoNavegacao" 
+					image="/img/incluirVerde.jpg" value="inserir" action="#{ConfiguracaoService.insere}" >
+				</h:commandButton>
+				<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true" action="#{ConfiguracaoService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+				
+		</div>
+	</ui:define>
+
+	
+		<ui:define name="conteudo">
+		
+			<div id="tituloMenu">
+				<h:graphicImage value="/img/turnos.png" alt="Espaço Físico" />
+			</div>
+		<rich:dataTable style="width:750px;" value="#{ConfiguracaoList.configuracoes}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{ConfiguracaoList.configuracoes.size>0}">
+
+
+			<rich:column style="width:500px;"> 
+				<f:facet name="header">
+					<h:outputText value="#{TipoDaConfiguracao}" />
+				</f:facet>
+				<h:outputText value="#{item.nome}" />
+			</rich:column>
+
+
+			<h:column headerClass="removerEditar">
+				<f:facet name="header">
+					<h:outputText value="Editar" />
+				</f:facet>
+					
+				<h:commandButton  image="/img/editar.png" id="btnEditar" action="#{ConfiguracaoService.edita(item)}" style="width:20px; height:20px; border: 0px; margin:0 10px 0 10px;" >
+				</h:commandButton>
+			</h:column>
+				
+			<h:column headerClass="removerEditar">
+				<f:facet name="header">
+					<h:outputText style="width:113px;"  value="Excluir" />
+				</f:facet>
+				<h:commandButton  image="/img/lixeira.png" action="#{ConfiguracaoService.remove(item)}" style="width:20px; height:20px; border: 0px; margin:0 10px 0 10px;;" onclick="return confirm('Confirma exclusão do registro: #{item.nome}?')" >
+				</h:commandButton>
+			</h:column>
+
+			<rich:column headerClass="removerEditar" rendered="false"> 
+				<f:facet name="header">
+					<h:outputText value="Ativar" />
+				</f:facet>
+				<rich:panel styleClass="informacoesMatricula">
+					<h:commandButton styleClass="botaoAtivar" action="#{ConfiguracaoService.ativaConfiguracao(item)}" image="/img/botaoAtivar3.png" rendered="#{!item.ativo}" />
+					<rich:toolTip>
+						<span style="white-space:nowrap">
+							Ativar Configuração Cadastrada.
+						</span>
+					</rich:toolTip>
+				</rich:panel>
+				
+			</rich:column>
+
+			<rich:column rendered="#{not existeConfiguracaoEspecificaSelecionada}">
+				<f:facet name="header">
+					<h:outputText value="selecionar" />
+				</f:facet>
+				<h:commandButton action="#{ConfiguracaoService.selecionarConfiguracaoGlobal(item)}" value="selecionar" />
+			</rich:column>			
+			
+		</rich:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</html>

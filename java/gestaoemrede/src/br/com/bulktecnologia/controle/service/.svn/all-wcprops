@@ -1,0 +1,233 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/controle/service
+END
+AlunoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/362/gestaoemrede/src/br/com/bulktecnologia/controle/service/AlunoService.java
+END
+RenderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/398/gestaoemrede/src/br/com/bulktecnologia/controle/service/RenderService.java
+END
+DisciplinaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/403/gestaoemrede/src/br/com/bulktecnologia/controle/service/DisciplinaService.java
+END
+TipoEncerramentoMatriculaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/bulk/global/!svn/ver/388/gestaoemrede/src/br/com/bulktecnologia/controle/service/TipoEncerramentoMatriculaService.java
+END
+PeriodoLetivoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/bulk/global/!svn/ver/344/gestaoemrede/src/br/com/bulktecnologia/controle/service/PeriodoLetivoService.java
+END
+TipoEnsinoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/service/TipoEnsinoService.java
+END
+UsuarioService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/service/UsuarioService.java
+END
+TurmaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/405/gestaoemrede/src/br/com/bulktecnologia/controle/service/TurmaService.java
+END
+InstituicaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/408/gestaoemrede/src/br/com/bulktecnologia/controle/service/InstituicaoService.java
+END
+FiltroSelecaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/bulk/global/!svn/ver/341/gestaoemrede/src/br/com/bulktecnologia/controle/service/FiltroSelecaoService.java
+END
+SeletorHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/355/gestaoemrede/src/br/com/bulktecnologia/controle/service/SeletorHelper.java
+END
+VersaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/393/gestaoemrede/src/br/com/bulktecnologia/controle/service/VersaoService.java
+END
+AlocacaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/controle/service/AlocacaoService.java
+END
+MultiplaInstituicaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/bulk/global/!svn/ver/398/gestaoemrede/src/br/com/bulktecnologia/controle/service/MultiplaInstituicaoService.java
+END
+SkinService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/396/gestaoemrede/src/br/com/bulktecnologia/controle/service/SkinService.java
+END
+EtapaRecuperacaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/bulk/global/!svn/ver/339/gestaoemrede/src/br/com/bulktecnologia/controle/service/EtapaRecuperacaoService.java
+END
+SegurancaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/395/gestaoemrede/src/br/com/bulktecnologia/controle/service/SegurancaService.java
+END
+NotaFaltaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/controle/service/NotaFaltaService.java
+END
+TipoFuncaoDocenteService.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/controle/service/TipoFuncaoDocenteService.java
+END
+FuncionarioService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/336/gestaoemrede/src/br/com/bulktecnologia/controle/service/FuncionarioService.java
+END
+GenericService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/controle/service/GenericService.java
+END
+EsqueciSenhaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/service/EsqueciSenhaService.java
+END
+MatriculaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/controle/service/MatriculaService.java
+END
+AuditoriaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/336/gestaoemrede/src/br/com/bulktecnologia/controle/service/AuditoriaService.java
+END
+ProjetoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/controle/service/ProjetoService.java
+END
+UploadService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/292/gestaoemrede/src/br/com/bulktecnologia/controle/service/UploadService.java
+END
+UsuarioServiceOld.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/service/UsuarioServiceOld.java
+END
+AlteraSenhaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/service/AlteraSenhaService.java
+END
+BaseCrudService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/403/gestaoemrede/src/br/com/bulktecnologia/controle/service/BaseCrudService.java
+END
+PessoaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/366/gestaoemrede/src/br/com/bulktecnologia/controle/service/PessoaService.java
+END
+EtapaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/401/gestaoemrede/src/br/com/bulktecnologia/controle/service/EtapaService.java
+END
+RelatorioService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/397/gestaoemrede/src/br/com/bulktecnologia/controle/service/RelatorioService.java
+END
+ConfiguracaoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/controle/service/ConfiguracaoService.java
+END
+EventoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/controle/service/EventoService.java
+END
+ConceitoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/399/gestaoemrede/src/br/com/bulktecnologia/controle/service/ConceitoService.java
+END
+SerieService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/399/gestaoemrede/src/br/com/bulktecnologia/controle/service/SerieService.java
+END
+EspacoFisicoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/controle/service/EspacoFisicoService.java
+END
+LoginService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/395/gestaoemrede/src/br/com/bulktecnologia/controle/service/LoginService.java
+END

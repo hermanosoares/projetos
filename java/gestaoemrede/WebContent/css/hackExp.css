@@ -1,0 +1,137 @@
+#centroHome{
+	_margin: 0 auto;
+	_display:table;
+	_width: 775px;
+	_height: 250px;
+	_padding: 0px;
+}
+
+#cabecalho{
+	_margin: 0 auto;
+	_width: 750px;
+	_height: 23px;
+	_margin-top: 70px;
+}
+
+#cabecalho ul{
+	_float: right;
+	_list-style:none;
+	
+}
+
+#cabecalho li{
+	_float: left;
+	_text-decoration:none;
+	_margin-left: 10px;
+	_color: #333;
+}
+
+#topoBotao{
+	_width: 750px;
+	_height: 55px;
+}
+
+#faixas{
+	_width: 100%;
+	_height: 16px;
+	_background: #333333;
+	_margin: 0 auto;
+}
+
+#faixasFooter{
+	_width: 100%;
+	_height: 16px;
+	_background: #333333;
+	_margin: 0 auto;
+	_border-bottom: 3px solid #063;
+}
+
+/* texto do login */
+label {
+	_font-weight: bold;
+	_color: #333;
+	_margin-left: 20px;
+}
+/* input do login */
+input {
+	_width:280px;
+	_border: 1px solid #333;
+	_padding: 4px;
+	_margin: 5px 0;
+	_margin-left: 20px;
+	_color: #063;
+}
+
+input[type="submit"], input[type="button"] {
+	_font-weight: bold;
+	_color: #fff;
+	_border: 1px solid #5D1414;
+	_height: 26px;
+	_border-style: none;
+}
+
+#loginHome{
+	_width: 330px;
+	_height: auto;
+	_float: left;
+	_margin: 0px;
+}
+
+#marcaJini{
+	_width: 250px;
+	_height: 148px;
+	_background: url("../img/bg_home_marca.jpg");
+	_float: right;
+	_margin-top: 20px;
+}
+
+#imagecadeado{
+	_width: 178px;
+	_height: 250px;
+	_background: url("../img/cadeado.jpg");
+	_float: left;
+}
+
+
+#footer {
+	_width: 100%;
+	_height:30px;
+	_background-color: #FFF;
+	_text-align: center;
+	_float: left;
+	_padding-top: 10px;
+}
+a{
+	_text-decoration: none;
+	_color: #333;
+}
+
+a:HOVER{
+	_text-decoration: underline;
+	_color: #063;
+}
+/* fim css lazaro melo
+----------------------------------------------- */
+
+#teste{
+	_width: 160px;
+	_margin-top:10px;
+	_height:20px;
+	_margin-left: 140px;
+
+}
+
+#teste input{
+	_width: 15px;
+	_height:15px;
+	_margin-top: -17px;
+	_float: right;
+	_border: 0px;
+	
+}
+
+/* classes
+----------------------------------------------- */
+
+
+

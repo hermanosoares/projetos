@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/modelo/dto
+END
+ResultadoPesquisaAlunoDTO.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/371/gestaoemrede/src/br/com/bulktecnologia/modelo/dto/ResultadoPesquisaAlunoDTO.java
+END
+RegistroSelecionado.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/355/gestaoemrede/src/br/com/bulktecnologia/modelo/dto/RegistroSelecionado.java
+END
+ResultadoPesquisaDTO.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/349/gestaoemrede/src/br/com/bulktecnologia/modelo/dto/ResultadoPesquisaDTO.java
+END
+ResultadoMatriculaDTO.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/modelo/dto/ResultadoMatriculaDTO.java
+END
+ResultadoMatriculaDisciplinaDTO.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/modelo/dto/ResultadoMatriculaDisciplinaDTO.java
+END
+ResultadoAlocacaoDTO.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/390/gestaoemrede/src/br/com/bulktecnologia/modelo/dto/ResultadoAlocacaoDTO.java
+END

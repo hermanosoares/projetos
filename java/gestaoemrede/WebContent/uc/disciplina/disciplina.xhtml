@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			 <div id="topoBotao">
+					<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" 
+						image="/img/gravar.jpg" value="gravar" action="#{DisciplinaService.grava(serieEntity)}" >
+					</h:commandButton>
+					
+				<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" immediate="true"
+					 action="list" value="cancelar" image="/img/cancelar.jpg" />
+			</div>
+			
+		</ui:define>
+	
+	<ui:define name="conteudo">
+	
+	
+	
+
+	<table width="750px;" style="margin:0 auto;">
+		<tr class="espacoFormulario"></tr>
+			<tr>
+				<td><h:graphicImage value="/img/turmaDisciplinas.png" alt="Espaço Físico" /></td>
+			</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+	
+	<table width="750px;" style="margin:0 auto;">
+		<tr>
+			<td><h:outputText value="Série: #{serieEntity.nome}" /></td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+
+		<table width="750px;" >
+		<tr>
+			<td><h:outputText value="Disciplina:" /></td>
+			<td><h:outputText value=" Nome: " /></td>			
+			<td><h:outputText value="Legenda:" /></td>
+			<td><h:outputText value="Qtde de Aulas Semanais:" /></td>
+		</tr>
+		
+		
+		<tr>
+			<td>
+				<h:selectOneMenu style="width: 150px" value="#{disciplinaEntity.tipoDisciplina}" disabled="#{not empty disciplinaEntity.id}">
+					<a4j:support event="onchange" ajaxSingle="true" reRender="idareaNome,idareaLegenda" action="#{DisciplinaService.sugereNomeDisciplina}"/>
+					<s:selectItems var="item" value="#{DisciplinasDefault}" label="#{item.label}" noSelectionLabel="selecione..."/>
+					<s:convertEnum/>	
+				</h:selectOneMenu>
+			</td>
+			
+			<td> 
+				<h:inputText id="idareaNome" value="#{disciplinaEntity.nome}" style="width: 180px;margin:0px;float:left" required="true" label="Nome" />
+			</td>
+			
+			<td>
+				<h:inputText id="idareaLegenda" style="width: 70px;margin: 0px" value="#{disciplinaEntity.legenda}" maxlength="4" />
+			</td>
+			
+			<td>
+				<h:inputText  id="idAulasSemanais" style="width: 40px;margin: 0px" value="#{disciplinaEntity.numAulaSemana}" maxlength="2">
+					<rich:jQuery selector="#idAulasSemanais" query="numeric()" timing="onload"/>
+				</h:inputText>
+			</td>
+		</tr>
+
+		<tr class="espacoFormulario"></tr>
+		
+		<tr>
+			<td><h:outputText styleClass="campoDisciplina" value="Atividade:" /></td>
+			<td><h:outputText styleClass="campoDisciplina" value="Pertence:" /></td>
+			<td><h:outputText styleClass="campoDisciplina" value="Computa Carga Horária:" /></td>
+			<td><h:outputText styleClass="campoDisciplina" value="Tipo de Avaliação da Disciplina:" /></td>
+		</tr>
+		
+		<tr>
+			
+			<td>
+				<h:selectOneMenu  value="#{disciplinaEntity.atividade}">
+					<s:selectItems var="item" value="#{AtividadeDisciplinaDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+					<s:convertEnum/>	
+				</h:selectOneMenu>
+			</td>
+			<td>
+				<h:selectOneMenu  value="#{disciplinaEntity.pertence}">
+					<s:selectItems var="item" value="#{PertenceDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+					<s:convertEnum/>	
+				</h:selectOneMenu>
+			</td>
+			<td>
+				<h:selectOneMenu  value="#{disciplinaEntity.compCargHoraria}">
+					<s:selectItems var="item" value="#{ComputaCargaHorariaDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+					<s:convertEnum/>	
+				</h:selectOneMenu>
+			</td>
+			
+			<td>
+				<h:selectOneMenu  value="#{disciplinaEntity.tipoAvaliacao}"  label="Tipo da Avaliação da Disciplina">
+					<a4j:support event="onchange" reRender="idColunaPercentualNota" ajaxSingle="true"/>
+					<s:selectItems var="subitem" value="#{TipoAvaliacaoDefault}" label="#{subitem}" noSelectionLabel="selecione..."/>
+					<s:convertEnum/>
+				</h:selectOneMenu>
+			</td>
+			
+		</tr>
+		<tr class="espacoFormulario"></tr>
+		<tr>
+			<td><h:outputText value="Duração do Módulo Aula:" /></td>
+			<td><h:outputText value="Carga Horária da Disciplina:  (166:40 horas)" /></td>
+			<td><h:outputText value="Participa do Calc. Resultado Final? " /> </td>
+		</tr>
+		
+		<tr>
+			<td>
+				<h:inputText id="idModAula" style="width: 40px;margin: 0px" value="#{disciplinaEntity.duracaoModAula}" maxlength="2">
+					<rich:jQuery selector="#idModAula" query="numeric()" timing="onload"/>
+				</h:inputText>
+			</td>
+			<td>
+				<h:inputText id="idCargaHorariaDisciplina" style="width: 70px;margin: 0px" value="#{disciplinaEntity.cargaHorariaDisciplina}" maxlength="7" converter="#{EmptyConverter}"/>
+			</td>
+			<td>
+				<h:selectBooleanCheckbox styleClass="inputwidth15" value="#{disciplinaEntity.participaResultFinal}"/>
+			</td>
+		</tr>		
+		</table>		
+			
+	</ui:define>
+
+
+	</ui:composition>
+
+</html>

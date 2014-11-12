@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+<f:view>
+	<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+		 <div id="topoBotao">
+				<h:commandButton styleClass="botaoNavegacao" 
+					image="/img/gravar.jpg" action="#{EventoService.grava(EventoEntity)}" value="gravar" />
+				
+				<h:commandButton styleClass="botaoNavegacao" immediate="true"
+					 action="#{EventoService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+		</div>
+		
+		<h:panelGroup>
+		 <h:form id="cadastroEvento">
+		 
+		<div id="tituloMenu">
+				<h:graphicImage value="/img/cadastroEventos.png" alt="Espaço Físico" />
+			</div>
+		 
+	  		 <table width="750" border="0">
+	 			<tr>
+					<td><h:outputText value="Data de Inicio:*" /></td>
+					<td><h:outputText value="Data de Término:*" /></td>
+					<td><h:outputText value="Descrição:*" /></td>
+				</tr>
+				
+			    <tr>
+			    	<td> <h:inputText id="campodatainicio" value="#{EventoEntity.dataInicio}" style="margin-left:0px; width:140px;" 
+			    				styleClass="input" maxlength="10" label="Data Inicio" required="true"  > 
+			    			<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+			    			<rich:jQuery selector="#campodatainicio" query="mask('99/99/9999')" timing="onload"/>
+			    		</h:inputText>
+			    	</td>
+			    	
+			    	<td> <h:inputText id="campodatatermino" value="#{EventoEntity.dataTermino}" style="margin-left:0px; width:140px;" 
+			    				styleClass="input" maxlength="10" label="Data Término" required="true"  > 
+			    			<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+			    			<rich:jQuery selector="#campodatatermino" query="mask('99/99/9999')" timing="onload"/>
+			    		</h:inputText>
+			    	</td>
+			    	
+			    	<td><h:inputText id="campodescricao" value="#{EventoEntity.descricao}" label="Descricao" 
+			    			style="margin-left:0px; width:410px;" styleClass="input" maxlength="100" required="true" />
+			    	</td>
+			    </tr>
+			   </table>
+			   
+			   <table width="750" border="0">			    
+			    <tr>
+			    	<td><h:outputText value="Legenda:*" /></td>
+			    </tr>
+			    <tr>
+			    	<td><h:inputText id="campolegenda" value="#{EventoEntity.legenda}" label="Legenda" style="margin-left:0px; width:720px;"
+			    				styleClass="input" required="true" maxlength="5">
+			    			<f:validateLength maximum="5" minimum="2"  />
+			    		</h:inputText>
+			    	</td>
+			    </tr>
+			    
+	   			<tr>
+	   				<h:panelGrid columns="2" style=" width : 147px;">
+	   					<h:column >
+	   						<h:outputText value="Dia Letivo: " />
+	   					</h:column>
+	   					<h:column>
+		   					<h:selectBooleanCheckbox value="#{EventoEntity.diaLetivo}" id="campodialetivo" styleClass="inputwidth15" label="Dia Letivo" title="Dia Letivo"/>
+		   				</h:column>
+	   					<h:column>
+	   						<h:outputText value="Dia Escolar: " />
+	   					</h:column>
+	   					<h:column>
+		   					<h:selectBooleanCheckbox value="#{EventoEntity.diaEscolar}" id="campodiaescolar" styleClass="inputwidth15" label="Dia Letivo" title="Dia Escolar"/>
+		   				</h:column>
+	   				</h:panelGrid>
+	   			</tr>
+	   			<tr>
+	   				<h:panelGrid columns="2" style=" width : 545px;">
+		   				
+		   				
+	   				</h:panelGrid> 	
+	   								
+	   			</tr>
+			</table>
+	   	</h:form>
+		</h:panelGroup>
+   	</ui:define>
+	
+	</ui:composition>
+</f:view>
+</html>

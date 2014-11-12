@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+		<ui:define name="navegacao">
+						<h:commandButton action="#{SkinService.alteraSkin}" image="/img/gravar.jpg" styleClass="botaoNavegacaoIncluir"/>
+		</ui:define>
+			
+		<ui:define name="conteudo">
+			<br/>
+			<br/>
+			<h:outputText value="Personalize sua Tela! " styleClass="SomenteNegrito"/>
+			<br/>
+			<br/>
+			<br/>
+			
+			<h:outputText value="selecione um tema: " />
+			<br/>
+			<h:selectOneMenu value="#{SkinService.skinSelecionado}">
+			    <s:selectItems var="item" value="#{SkinsTela}" label="#{item}" noSelectionLabel="selecione.."/>
+			</h:selectOneMenu>
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

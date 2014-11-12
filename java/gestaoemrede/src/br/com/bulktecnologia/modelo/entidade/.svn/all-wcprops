@@ -1,0 +1,287 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade
+END
+AlocacaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/AlocacaoEntity.java
+END
+EtapaRecuperacaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EtapaRecuperacaoEntity.java
+END
+Conceito.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/bulk/global/!svn/ver/399/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/Conceito.java
+END
+ContratoTrabalhoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/bulk/global/!svn/ver/314/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/ContratoTrabalhoEntity.java
+END
+EspacoFisicoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/219/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EspacoFisicoEntity.java
+END
+EntidadePaginavel.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/191/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EntidadePaginavel.java
+END
+ContatoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/326/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/ContatoEntity.java
+END
+CurriculoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/322/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/CurriculoEntity.java
+END
+SerieEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/409/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/SerieEntity.java
+END
+TurnoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/389/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/TurnoEntity.java
+END
+EntidadeSelecionavel.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/191/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EntidadeSelecionavel.java
+END
+BaseEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/BaseEntity.java
+END
+LancamentoRecEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/LancamentoRecEntity.java
+END
+FuncionarioEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/315/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/FuncionarioEntity.java
+END
+DisciplinaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/403/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/DisciplinaEntity.java
+END
+PerfilEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/PerfilEntity.java
+END
+RelacaoPessoaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/355/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/RelacaoPessoaEntity.java
+END
+ProjetoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/322/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/ProjetoEntity.java
+END
+Lancamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/Lancamento.java
+END
+EnderecoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/320/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EnderecoEntity.java
+END
+UsuarioEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/UsuarioEntity.java
+END
+EtapaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/408/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EtapaEntity.java
+END
+PessoaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/PessoaEntity.java
+END
+TipoOrdenacao.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/361/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/TipoOrdenacao.java
+END
+InstituicaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/334/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/InstituicaoEntity.java
+END
+PreferenciaUsuarioEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/PreferenciaUsuarioEntity.java
+END
+AdesaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/320/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/AdesaoEntity.java
+END
+EventoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/224/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EventoEntity.java
+END
+ConfiguracaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/395/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/ConfiguracaoEntity.java
+END
+CookieSessaoUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/CookieSessaoUsuario.java
+END
+UsuarioInstituicaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/UsuarioInstituicaoEntity.java
+END
+EntidadePreenchivel.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/191/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EntidadePreenchivel.java
+END
+TipoFuncaoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/299/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/TipoFuncaoEntity.java
+END
+StatusDiarioClasse.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/391/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/StatusDiarioClasse.java
+END
+EsqueciSenhaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/191/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EsqueciSenhaEntity.java
+END
+AlunoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/389/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/AlunoEntity.java
+END
+AuditoriaAcessoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/bulk/global/!svn/ver/384/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/AuditoriaAcessoEntity.java
+END
+TipoEncerramentoMatriculaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/bulk/global/!svn/ver/388/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/TipoEncerramentoMatriculaEntity.java
+END
+MatriculaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/409/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/MatriculaEntity.java
+END
+MatriculaDisciplinaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/bulk/global/!svn/ver/406/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/MatriculaDisciplinaEntity.java
+END
+AlocacaoItemEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/AlocacaoItemEntity.java
+END
+PeriodoLetivoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/334/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/PeriodoLetivoEntity.java
+END
+RemanejamentoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/390/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/RemanejamentoEntity.java
+END
+TurmaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/TurmaEntity.java
+END
+EnsinoEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/402/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/EnsinoEntity.java
+END
+AulaDadaEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/402/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/AulaDadaEntity.java
+END
+Manutencao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/modelo/entidade/Manutencao.java
+END

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+<f:view>
+	<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+		 <div id="topoBotao">
+				<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" 
+					image="/img/incluirVerde.jpg" value="inserir" action="#{ProjetoService.insere}" >
+				</h:commandButton>
+		</div>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+	
+	
+	
+	<table width="750px;" style="margin:0 auto;">
+		<tr class="espacoFormulario"></tr>
+		<tr>
+			<td><h:graphicImage value="/img/projetosSociais.png" alt="Projetos" /></td>
+		</tr>
+		<tr class="espacoFormulario"></tr>
+	</table>
+
+	<rich:dataTable styleClass="tabelaTamanhoCentralizado" value="#{ProjetoList.projetos}" rowClasses="ClasseCss2,ClasseCss1" var="item"  rendered="#{ProjetoList.projetos.size>0}" style="width: 750px;">
+		<rich:column sortBy="#{item.nome}">
+			<f:facet name="header">
+				<h:outputText value="Projeto" />
+			</f:facet>
+			<h:outputText value="#{item.nome}" />
+			</rich:column>
+				
+			<rich:column styleClass="camoData" sortBy="#{item.dtInicio}">
+				<f:facet name="header">
+					<h:outputText  value="Data de Início" />
+				</f:facet>
+				<h:outputText value="#{item.dtInicio}" />
+				<h:outputText value=" não há." rendered="#{empty item.dtInicio}"/>
+			</rich:column>
+				
+			<rich:column sortBy="#{item.dtTermino}" styleClass="camoData">
+				<f:facet name="header">
+					<h:outputText value="Data de Término" />
+				</f:facet>
+					<h:outputText value="#{item.dtTermino}" />
+					<h:outputText value=" não há." rendered="#{empty item.dtTermino}"/>
+			</rich:column>
+				
+			<h:column headerClass="removerEditar">
+				<f:facet name="header" >
+					<h:outputText value="Editar" />
+				</f:facet>
+					
+				<h:commandButton image="/img/editar.png" id="btnEditar" action="#{ProjetoService.edita(item)}" style="width:20px; height:20px; border: 0px; margin:0px; padding-left:11px;" >
+					</h:commandButton>
+				</h:column>
+				
+				<h:column headerClass="removerEditar">
+					<f:facet name="header">
+						<h:outputText value="Excluir" />
+					</f:facet>
+					<h:commandButton  image="/img/lixeira.png" action="#{ProjetoService.remove(item)}" onclick="return confirm('Confirma exclusão do Projeto: #{item.nome} ?')" style="width:20px; height:20px; border: 0px; margin:0 auto; padding-left:11px;" >
+					</h:commandButton>
+				</h:column>
+				
+			</rich:dataTable>
+		
+		<table width="750px;">
+			<tr>
+				<td>		
+					<h:panelGroup rendered="#{ProjetoList.projetos.size==0}">
+						<h:outputText value="Não existem projetos." />
+					</h:panelGroup>
+				</td>
+			</tr>
+		</table>
+		
+	</ui:define>
+	
+	</ui:composition>
+</f:view>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+	xmlns:core="http://jboss.com/products/seam/core" xmlns:persistence="http://jboss.com/products/seam/persistence"
+	xmlns:transaction="http://jboss.com/products/seam/transaction"
+	xmlns:security="http://jboss.com/products/seam/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.com/products/seam/core http://jboss.com/products/seam/core-2.2.xsd 
+                 http://jboss.com/products/seam/persistence http://jboss.com/products/seam/persistence-2.2.xsd 
+                 http://jboss.com/products/seam/transaction http://jboss.com/products/seam/transaction-2.2.xsd 
+                 http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.2.xsd
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.2.xsd">
+	<core:manager conversation-timeout="300000"
+		concurrent-request-timeout="1500" conversation-id-parameter="bulk" />
+		    
+	<component name="versaoService">
+		<property name="versao">1</property>
+		<property name="release">1</property>
+	</component>
+	
+	
+	<core:resource-loader>
+		<core:bundle-names>
+			<value>messages</value>
+		</core:bundle-names>
+	</core:resource-loader>
+	
+	<transaction:entity-transaction
+		entity-manager="#{entityManager}" />
+	<!--
+		<transaction:entity-transaction entity-manager="#{em}"/>
+	-->
+
+	<persistence:entity-manager-factory
+		name="jiniPU" />
+
+	<persistence:managed-persistence-context
+		name="entityManager" auto-create="true" entity-manager-factory="#{jiniPU}" />
+
+	<!--
+	<persistence:entity-manager-factory
+		name="correioPU" />
+
+	<persistence:managed-persistence-context
+		name="entityManager2" auto-create="true" entity-manager-factory="#{correioPU}" />
+
+		<persistence:managed-persistence-context name="em" auto-create="true"
+		entity-manager-factory="#{jiniPU}"/>
+	-->
+
+	<security:identity authenticate-method="#{authenticator.login}" />
+	
+	<factory name="httpServletRequest" auto-create="true"
+		value="#{facesContext.externalContext.request}" />
+		
+	<factory name="response" auto-create="true"
+		value="#{facesContext.externalContext.response}" />
+		
+	<factory name="applicationMap" auto-create="true"
+		value="#{facesContext.externalContext.applicationMap}" />
+
+	<!-- 
+	<event type="org.jboss.seam.security.notLoggedIn">
+		<action execute="#{redirect.captureCurrentView}" />
+	</event>
+
+	<event type="org.jboss.seam.security.loginSuccessful">
+		<action execute="#{redirect.returnToCapturedView}" />
+	</event>
+ 	
+	<component name="org.jboss.seam.theme.themeSelector">
+		 <property name="availableThemes">
+		             <value>DEFAULT</value>
+		             <value>classic</value>
+		             <value>blueSky</value>
+		             <value>laguna</value>
+		             <value>glassX</value>
+		             <value>darkX</value>
+		             <value>japanCherry</value>
+		             <value>wine</value>
+		             <value>plain</value>
+		             <value>emeraldTown</value>
+		             <value>deepMarine</value>
+		             <value>ruby</value>
+		 </property>
+	</component>
+ 	-->
+
+	
+</components>

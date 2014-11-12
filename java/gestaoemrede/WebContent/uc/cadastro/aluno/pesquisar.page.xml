@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      action="#{ConversationHelper.BeginJoinConversationManual}">
+
+<navigation>
+
+	<rule if-outcome="list">
+		<begin-conversation join="true"/>
+		<redirect view-id="/uc/cadastro/aluno/pesquisar.xhtml"/>	
+	</rule>
+
+	<rule if-outcome="cancelar">
+		<end-conversation before-redirect="true"/>
+		<redirect view-id="/uc/cadastro/aluno/pesquisar.xhtml"/>	
+	</rule>
+
+	<rule if-outcome="editaAluno">
+		<begin-conversation join="true"/>
+		<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>	
+	</rule>
+	
+	<rule if-outcome="editaFuncionario">
+		<begin-conversation join="true"/>
+		<redirect view-id="/uc/cadastro/funcionario/cadastro1.xhtml"/>	
+	</rule>
+
+	<rule if-outcome="editaUsuario">
+		<begin-conversation join="true"/>
+		<redirect view-id="/admin/usuario/cadastroui.xhtml"/>	
+	</rule>
+
+	<rule if-outcome="criar-matricula">
+		<end-conversation before-redirect="true"/>
+		<redirect view-id="/uc/matricula/matricula.xhtml"/>	
+	</rule>
+	
+	
+</navigation>
+
+</page>

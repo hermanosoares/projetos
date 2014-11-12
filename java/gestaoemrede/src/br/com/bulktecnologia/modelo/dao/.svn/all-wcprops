@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/dao
+END
+FuncionarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/314/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/FuncionarioDAO.java
+END
+AlunoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/bulk/global/!svn/ver/355/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/AlunoDAO.java
+END
+MatriculaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/bulk/global/!svn/ver/409/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/MatriculaDAO.java
+END
+PreferenciaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/PreferenciaDAO.java
+END
+RemanejamentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/bulk/global/!svn/ver/390/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/RemanejamentoDAO.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/UsuarioDAO.java
+END
+TurmaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/bulk/global/!svn/ver/405/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/TurmaDAO.java
+END
+PessoaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/bulk/global/!svn/ver/362/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/PessoaDAO.java
+END
+InstituicaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/334/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/InstituicaoDAO.java
+END
+AdesaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/bulk/global/!svn/ver/320/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/AdesaoDAO.java
+END
+EventoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/bulk/global/!svn/ver/246/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/EventoDAO.java
+END
+ConfiguracaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/394/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/ConfiguracaoDAO.java
+END
+AlocacaoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/bulk/global/!svn/ver/410/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/AlocacaoDAO.java
+END
+ConceitoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/bulk/global/!svn/ver/399/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/ConceitoDAO.java
+END
+SerieDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/bulk/global/!svn/ver/341/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/SerieDAO.java
+END
+EspacoFisicoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/246/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/EspacoFisicoDAO.java
+END
+TurnoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/bulk/global/!svn/ver/393/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/TurnoDAO.java
+END
+BaseDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/bulk/global/!svn/ver/398/gestaoemrede/src/br/com/bulktecnologia/modelo/dao/BaseDAO.java
+END

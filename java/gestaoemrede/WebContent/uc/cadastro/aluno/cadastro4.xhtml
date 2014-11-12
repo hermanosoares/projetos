@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="navegacao">
+	
+	<div id="passos">
+		
+		
+		<rich:panel styleClass="informacoesUsuario">
+   		 	<h:commandButton styleClass="passoicone" action="pagina1" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo1.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações do Aluno e EducaCenso.
+				      </span>
+				</rich:toolTip>
+   		 </rich:panel>
+		
+		<rich:panel styleClass="informacoesUsuario">
+		   		<h:commandButton styleClass="passoicone" action="pagina2" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo2.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações de Filiação e Endereço.
+				      </span>
+				</rich:toolTip>
+		</rich:panel>
+		
+   		<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" action="#{AlunoService.anterior}" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo3.jpg"  value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 1).
+				</span>
+		</rich:toolTip>
+	   	</rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" image="/img/passo4.jpg" value="" immediate="true"/>
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 2).
+				 </span>
+			</rich:toolTip>
+	    	</rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   			<h:commandButton styleClass="passoicone" action="#{AlunoService.proximo}" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo5.jpg"  value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Informações de contato.
+				 </span>
+			</rich:toolTip>
+	   	    </rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" action="#{AlunoService.proximo}" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo6.jpg"  value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Resumo do cadastro.
+				 </span>
+			</rich:toolTip>
+		    </rich:panel>
+	   	
+	   	
+	</div>
+	
+	<div id="topoBotao">
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" image="/img/anterior.jpg" action="#{AlunoService.anterior}" value="#{messages['rotulo.anterior']}" />
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/proximo.jpg" action="#{AlunoService.proximo}" value="#{messages['rotulo.proximo']}" />	
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" action="#{AlunoService.concluirCadastro}" value="#{messages['rotulo.gravar']}" />
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/cancelar.jpg" action="#{AlunoService.cancelar}" value="" />
+	</div>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		<f:view>
+		<div id="cadastroUnico">
+		<table width="750" border="0">
+  <tr>
+    <td><h:outputText value="#{messages['rotulo.certificadomilitar']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.nis']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.pispasep']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.passaporte']}:" /></td>
+  </tr>
+  <tr>
+    <td><h:inputText  value="#{pessoaEntity.certificadomilitar}" autocomplete="false" maxlength="25" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.nis}" autocomplete="false" maxlength="11" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.pispasep}" autocomplete="false" maxlength="11" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.passaporte}" autocomplete="false" maxlength="10" styleClass="input" converter="#{EmptyConverter}"/></td>
+  </tr>
+  <tr class="espacoFormulario"></tr>
+  <tr>
+    <td><h:outputText value="#{messages['rotulo.numtituloeleitor']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.zonatituloeleitor']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.secaotituloeleitor']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.previdenciasocial']}:" /></td>
+  </tr>
+
+  <tr>
+	<td><h:inputText id="campotituloeleitor" value="#{pessoaEntity.numtituloeleitor}" maxlength="14" converter="#{EmptyConverter}" converterMessage="Campo titulo de eleitor não aceita letra" >
+     		<f:validateLongRange minimum="0"/>
+			<a4j:support event="onblur"/>
+		</h:inputText>	 
+	</td>
+    <td><h:inputText  value="#{pessoaEntity.zonatituloeleitor}" autocomplete="false" maxlength="4" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.secaotituloeleitor}" autocomplete="false" maxlength="4" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.previdenciasocial}" autocomplete="false" maxlength="11" styleClass="input" converter="#{EmptyConverter}"/></td>
+  </tr>
+  <tr class="espacoFormulario"></tr>
+  
+  <tr>
+    <td><h:outputText value="#{messages['rotulo.folhacertidao']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.cartoriocertidao']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.cidadecertidao']}:" /></td>
+    <td><h:outputText value="#{messages['rotulo.uf']}:" /></td>
+  </tr>
+  <tr>
+    <td><h:inputText  value="#{pessoaEntity.folhacertidao}" autocomplete="false" maxlength="6" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.cartoriocertidao}" autocomplete="false" styleClass="input" converter="#{EmptyConverter}"/></td>
+    <td><h:inputText  value="#{pessoaEntity.cidadecertidao}" id="campocidadecertidao" autocomplete="false" styleClass="input" converter="#{EmptyConverter}">
+    	<rich:jQuery selector="#campocidadecertidao" query="capitalize()" timing="onload" />
+		</h:inputText>
+    </td>
+    <td><h:selectOneMenu style="width:170px;" value="#{pessoaEntity.ufcertidao}" styleClass="select" converter="#{EmptyConverter}">
+			 	<f:selectItem itemLabel=" " />
+			 	<f:selectItem itemLabel="#{messages['rotulo.ac']}" itemValue="ACRE"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.al']}" itemValue="ALAGOAS"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.ap']}" itemValue="AMAPA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.am']}" itemValue="AMAZONAS"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.ba']}" itemValue="BAHIA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.ce']}" itemValue="CEARA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.df']}" itemValue="DISTRITO FEDERAL"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.es']}" itemValue="ESPIRITO SANTO"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.go']}" itemValue="GOIAS"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.ma']}" itemValue="MARANHAO"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.mt']}" itemValue="MATO GROSSO"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.mts']}" itemValue="MATO GROSSO SUL"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.mg']}" itemValue="MINAS GERAIS"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.pr']}" itemValue="PARA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.pb']}" itemValue="PARAIBA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.pa']}" itemValue="PARANA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.pe']}" itemValue="PERNAMBUCO"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.pi']}" itemValue="PIAUI"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.rj']}" itemValue="RIO DE JANEIRO"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.rn']}" itemValue="RIO GRANDE DO NORTE"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.rs']}" itemValue="RIO GRANDE DO SUL"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.rd']}" itemValue="RONDONIA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.ro']}" itemValue="RORAIMA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.sc']}" itemValue="SANTA CATARINA"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.sp']}" itemValue="SAO PAULO"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.se']}" itemValue="SERGIPE"/>
+			 	<f:selectItem itemLabel="#{messages['rotulo.to']}" itemValue="TOCANTINS"/>
+			 </h:selectOneMenu>	</td>
+  </tr>
+  
+</table>
+		
+	</div>	
+	
+	
+	</f:view>
+			 
+	</ui:define>
+</ui:composition>      
+
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+<f:view>
+	<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+		 <div id="topoBotao">
+				<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" 
+					image="/img/gravar.jpg" action="#{ProjetoService.grava(projetoEntity)}" value="gravar" />
+		
+				<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" immediate="true"
+					 action="#{ProjetoService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+		
+		</div>
+		
+		<table width="750px;" style="margin:0 auto;">
+				<tr class="espacoFormulario"></tr>
+				<tr>
+					<td><h:graphicImage value="/img/cadastroProjetosSociais.png" alt="Espaço Físico" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+		
+		<h:panelGroup>
+		 <h:form id="cadastroSala">
+	  		 <table width="750" border="0">
+	 			<tr>
+					<td><h:outputText styleClass="campoPequeno" value="Nome do Projeto:*" /></td>
+					<td><h:outputText styleClass="campoPequeno" value="Data de Início: " /></td>
+					<td><h:outputText styleClass="campoPequeno" value="Data de Término: " /></td>
+					
+				</tr>
+					   		 
+			    <tr>
+			    	<td><h:inputText id="camposala" value="#{projetoEntity.nome}" style="margin-left:0px; float:left; width:450px;" 
+			    		 styleClass="input" label="Nome do Projeto" required="true" /> 
+			    	</td>
+			    <td><h:inputText styleClass="campoDataFormulario" id="dtInicio" label="Data de Início" value="#{projetoEntity.dtInicio}"  maxlength="10" converter="#{EmptyConverter}">
+				  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+			    	<rich:jQuery selector="#dtInicio" query="mask('99/99/9999')" timing="onload"/>
+			    	</h:inputText>
+			    </td>
+			    
+			    <td><h:inputText styleClass="campoDataFormulario" id="dtTermino" label="Data de Término" value="#{projetoEntity.dtTermino}" maxlength="10" converter="#{EmptyConverter}">
+				  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+			    	<rich:jQuery selector="#dtTermino" query="mask('99/99/9999')" timing="onload"/>
+			    	</h:inputText>
+			    </td>
+			    </tr>
+				<tr class="espacoFormulario"></tr>
+	   		    <tr>
+				    <td><h:outputText value="Descriçao: "  /> </td>
+			    </tr>
+			    </table>
+			   
+			   <table width="750" border="0">			    
+			    <tr>
+				    <td>
+				    	<h:inputTextarea id="descricaoProjeto" value="#{projetoEntity.descricao}" styleClass="campoDeTexto" label="Descricao do Projeto" />
+				    </td>
+			    </tr>
+			</table>
+	   	</h:form>
+		</h:panelGroup>
+   	</ui:define>
+	
+	</ui:composition>
+</f:view>
+</html>

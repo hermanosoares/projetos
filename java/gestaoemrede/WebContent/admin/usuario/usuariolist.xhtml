@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="/basictemplate.xhtml">
+	<ui:define name="navegacao">
+
+		<div id="topoBotao">
+		<h:panelGroup id="controles">
+			<h:commandButton styleClass="botaoNavegacao"  image="/img/novo.jpg" action="#{usuarioService.novoUsuario}" rendered="#{not empty usuarioList.instituicaoSelecionada}"/>
+			<h:commandButton styleClass="botaoNavegacao"  image="/img/Novo_admin.jpg" value="usuário administrativo" action="#{usuarioService.novoUsuarioAdministrativo}" rendered="#{usuarioAdministrativo and empty usuarioList.instituicaoSelecionada}"/>
+			<h:commandButton styleClass="botaoNavegacao"  image="/img/cancelar.jpg" action="cancela" value="cancelar" immediate="true" />
+		</h:panelGroup>
+		</div>
+
+	</ui:define>
+
+
+	<ui:define name="conteudo">
+
+		<f:view>
+
+		<s:validateAll>
+
+						
+			<table width="750" border="0" class="espacoInstituicao">
+				<tr>
+					<td>
+						<center>
+							<h:outputText value="selecione a instituição que deseja gerenciar os usuários: " styleClass="SomenteNegrito"/>
+						</center>
+					</td>
+					<td>
+								<h:commandButton styleClass="botaoNavegacao"  image="/img/botaosair.png"	action="#{SegurancaService.logoutAndRedirectLogin}"	 value="Sair" immediate="true" actionListener="#{authenticator.NotificaTipoLogout}" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<center>
+							<h:selectOneMenu style="width:600px; height:28px; border:1px solid #362F2D; margin-top:20px; padding:3px;" value="#{usuarioList.instituicaoSelecionada}"	styleClass="select" >
+								<s:selectItems var="item" value="#{InstituicaoList}" label="#{item.codInstituicao} - #{item.nome}" noSelectionLabel="selecione uma instituição ... " />
+								<s:convertEntity />
+								<a4j:support event="onchange" ajaxSingle="true" reRender="controles,areaUsuariosEncontrados," action="#{usuarioList.carregaUsuarios}" />
+								<a4j:status id="loading" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')" />
+							</h:selectOneMenu>
+						</center>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					<center>
+						<h:panelGroup id="areaUsuariosEncontrados">
+							<h:outputText value="nenhum registro encontrado." rendered="#{not empty usuarioList.instituicaoSelecionada and  empty usuarioList.usuariosInstituicao}"/>
+							<rich:dataTable var="uiItem" value="#{usuarioList.usuariosInstituicao}" rowKeyVar="indice" rendered="#{not empty usuarioList.usuariosInstituicao}">
+							
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value=" " />
+									</f:facet>
+									<h:outputText value="#{indice+1}" />
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Login" />
+									</f:facet>
+									<h:outputText value="#{uiItem.usuario.login}" />
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Bloqueio(s)" />
+									</f:facet>
+									<h:outputText value="#{uiItem.existemBloqueioAux}" />
+								</rich:column>
+							
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Login" />
+									</f:facet>
+									<h:outputText value="#{uiItem.usuario.login}" />
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Instituição" />
+									</f:facet>
+									<h:outputText value="#{uiItem.instituicao.nome}" />
+								</rich:column>
+								
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Editar" />
+									</f:facet>
+									<h:commandButton action="#{usuarioService.edita(uiItem)}" value="editar" image="/img/editar2.jpg" styleClass="cssBotaoEditar"/>
+									
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Ativar" />
+									</f:facet>
+									<h:commandButton action="#{usuarioService.ativaRelacaoUsuarioInstituicao(uiItem)}" value="editar" image="/img/ativar.gif" styleClass="cssBotaoEditar" rendered="#{not uiItem.ativo}" onclick="return confirm('Deseja ativar o login: #{uiItem.usuario.login} da #{uiItem.instituicao.nome} ?')"/>
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText value="Desativar" />
+									</f:facet>
+									<h:commandButton action="#{usuarioService.desativaRelacaoUsuarioInstituicao(uiItem)}" value="editar" image="/img/desativar.gif" styleClass="cssBotaoEditar" rendered="#{uiItem.ativo}" onclick="return confirm('Deseja desativar o login: #{uiItem.usuario.login} da #{uiItem.instituicao.nome} ?')"/>
+								</rich:column>
+								
+							</rich:dataTable>
+						</h:panelGroup>
+						</center>
+					</td>					
+				</tr>
+				
+			</table>													
+					
+								
+		</s:validateAll>
+
+		</f:view>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

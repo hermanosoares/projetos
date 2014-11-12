@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:s="http://jboss.com/products/seam/taglib">
+
+	<ui:composition template="/template.xhtml">
+	
+	<ui:define name="navegacao">
+		<div id="topoBotao">
+			<h:commandButton styleClass="botaoNavegacao" image="/img/gravar.jpg" value="gravar" action="#{#}"/>
+			<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true" action="#{#}" value="cancelar" image="/img/cancelar.jpg" />
+		</div>
+	</ui:define>
+	
+		<ui:define name="conteudo">
+			<table width="750px" border="0">
+				
+				<tr>
+					<td><h:graphicImage value="/img/quadroHorario.png" alt="quadro de horário" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<table width="750px" border="0">
+				
+				<tr>
+					<td><h:outputText styleClass="campoPequeno" value="Tipo de Ensino" /></td>
+					<td><h:outputText styleClass="campoPequeno" value="Série" /></td>
+					<td><h:outputText styleClass="campoPequeno" value="Turno" /></td>
+					<td><h:outputText styleClass="campoPequeno" value="Turma" /></td>
+				</tr>
+				
+				<tr>
+					<td>
+						<h:selectOneMenu styleClass="tabelaQuadroHorarioCombo" value="#{TipoEnsinoService.tipoEnsinoSelecionado}">
+							<s:selectItems var="item" value="#{TiposEnsinoDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+							<s:convertEnum/>	
+						</h:selectOneMenu>
+					</td>
+				 
+				 	<td><h:selectOneMenu styleClass="tabelaQuadroHorarioCombo" value="#{SerieService.tipoSerieSelecionada}">
+							 <s:selectItems var="item" value="#{TiposSeriesDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+							 <s:convertEnum/>	
+						 </h:selectOneMenu>
+					</td>
+				 
+				 <td><h:selectOneMenu styleClass="tabelaQuadroHorarioCombo" value="#{ConfiguracaoService.turno}" label="Turno">
+					<s:selectItems var="item" value="#{TurnosDefault}" noSelectionLabel="selecione..." label="#{item}"/>
+					<s:convertEnum/>
+				</h:selectOneMenu></td>
+				
+				<td><h:selectOneMenu styleClass="tabelaQuadroHorarioCombo" value="#{turmaEntity.tipoTurma}">
+						<s:selectItems var="item" value="#{TipoTurmaDefault}" label="#{item}" noSelectionLabel="selecione..."/>
+						<s:convertEnum/>	
+					</h:selectOneMenu>
+				</td>
+				
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			<rich:dataTable styleClass="tabelaQuadroHorario" value="#" rowClasses="ClasseCss2,ClasseCss1" var="#" rendered="true">
+				
+				<h:column headerClass="tabelaQuadroHorarioComboHorario">
+					<f:facet name="header">
+						<h:outputText value="Horário" />			
+					</f:facet>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="7:00" itemValue="7:00"/>
+						<f:selectItem itemLabel="7:50" itemValue="7:50"/>
+						<f:selectItem itemLabel="8:40" itemValue="8:40"/>
+						<f:selectItem itemLabel="9:30" itemValue="9:30"/>
+						<f:selectItem itemLabel="9:50" itemValue="9:50"/>
+						<f:selectItem itemLabel="10:40" itemValue="10:40"/>
+						<f:selectItem itemLabel="11:30" itemValue="11:30"/>
+							
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="7:00" itemValue="7:00"/>
+						<f:selectItem itemLabel="7:50" itemValue="7:50"/>
+						<f:selectItem itemLabel="8:40" itemValue="8:40"/>
+						<f:selectItem itemLabel="9:30" itemValue="9:30"/>
+						<f:selectItem itemLabel="9:50" itemValue="9:50"/>
+						<f:selectItem itemLabel="10:40" itemValue="10:40"/>
+						<f:selectItem itemLabel="11:30" itemValue="11:30"/>
+							
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="7:00" itemValue="7:00"/>
+						<f:selectItem itemLabel="7:50" itemValue="7:50"/>
+						<f:selectItem itemLabel="8:40" itemValue="8:40"/>
+						<f:selectItem itemLabel="9:30" itemValue="9:30"/>
+						<f:selectItem itemLabel="9:50" itemValue="9:50"/>
+						<f:selectItem itemLabel="10:40" itemValue="10:40"/>
+						<f:selectItem itemLabel="11:30" itemValue="11:30"/>
+							
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="7:00" itemValue="7:00"/>
+						<f:selectItem itemLabel="7:50" itemValue="7:50"/>
+						<f:selectItem itemLabel="8:40" itemValue="8:40"/>
+						<f:selectItem itemLabel="9:30" itemValue="9:30"/>
+						<f:selectItem itemLabel="9:50" itemValue="9:50"/>
+						<f:selectItem itemLabel="10:40" itemValue="10:40"/>
+						<f:selectItem itemLabel="11:30" itemValue="11:30"/>
+							
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="7:00" itemValue="7:00"/>
+						<f:selectItem itemLabel="7:50" itemValue="7:50"/>
+						<f:selectItem itemLabel="8:40" itemValue="8:40"/>
+						<f:selectItem itemLabel="9:30" itemValue="9:30"/>
+						<f:selectItem itemLabel="9:50" itemValue="9:50"/>
+						<f:selectItem itemLabel="10:40" itemValue="10:40"/>
+						<f:selectItem itemLabel="11:30" itemValue="11:30"/>
+							
+					</h:selectOneMenu>
+				</h:column>
+				
+				<h:column headerClass="tabelaCampoMateria">
+					<f:facet name="header">
+						<h:outputText value="Segunda-feira" />			
+					</f:facet>
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+				</h:column>
+				
+				<h:column headerClass="tabelaCampoMateria">
+					<f:facet name="header">
+						<h:outputText value="Terça-feira" />			
+					</f:facet>
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+				</h:column>
+				
+				<h:column headerClass="tabelaCampoMateria">
+					<f:facet name="header">
+						<h:outputText value="Quarta-feira" />			
+					</f:facet>
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+				</h:column>
+				
+				<h:column headerClass="tabelaCampoMateria">
+					<f:facet name="header">
+						<h:outputText value="Quinta-feira" />			
+					</f:facet>
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+				</h:column>
+				
+				
+				<h:column headerClass="tabelaCampoMateria">
+					<f:facet name="header">
+						<h:outputText value="Sexta-feira" />			
+					</f:facet>
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+				</h:column>
+				
+				<h:column headerClass="tabelaCampoMateria">
+					<f:facet name="header">
+						<h:outputText value="Sábado" />			
+					</f:facet>
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu value="#{turmaEntity.tipoTurma}">
+						<f:selectItem itemLabel="Português" itemValue="Português"/>
+						<f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+						<f:selectItem itemLabel="História" itemValue="História"/>
+						<f:selectItem itemLabel="Geografia" itemValue="Geografia"/>
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês"/>
+						<f:selectItem itemLabel="Quimica" itemValue="Quimica"/>
+						<f:selectItem itemLabel="Física" itemValue="Física"/>
+					</h:selectOneMenu>
+				</h:column>
+			
+			</rich:dataTable>
+		
+		</ui:define>
+
+	</ui:composition>
+
+</html>

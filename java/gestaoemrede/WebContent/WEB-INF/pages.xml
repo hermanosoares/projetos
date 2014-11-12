@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns="http://jboss.com/products/seam/pages"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+       no-conversation-view-id="#{ConversationListener.noConversationViewId}"
+                 login-view-id="/home.xhtml">
+
+
+	<page view-id="/esquecisenha.xhtml" login-required="false" >
+		
+	</page>
+
+	<page view-id="/admin/*"  login-required="true" >
+		<restrict>#{permiteExibirPainelAdmExterno}</restrict>
+	</page>
+
+	<page view-id="/login/*" login-required="true" >
+
+	</page>
+
+	<page view-id="/ajudaonline/*" login-required="true" >
+	</page>
+	
+    <page view-id="/uc/*" login-required="true">
+    	
+    	<raise-event type="evento.seguranca.verificaMultiplasInstituicoes"/>
+    	
+        <navigation from-action="#{authenticator.logout}">
+            <redirect view-id="/home.xhtml"/>
+        </navigation>
+		
+		<navigation>
+		
+			<rule if-outcome="ConfigurarConceito">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/conceito/conceito.xhtml"/>
+			</rule>
+
+			<rule if-outcome="notaefaltarecuperacao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/notaefaltarec/notaefaltareclist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="notaefalta">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/notaefalta/notaefaltalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="sobreprojeto">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/sobreprojeto.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudEtapasRecuperacao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/etaparecuperacao/etapalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudEtapas">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/etapa/etapalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="nivelAcesso">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/nivelacesso/nivelacesso.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="personalizarSkin">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/skin/skin.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudCargoDocente">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipodocente/tipodocentelist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudPeriodoLetivo">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/periodoletivo/periodoletivolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="CadastroFuncionario">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/funcionario/cadastro1.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudProjetos">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/projeto/projetolist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="TipoEncerramentoMatricula">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipoencerramentomatricula/tipoencerramentomatriculalist.xhtml"/>
+			</rule>
+	
+			<rule if-outcome="MatriculaList">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/matricula/matriculalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="relatorioConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/relatorioconfiguracao.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="relatorioConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/relatorioconfiguracao.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudDisciplina">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/disciplina/disciplinalist.xhtml"/>
+			</rule>
+
+			<rule if-outcome="crudTurma">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/turma/turmalist.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudSerie">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/serie/serielist.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudTipoEnsino">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/tipoensino/tipoensinolist.xhtml"/>
+			</rule>
+		
+			<rule if-outcome="crudEventos">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/evento/eventolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="crudConfiguracao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/configuracao/configuracaolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="crudEspacoFisico">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/espacofisico/espacofisicolist.xhtml"/>
+			</rule>
+			
+			<rule if-outcome="CadastroAluno">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>
+			</rule>
+
+			<rule if-outcome="EditaCadastroAluno">
+				<begin-conversation join="true"/>
+				<redirect view-id="/uc/cadastro/aluno/cadastro1.xhtml"/>
+			</rule>
+
+			<rule if-outcome="alteraSenha">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/usuario/alterasenha.xhtml"/>
+			</rule>
+
+
+			<rule if-outcome="ConfigurarInstituicao">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/instituicao/edita.xhtml"/>
+			</rule>
+
+
+			<rule if-outcome="PesquisaAluno">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/uc/cadastro/aluno/pesquisar.xhtml"/>
+			</rule>
+
+			<rule if-outcome="main">
+				<end-conversation before-redirect="true"/>
+				<redirect view-id="/main.xhtml"/>
+			</rule>
+
+				
+    	</navigation>
+    </page>
+    
+    
+
+	
+	
+	
+
+	<!--  PAGINAS UC DOCENTE -->    
+    <page view-id="/uc/cadastro/docente/cadastro2.xhtml"  conversation-required="true" no-conversation-view-id="/uc/cadastro/docente/cadastro1.xhtml">
+    </page>
+
+    <page view-id="/uc/cadastro/docente/cadastro3.xhtml" conversation-required="true" no-conversation-view-id="/uc/cadastro/docente/cadastro1.xhtml">
+    </page>
+
+    <page view-id="/uc/cadastro/docente/cadastro4.xhtml" conversation-required="true" no-conversation-view-id="/uc/cadastro/docente/cadastro1.xhtml">
+    </page>
+	<!-- FIM  -->
+	
+	
+	
+	<!--  PAGINAS UC USUARIO -->    
+    <page view-id="/uc/cadastro/usuario/cadastro2.xhtml"  conversation-required="true" no-conversation-view-id="/uc/cadastro/usuario/cadastro1.xhtml">
+    </page>
+
+    <page view-id="/uc/cadastro/usuario/cadastro3.xhtml" conversation-required="true" no-conversation-view-id="/uc/cadastro/usuario/cadastro1.xhtml">
+    </page>
+
+    <page view-id="/uc/cadastro/usuario/cadastro4.xhtml" conversation-required="true" no-conversation-view-id="/uc/cadastro/usuario/cadastro1.xhtml">
+    </page>
+	<!-- FIM  -->
+	
+	
+	
+	
+
+
+    <page view-id="/home.xhtml" action="#{identity.isLoggedIn}">
+        <navigation>
+            <rule if="#{identity.loggedIn}">
+            	<begin-conversation join="true"/>
+                <redirect view-id="/login/instituicoesensino.xhtml"/>
+            </rule>
+        </navigation>
+    </page>
+    
+	 <page view-id="/uc/cadastrounico/cadastro/*">
+		 <restrict>#{ s:hasRole('OPERACAO_CADASTRAR_EDITAR_ALUNO') or s:hasRole('OPERACAO_CADASTRAR_EDITAR_DOCENTE') }</restrict>
+	 </page>
+	 
+	 <page view-id="/uc/cadastrounico/pesquisa/*">
+		 <restrict>#{s:hasRole('OPERACAO_PESQUISAR_ALTERAR')}</restrict>
+	 </page>
+	 
+
+	
+	
+    <exception class="org.jboss.seam.ConcurrentRequestTimeoutException" log="false">
+    	<end-conversation/>
+        <redirect view-id="#{org.jboss.seam.handledException.viewId}">
+            <message severity="warn">por favor, click somente uma vez e aguarde o processamento.</message>
+        </redirect>
+    </exception>
+
+    <exception class="javax.el.ELException" log="true">
+        <redirect view-id="#{org.jboss.seam.handledException.viewId}">
+            <message severity="warn">houve um problema atendendo sua solicitacao.</message>
+        </redirect>
+    </exception>
+
+    <exception class="org.hibernate.exception.ConstraintViolationException" log="false" >
+    	<end-conversation/>
+        <redirect view-id="#{org.jboss.seam.handledException.viewId}">
+            <message severity="INFO"> #{messages['mensagem.contraintViolation']}</message>
+        </redirect>
+    </exception>
+
+
+    <exception class="org.jboss.seam.framework.EntityNotFoundException" log="false">
+    	<end-conversation/>
+        <redirect view-id="#{org.jboss.seam.handledException.viewId}">
+            <message severity="warn">registro não encontrado!</message>
+        </redirect>
+    </exception>
+    
+    <exception class="org.jboss.seam.security.NotLoggedInException" log="false">
+        <redirect view-id="/home.xhtml">
+            <message severity="warn">você precisa logar-se para acessar este recurso.</message>
+        </redirect>
+    </exception>
+
+	<exception class="javax.persistence.OptimisticLockException" log="false">
+	   <end-conversation/>
+	   <redirect view-id="#{org.jboss.seam.handledException.viewId}">
+	      <message>Esta Operação Falhou, porque outro usuário alterou este registro, tente novamente.</message>
+	   </redirect>
+	</exception>
+
+    <exception class="javax.faces.application.ViewExpiredException" log="false">
+	   <redirect view-id="#{org.jboss.seam.handledException.viewId}">
+	      <message severity="warn">recarregue a página.</message>
+	   </redirect>
+	</exception>
+
+    <exception class="org.jboss.seam.security.AuthorizationException" log="false">
+    	<end-conversation/>
+        <redirect view-id="/home.xhtml">
+           <message>acesso negado: você não possui credenciais, para acessar esta área do sistema.</message>
+        </redirect>
+    </exception>
+
+
+    <exception class="org.hibernate.StaleObjectStateException" log="false">
+    	<end-conversation/>
+        <redirect view-id="/home.xhtml">
+            <message severity="warn"> refaca esta operacao, outro usuario realizou uma operacao concorrente neste registro.</message>
+        </redirect>
+    </exception>
+    
+
+    <exception class="javax.persistence.PersistenceException" log="false">
+    	<end-conversation before-redirect="true"/>
+        <redirect view-id="#{redirect.viewId}">
+            <message severity="warn">operação não realizada!</message>
+        </redirect>
+    </exception>
+
+    <exception class="javax.servlet.ServletException" log="true">
+    	<end-conversation/>
+        <redirect view-id="/home.xhtml">
+            <message severity="warn"> houve um processamento inválido, persistindo contate o suporte.</message>
+        </redirect>
+    </exception>
+    
+    
+
+</pages>

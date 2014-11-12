@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:x="http://www.xseam.org">
+
+			<table width="750" border="0">
+				<tr class="espacoFormulario"></tr>
+				<tr>
+					<td> <h:outputText styleClass="textoCampoFormularioInstituicao" value="Estado:*"/></td>
+					<td> <h:outputText styleClass="textoCampoFormularioInstituicao" value="Cidade:*"/></td>
+					<td> <h:outputText styleClass="textoCampoFormularioInstituicao" value="Zona:"/> </td>
+				</tr>
+				
+				<tr>
+					<td width="270px;">
+						<x:selectOneState  label="" title="Estado" value="#{enderecoEntity.estado}" reRender="cidade" required="true" />				
+					</td>
+					<td width="200px;">
+						<x:selectOneCity name="cidade" label="" title="Cidade" value="#{enderecoEntity.cidade}" selectedState="#{enderecoEntity.estado}" />		
+					</td>
+					<td>
+						<h:selectOneMenu style="width: 240px;" value="#{enderecoEntity.zona}" required="true" label="Zona">
+							<f:selectItem itemLabel="Zona Urbana" itemValue="ZONA URBANA"/>
+							<f:selectItem itemLabel="Zona Rural" itemValue="ZONA RURAL"/>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+		
+		
+		
+		<table width="750" border="0">
+		<tr class="espacoFormulario"></tr>
+			<tr>
+				<td> <h:outputText value="Rua:*"/> </td>
+				<td> <h:outputText value="Bairro:*"/> </td>
+				<td> <h:outputText value="Número:*"/> </td>
+				<td> <h:outputText value="Complemento:"/> </td>				
+			</tr>
+			
+			<tr>
+				<td><h:inputText style="width: 230px; margin-right:10px;" value="#{enderecoEntity.rua}" id="camporua" required="true" label="rua">
+					<rich:jQuery selector="#camporua" query="capitalize()" timing="onload"/>				    
+				 	</h:inputText>
+				</td>
+				<td><h:inputText style="width: 190px; margin-right:10px;" value="#{enderecoEntity.bairro}" id="campobairro" required="true" label="bairro">
+					<rich:jQuery selector="#campobairro" query="capitalize()" timing="onload"/>				    
+				 	</h:inputText>
+				</td>
+				<td><h:inputText style="width: 155px;" value="#{enderecoEntity.numero}" required="true" maxlength="5" label="numero"/></td>
+				<td><h:inputText style="width: 90px; margin-0px;" value="#{enderecoEntity.complemento}"/></td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+			</table>
+			
+				
+
+</html>

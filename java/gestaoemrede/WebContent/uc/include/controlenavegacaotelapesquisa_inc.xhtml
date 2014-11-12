@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+			<div id="topoTabelaPesquisa">
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoUltimo">
+						<a4j:commandButton image="/img/ultima.png" style="width: 92px; height: 15px; border:0px; float: right;" value="ultimo"   action="#{PessoaService.pesquisaByControleNavegacao('ultimo')}" actionListener="#{easyPaginacao.ultimo}" rendered="#{conversation.longRunning and easyPaginacao.existeUltimo}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoUltimo" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>					
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoProximo">
+						<a4j:commandButton id="idProximo" image="/img/proxima.png" style="width: 92px; height: 15px; border:0px; float: right; margin-right:0px;"  value="Proximo"  action="#{PessoaService.pesquisaByControleNavegacao('proximo')}" actionListener="#{easyPaginacao.proximo}" rendered="#{conversation.longRunning and easyPaginacao.existeProximo}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status  for="regiaoProximo" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoAnterior">
+						<a4j:commandButton id="idAnterior" image="/img/anterior.png" style="width: 92px; height: 15px; border:0px; float: right;" value="Anterior" action="#{PessoaService.pesquisaByControleNavegacao('anterior')}" actionListener="#{easyPaginacao.anterior}" rendered="#{conversation.longRunning and easyPaginacao.existeAnterior}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoAnterior" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+				<div id="botaoPesquisaNavegacao">
+					<a4j:region id="regiaoPrimeiro">
+						<a4j:commandButton image="/img/primeira.png" style="width: 92px; height: 15px; border:0px; float: right;" value="primeiro" action="#{PessoaService.pesquisaByControleNavegacao('primeiro')}" actionListener="#{easyPaginacao.primeiro}" rendered="#{conversation.longRunning and easyPaginacao.existeAnterior}" reRender="painelPrincipal" ajaxSingle="true" eventsQueue="default"/>
+						<a4j:status for="regiaoPrimeiro" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+					</a4j:region>
+				</div>
+			 </div>
+
+
+</html>

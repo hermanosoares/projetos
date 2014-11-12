@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+			 <div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" 
+						image="/img/gravar.jpg" value="gravar" action="#{ConfiguracaoService.grava(ConfiguracaoEntity)}" >
+					</h:commandButton>
+				<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true"
+					 action="list" value="cancelar" image="/img/cancelar.jpg" />
+					
+			</div>
+		</ui:define>
+	
+		<ui:define name="conteudo">
+		
+			<div id="tituloMenu">
+				<h:graphicImage value="/img/turnos.png" alt="Espaço Físico" />
+			</div>
+		
+		<table width="750px;">
+			<tr>
+				<td><h:outputText value="Atenção: Esta Configuração está incompleta, não existe nenhum turno cadastrado." rendered="#{ConfiguracaoEntity.id!=null and empty ConfiguracaoEntity.turnos}" /></td>
+			</tr>
+			
+			<tr class="espacoFormulario"></tr>
+			
+		</table>
+		
+		<table style="width: 750px; border: 0px;">
+
+			<tr>
+				<td><h:outputText value="Nome*: " /></td>
+				<td><h:outputText value="Ano*: " rendered="#{existeConfiguracaoEspecificaSelecionada}"/></td>
+				<td><h:outputText value="Turno* :" /></td>
+			</tr>
+			
+			<tr>
+				<td><h:inputText styleClass="inputwidth200" value="#{ConfiguracaoEntity.nome}" required="true" label="Nome"/></td>
+				<td>
+				<h:inputText styleClass="inputwidth200" value="#{ConfiguracaoEntity.ano}" required="true" label="Ano" rendered="#{existeConfiguracaoEspecificaSelecionada}"/>
+				</td>
+				<td><h:selectOneMenu styleClass="inputwidth200" value="#{ConfiguracaoService.turno}" label="Turno">
+					<s:selectItems var="item" value="#{TurnosDefault}" noSelectionLabel="selecione..." label="#{item}"/>
+					<s:convertEnum/>
+				</h:selectOneMenu></td>
+				<td><h:commandButton image="/img/adicionar.jpg" styleClass="botaoNavegacao" action="#{ConfiguracaoService.addTurno(ConfiguracaoEntity)}" /></td>
+				<td></td>
+			</tr>
+			</table>
+			
+			<table style="width: 450px; border:0px; margin:0 auto;">
+			
+				
+			<rich:dataTable  style="margin:0 auto;" value="#{ConfiguracaoEntity.turnos}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{not empty ConfiguracaoEntity.turnos}">
+					<tr>
+					   <td><rich:column style="width:300px;">
+						<f:facet name="header">
+							<h:outputText value="Turno" />
+						</f:facet>
+						<rich:inplaceInput value="#{item.nome}"/>
+					</rich:column>
+					</td>
+					
+					<td><rich:column>
+					<f:facet name="header">
+							<h:outputText value="Remover" />
+						</f:facet>
+						<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{ConfiguracaoService.removeDetalhe(ConfiguracaoEntity.turnos,item)}" immediate="true"/>	
+					</rich:column></td>
+					</tr>
+					
+				</rich:dataTable>
+			
+			</table>			
+				
+				
+				
+				
+			
+			
+		</ui:define>
+		
+	
+	</ui:composition>
+
+</html>

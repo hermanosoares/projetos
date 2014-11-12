@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template.xhtml">
+	<ui:define name="navegacao">
+			<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true" action="#{DisciplinaService.cancela}" value="cancelar" image="/img/cancelar.jpg" />
+			<h:panelGroup id="areaBotaoNovo">
+				<h:commandButton image="/img/novo.jpg" style="width:113px; margin:0px; border:0px; " action="#{DisciplinaService.novo}" value="adicionar" rendered="#{not empty FiltroSelecaoService.serieSelecionado}"/>
+			</h:panelGroup>			
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		
+		<table>
+		</table>
+				
+				<ui:include src="/uc/include/loading_inc.xhtml" />
+						
+				<table width="500px;" style="margin:0 auto;">
+					<tr class="espacoFormulario"></tr>
+					<tr>
+						<td><h:graphicImage value="/img/turmaDisciplinas.png" alt="Configuração de Serie" /></td>
+					</tr>
+					<tr class="espacoFormulario"></tr>
+				</table>
+			
+			<div >
+				<table width="150px;" style="float: left;">
+					<tr>
+						<td><h:outputText value="Selecione o Turno*: " /></td>
+					</tr>
+					<tr>    
+						<td>
+							<h:panelGroup id="areaTurno">
+								<h:panelGroup>
+									<a4j:region id="regiao1">
+										<h:selectOneMenu value="#{FiltroSelecaoService.turnoSelecionado}" required="true" label="Turno">
+											<a4j:status for="regiao1" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+											<a4j:support event="onchange" ajaxSingle="true" reRender="areaEnsino"/>
+											<s:selectItems var="turnoItem" value="#{TurnoList.turnos}" label="#{turnoItem.nome}" noSelectionLabel="selecione.."/>
+											<s:convertEntity/>
+										</h:selectOneMenu>
+									</a4j:region>
+								</h:panelGroup>				
+							</h:panelGroup>
+						</td>
+					</tr>
+			</table>
+			<table width="150px;" style="float: left;">
+					
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaEnsino">
+										<h:panelGroup rendered="#{not empty FiltroSelecaoService.turnoSelecionado}">
+										<h:outputText value="Selecione o Ensino*: " /><br />
+											<a4j:region id="regiao2">
+												<h:selectOneMenu value="#{FiltroSelecaoService.ensinoSelecionado}" required="true" label="Ensino">
+													<a4j:status for="regiao2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true" reRender="areaSerie"/>
+													<s:selectItems var="ensinoItem" value="#{FiltroSelecaoService.turnoSelecionado.ensinos}" label="#{ensinoItem.nome}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+				</table>
+			<table width="150px;" style="float: left;">
+					
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaSerie">
+										<h:panelGroup rendered="#{not empty FiltroSelecaoService.ensinoSelecionado}">
+										<h:outputText value="Selecione a Série*: " /><br />
+											<h:selectOneMenu value="#{FiltroSelecaoService.serieSelecionado}" required="true" label="Série">
+												<a4j:support event="onchange" ajaxSingle="true" reRender="areaBotaoNovo" action="#{DisciplinaService.edita(FiltroSelecaoService.serieSelecionado)}" onsubmit="Richfaces.showModalPanel('panel_loading')"/>
+												<s:selectItems var="serieItem" value="#{FiltroSelecaoService.ensinoSelecionado.series}" label="#{serieItem.nome}" noSelectionLabel="selecione.."/>
+												<s:convertEntity/>
+											</h:selectOneMenu>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+				</table>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<h:outputText value=" não há disciplinas." styleClass="SomenteNegrito" rendered="#{not empty FiltroSelecaoService.serieSelecionado and empty serieEntity.disciplinas}"/>		
+		<table width="750px">
+				
+		<rich:dataTable style="width:750px; margin:0px;" value="#{serieEntity.disciplinas}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{not empty serieEntity.disciplinas}">
+		
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Disciplina" />			
+				</f:facet>
+				
+				<h:outputText value="#{item.nome}" />
+				
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo">
+					<br/>
+					</h:outputText>		
+				</f:facet>
+				
+				<h:outputText styleClass="diminuiLetraTabela" value="#{item.tipoDisciplina}"/>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Leg." />			
+				</f:facet>
+				
+				<h:outputText value="#{item.legenda}"/>
+			</h:column>
+
+			<h:column headerClass="aulaSemanais">
+				<f:facet name="header">
+					<h:outputText value="Aulas Se."/>
+				</f:facet>
+				
+				<h:outputText value="#{item.numAulaSemana}"/>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Mod. Aula">
+					</h:outputText>
+				</f:facet>
+				
+				<h:outputText value="#{item.duracaoModAula}"/>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Comp.C.Horária">
+					</h:outputText>
+				</f:facet>
+				
+				<h:outputText styleClass="diminuiLetraTabela" value="#{item.compCargHoraria}"/>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Res. Final"/>
+					<h:outputText value="Participa"/>
+				</f:facet>
+				
+				<h:outputText value="#{item.participaResultFinalAux}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo Aval."/>
+				</f:facet>
+				
+				<h:outputText value="#{item.tipoAvaliacao}"/>
+			</h:column>
+
+			<h:column headerClass="removerEditar">
+					<f:facet name="header">
+					<h:outputText value="Editar" />			
+				</f:facet>
+					<h:commandButton  action="#{DisciplinaService.editaDisciplina(item)}" image="/img/editar.png" style="width:20px; height:20px; border: 0px; margin:0 10px 0 10px;"/>	
+			</h:column>
+			
+			<h:column headerClass="removerEditar">
+					<f:facet name="header">
+					<h:outputText value="Remover" />			
+				</f:facet>
+					<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{TurmaService.removeDetalhe(serieEntity.disciplinas,item)}" immediate="true"/>	
+			</h:column>
+
+			
+		</rich:dataTable>
+		
+	</table>
+				
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			 <div id="topoBotao">
+					<h:commandButton styleClass="botaoNavegacao" 
+						image="/img/gravar.jpg" value="gravar" action="#{SerieService.grava(ensinoEntity)}" >
+					</h:commandButton>
+					
+					<h:commandButton styleClass="botaoNavegacao" immediate="true"
+					 action="list" value="cancelar" image="/img/cancelar.jpg" />
+			</div>
+			
+		</ui:define>
+	
+	<ui:define name="conteudo">
+	
+	
+			
+	
+		<table width="750px;" style="margin:0 auto;">
+			<tr class="espacoFormulario"></tr>
+			<tr>
+				<td><h:graphicImage value="/img/cadastroSeries.png" alt="Configuração de Serie" /></td>
+			</tr>
+			<tr class="espacoFormulario"></tr>
+		</table>
+		
+		<table width="750px;" style="margin:0 auto;">
+			<tr>
+				<td><h:outputText value="Tipo de Ensino: #{ensinoEntity.nome}" /></td>
+			</tr>
+		</table>
+		
+		<table width="500" border="0px;">
+				<tr>	
+					<td><h:selectOneMenu style="width:300px; margin:0px;" value="#{SerieService.tipoSerieSelecionada}">
+							 <s:selectItems var="item" value="#{TiposSeriesDefault}" label="#{item.label}" noSelectionLabel="selecione.." />
+							 <s:convertEnum/>
+						</h:selectOneMenu>
+					</td>
+					<td style="width:200px; float:left;">
+						<h:commandButton image="/img/adicionar.jpg" styleClass="botaoNavegacao"  action="#{SerieService.addSerie}" value="adicionar" />
+					</td>
+				</tr>
+		</table>
+				
+		<rich:dataTable style="width:750px; margin:0 auto;" value="#{ensinoEntity.series}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{not empty ensinoEntity.series}">
+		
+			<h:column headerClass="campoTabelaSerie">
+				<f:facet name="header">
+					<h:outputText value="Série" />			
+				</f:facet>
+				
+				<rich:inplaceInput value="#{item.nome}"/>
+			</h:column>
+
+			<h:column headerClass="campoTabelaSerie">
+				<f:facet name="header">
+					<h:outputText value="Dependencia ">
+					<h:outputText value="Quantidade" >
+					</h:outputText>
+					<br/>
+					</h:outputText>
+				</f:facet>
+				
+				<h:inputText id="idCampoQtdeDependencia" styleClass="campoInputTabela" value="#{item.numDepenciaAceitavel}" required="true" label="Qtde Dependência da Série" maxlength="2">
+					<rich:jQuery selector="#idCampoQtdeDependencia" query="numeric()" timing="onload"/>
+				</h:inputText>
+			</h:column>
+
+			<h:column headerClass="campoTabelaSerie">
+				<f:facet name="header">
+					<h:outputText value="Avaliação?">
+					<h:outputText value="Reprova por">
+					</h:outputText>
+					<br/>
+					</h:outputText>			
+				</f:facet>
+				
+				<h:selectBooleanCheckbox styleClass="campoChecTabela" value="#{item.reprovaPorAvaliacao}" />
+			</h:column>
+
+			<h:column headerClass="teste2">
+				<f:facet name="header">
+					<h:outputText value="Frequencia?">
+					<h:outputText value="Reprova por">
+					</h:outputText>
+					<br/>
+					</h:outputText>			
+				</f:facet>
+				
+				<h:selectBooleanCheckbox styleClass="campoChecTabelaSerie" value="#{item.reprovaPorFrequencia}" />
+			</h:column>
+
+			
+			<h:column  id="idColunaPercentualNota" headerClass="tabelaComBoxCentralizado">
+					<f:facet name="header">
+						<h:outputText value="% nota aprovação.(opcional)"/>
+					</f:facet>		
+					<h:inputText id="idCampoPercentNotaAprov" styleClass="campoInputTabela" value="#{item.percentNotaAprov}" label="% Nota Aprovação" maxlength="5">
+						<rich:jQuery selector="#idCampoPercentNotaAprov" query="numeric()" timing="onload"/>
+					</h:inputText>
+					<rich:toolTip for="idCampoPercentNotaAprov">
+						<h:outputText value="informe o percentual % de nota para aprovação." />
+						<br/>
+						<h:outputText value="Deixe vazio em caso de conceito." styleClass="SomenteNegrito" />
+					</rich:toolTip>
+				</h:column>
+			
+			<h:column headerClass="tabelaComBoxCentralizado">
+				<f:facet name="header">
+				<h:outputText value="% Freqüencia Aprovação"/>
+				</f:facet>		
+				<h:inputText id="idCampoPercentFreqAprov" styleClass="campoInputTabela" value="#{item.percentFreqAprov}" required="true" label="% Freqüencia Aprovação" maxlength="5">
+					<rich:jQuery selector="#idCampoPercentFreqAprov" query="numeric()" timing="onload"/>
+				</h:inputText>
+			</h:column>
+
+			<h:column headerClass="tabelaComBoxCentralizado">
+				<f:facet name="header">
+					<h:outputText value="Máxima">
+					<h:outputText value="Nota ">
+					</h:outputText>
+					<br/>
+					</h:outputText>	
+				</f:facet>
+				<h:inputText id="idNotaMaxima" styleClass="campoInputTabela" value="#{item.notaMaxima}" required="true" label="Nota Máxima" maxlength="3">
+					<rich:jQuery selector="#idNotaMaxima" query="numeric()" timing="onload"/>
+				</h:inputText>
+			</h:column>
+										
+			<h:column headerClass="removerEditar">
+				<f:facet name="header">
+					<h:outputText value="Remover" />			
+				</f:facet>
+					<h:commandButton image="/img/removerX.png" styleClass="botaoRemoverX" action="#{SerieService.removeDetalhe(ensinoEntity.series,item)}" immediate="true"/>	
+			</h:column>
+			
+		</rich:dataTable>
+				
+	</ui:define>
+
+
+	</ui:composition>
+
+</html>

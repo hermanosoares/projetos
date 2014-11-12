@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+					<h:panelGroup id="idBotaoGravar">
+						<h:commandButton  styleClass="botaoNavegacao" image="/img/gravar.jpg" value="gravar" action="#{NotaFaltaService.gravaRecuperacao}" rendered="#{not empty NotaFaltaService.lancamentosRecuperacao}"/>
+					</h:panelGroup>
+					<h:commandButton styleClass="botaoNavegacao" immediate="true" action="cancela" value="cancelar" image="/img/cancelar.jpg" />
+		</ui:define>
+	
+		<ui:define name="conteudo">
+
+			<s:remote include="NotaFaltaService"/>
+				
+			<ui:include src="/uc/include/loading_inc.xhtml" />
+			<br/>
+			<table width="750px;">
+				<tr>
+					<td>
+						<h:graphicImage value="/img/recuperacao.jpg" />
+					</td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			
+				<br/>
+			<h:outputText value="Não existem matrículas, impossível realizar lançamentos de nota/falta. "  styleClass="SomenteNegrito" rendered="#{empty AlocacaoList.anosDiponiveisMatricula}"/>
+							
+			<h:panelGroup rendered="#{not empty AlocacaoList.anosDiponiveisMatricula}">
+				<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+							<h:panelGroup id="areaTurno">
+								<h:panelGroup>
+									<h:outputText value="1. Turno *: " /> <br />
+									
+									<a4j:region id="regiao1">
+										<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.turnoSelecionado}" required="true" label="Turno" onclick="ajaxRemoteCall();">
+											<a4j:status for="regiao1" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+											<a4j:support event="onchange" ajaxSingle="true" reRender="areaEnsino,areaSerie,areaTipoMatricula,areaTipoTurma,areaTurma,areaDisciplina,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro3Alocacao}"/>
+											<s:selectItems var="turnoItem" value="#{AlocacaoList.turnosDeMatriculasByAnoSelecionado}" label="#{turnoItem.nome}" noSelectionLabel="selecione.."/>
+											<s:convertEntity/>
+										</h:selectOneMenu>
+									</a4j:region>
+									
+								</h:panelGroup>				
+							</h:panelGroup>
+						</td>
+					</tr>
+			</table>		
+			</h:panelGroup>
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaEnsino">
+										<h:panelGroup rendered="#{not empty AlocacaoList.turnoSelecionado}">
+											<h:outputText value="2. Ensino *: " /><br />
+											<a4j:region id="regiao2">
+											<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.ensinoSelecionado}" required="true" label="Ensino" onclick="ajaxRemoteCall();">
+												<a4j:status  for="regiao2" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+												<a4j:support event="onchange" ajaxSingle="true"  reRender="areaSerie,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro4Alocacao}"/>
+												<s:selectItems var="ensinoItem" value="#{AlocacaoList.ensinosDeMatriculasByTurnoSelecionado}" label="#{ensinoItem.nome}" noSelectionLabel="selecione.."/>
+												<s:convertEntity/>
+											</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+			</table>
+			
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaSerie">
+										<h:panelGroup rendered="#{not empty AlocacaoList.ensinoSelecionado}">
+											<h:outputText styleClass="inputwidth165sm2" value="3. Série *: " /> <br />
+											<a4j:region id="regiao3">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.serieSelecionado}" required="true" label="Série" onclick="ajaxRemoteCall();">
+													<a4j:status  for="regiao3" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true" reRender="areaTipoMatricula,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro5Alocacao}"/>
+													<s:selectItems var="serieItem" value="#{AlocacaoList.seriesDeMatriculasByEnsinoSelecionado}" label="#{serieItem.nome}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+					</tr>
+					
+				</table>
+
+								
+
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaTipoMatricula">
+										<h:panelGroup rendered="#{not empty AlocacaoList.serieSelecionado}">
+											<h:outputText styleClass="inputwidth165sm2" value="4. Matrícula* : " /> <br />
+											<a4j:region id="regiao4">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.tipoMatriculaSelecionada}" required="true" label="Tipo de Matrícula" onclick="ajaxRemoteCall();">
+													<a4j:status  for="regiao4" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDisciplina,areaTipoTurma,areaDataTable,areaAlunosAlocados" actionListener="#{AlocacaoList.carregaDadosFiltro6Alocacao}"/>
+													<s:selectItems var="matItem" value="#{AlocacaoList.tiposMatriculas}" label="#{matItem}" noSelectionLabel="selecione.."/>
+													<s:convertEnum/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>
+			
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaTipoTurma">
+										<h:panelGroup rendered="#{not empty AlocacaoList.tipoMatriculaSelecionada}">
+											<h:outputText styleClass="inputwidth165sm2" value="5. Tipo da Turma* : " /> <br />
+											<a4j:region id="regiao5">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{AlocacaoList.tipoFormacaoTurmaSelecionado}" required="true" label="Tipo da Turma" onclick="ajaxRemoteCall();">
+													<a4j:status  for="regiao5" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDisciplina,areaTurma,areaDataTable,areaAlunosAlocados" actionListener="#{NotaFaltaService.cleanupCampo6e7e8}"/>
+													<s:selectItems var="tipoTurmaItem" value="#{AlocacaoList.tiposFormacaoTurma}" label="#{tipoTurmaItem}" noSelectionLabel="selecione.."/>
+													<s:convertEnum/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>
+
+
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaTurma">
+										<h:panelGroup rendered="#{not empty AlocacaoList.tipoFormacaoTurmaSelecionado}">
+											<h:outputText id="idRotuloTurma" styleClass="inputwidth165sm2" value="6. Turma* : " /> <br />
+											<a4j:region id="regiao6">
+												<h:selectOneMenu  styleClass="inputwidth165sm2"  value="#{AlocacaoList.turmaSelecionado}" required="true" label="Turma" onclick="ajaxRemoteCall();">
+													<a4j:status  for="regiao6" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true"  reRender="areaDisciplina,areaEtapa,areaDataTable,areaAlunosAlocados" actionListener="#{NotaFaltaService.cleanupCampo7e8}" />
+													<s:selectItems var="turmaItem" value="#{AlocacaoList.turmasByFiltroTipoTurma}" label="#{turmaItem.nome} #{turmaItem.tooltip}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+											<rich:toolTip for="idRotuloTurma">
+												<h:outputText value="LEGENDA DA TURMA" styleClass="SomenteNegrito"/>
+												<br/>
+												<h:outputText value="- Turnos: M = Manhã, N = Noite , T = Tarde, I = Integral"/>
+												<br/>
+												<h:outputText value="- Ensinos: FUND = Fundamental, MED = Médio, EJA = EJA"/>
+												<br/>
+												<h:outputText value="- Tipo Turmas: REG=Regular, DIS=Disciplina, MULT=Multi-Seriada, MULT-D=Multi-Seriada Por Disciplina"/>
+												<br/>
+												<h:outputText value="- Séries: 1,2,3,4,5,6,7,8,9"/>
+												<br/>
+											</rich:toolTip>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>			
+			
+
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaEtapa">
+										<h:panelGroup rendered="#{not empty AlocacaoList.turmaSelecionado}">
+											<h:outputText styleClass="inputwidth165sm2" value="7. Etapa Recuperação* : " /> <br />
+											<a4j:region id="regiao7">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{NotaFaltaService.etapaRecuperacaoSelecionada}" required="true" label="Etapa de Recuperação" onclick="ajaxRemoteCall();">
+													<a4j:status  for="regiao7" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true" action="#{NotaFaltaService.processaAlunosAlocadosPassiveisALancamento}"  reRender="areaAlunosAlocados,areaDisciplina" actionListener="#{NotaFaltaService.cleanupCampo8}"/>
+													<s:selectItems var="etapaItem" value="#{AlocacaoList.serieSelecionado.etapasRecuperacao}" label="#{etapaItem.nome}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>
+
+			
+			<table width="180px;" style="float: left;">
+					<tr>    
+						<td>
+						
+									<h:panelGroup id="areaDisciplina">
+										<h:panelGroup rendered="#{not empty NotaFaltaService.etapaRecuperacaoSelecionada}">
+											<h:outputText styleClass="inputwidth165sm2" value="8. Disciplina* : " /> <br />
+											<a4j:region id="regiao8">
+												<h:selectOneMenu styleClass="inputwidth165sm2" value="#{NotaFaltaService.disciplinaSelecionada}" required="true" label="Disciplina" onclick="ajaxRemoteCall();">
+													<a4j:status  for="regiao8" onstart="Richfaces.showModalPanel('panel_loading')" onstop="Richfaces.hideModalPanel('panel_loading')"/>
+													<a4j:support event="onchange" ajaxSingle="true" action="#{NotaFaltaService.processaAlunosAlocadosPassiveisALancamento}" reRender="areaAlunosAlocados,idBotaoGravar"/>
+													<s:selectItems var="discItem" value="#{NotaFaltaService.disciplinas}" label="#{discItem.nome}" noSelectionLabel="selecione.."/>
+													<s:convertEntity/>
+												</h:selectOneMenu>
+											</a4j:region>
+										</h:panelGroup>
+									</h:panelGroup>
+						</td>
+
+					</tr>
+
+					
+				</table>
+
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+		<h:outputText  id="areaDataTable" value=""/>
+		
+		<h:panelGroup id="areaAlunosAlocados">
+		
+			<h:panelGroup rendered="#{AlocacaoList.permiteCarregarGrids and not empty NotaFaltaService.disciplinaSelecionada}">
+				
+				<h:panelGroup rendered="#{empty NotaFaltaService.lancamentosRecuperacao}">
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<h:outputText value="não existem alunos alocados na turma : #{AlocacaoList.turmaSelecionado.nome} "  styleClass="SomenteNegrito"/>
+					<br/>
+					<br/>
+				</h:panelGroup>
+				
+				<rich:dataTable style="float: left;" var="lancItem"	value="#{NotaFaltaService.lancamentosRecuperacao}"	rowClasses="ClasseCss2,ClasseCss1" rendered="#{not empty NotaFaltaService.lancamentosRecuperacao}">
+					<f:facet name="header">
+						<h:outputText value="Alunos Alocados " styleClass="SomenteNegrito" />
+					</f:facet>
+
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+
+						<h:panelGroup rendered="#{lancItem.alocacaoDto.flagItemDiarioAberto}">
+
+							<h:panelGroup
+								rendered="#{empty lancItem.alocacaoDto.motivoEncerramentoMatricula}">
+								<h:outputText id="nome1" value="#{lancItem.alocacaoDto.nome}"
+									styleClass="#{lancItem.alocacaoDto.cssStyleClass}">
+									<rich:toolTip for="nome1">
+										<h:panelGroup rendered="#{lancItem.alocacaoDto.remanejado}">
+											<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+											<br />
+										</h:panelGroup>
+										<h:outputText value="#{lancItem.alocacaoDto.nome}"
+											styleClass="SomenteNegrito" />
+										<br />
+										<h:outputText value="Data Nascimento: "
+											styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.dtNascimento}" />
+										<br />
+										<h:outputText value="Mãe: " styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.nomeMae}" />
+									</rich:toolTip>
+								</h:outputText>
+							</h:panelGroup>
+
+							<h:panelGroup
+								rendered="#{not empty lancItem.alocacaoDto.motivoEncerramentoMatricula}">
+								<h:outputText id="nome2" value="#{lancItem.alocacaoDto.nome}"
+									styleClass="#{lancItem.alocacaoDto.cssStyleClass}">
+									<rich:toolTip for="nome2">
+										<h:panelGroup rendered="#{lancItem.alocacaoDto.remanejado}">
+											<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+											<br />
+										</h:panelGroup>
+										<h:outputText value=" **  Matrícula Encerrada: **"
+											styleClass="styleAlunoRemanejado,SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.motivoEncerramentoMatricula}" />
+										<br />
+										<h:outputText value="#{lancItem.alocacaoDto.nome}"
+											styleClass="SomenteNegrito" />
+										<br />
+										<h:outputText value="Data Nascimento: "
+											styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.dtNascimento}" />
+										<br />
+										<h:outputText value="Mãe: " styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.nomeMae}" />
+									</rich:toolTip>
+								</h:outputText>
+							</h:panelGroup>
+
+
+						</h:panelGroup>
+
+						<h:panelGroup rendered="#{not lancItem.alocacaoDto.flagItemDiarioAberto}">
+
+							<h:panelGroup
+								rendered="#{empty lancItem.alocacaoDto.motivoEncerramentoMatricula}">
+								<h:outputText id="nome3" value="#{lancItem.alocacaoDto.nome}"
+									styleClass="#{lancItem.alocacaoDto.cssStyleClass}">
+									<rich:toolTip for="nome3">
+										<h:panelGroup rendered="#{lancItem.alocacaoDto.remanejado}">
+											<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+											<br />
+										</h:panelGroup>
+										<h:outputText value="#{lancItem.alocacaoDto.nome}"
+											styleClass="SomenteNegrito" />
+										<br />
+										<h:outputText value="Data Nascimento: "
+											styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.dtNascimento}" />
+										<br />
+										<h:outputText value="Mãe: " styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.nomeMae}" />
+									</rich:toolTip>
+								</h:outputText>
+							</h:panelGroup>
+
+							<h:panelGroup
+								rendered="#{not empty lancItem.alocacaoDto.motivoEncerramentoMatricula}">
+
+								<h:outputText id="nome4" value="#{lancItem.alocacaoDto.nome}"
+									styleClass="#{lancItem.alocacaoDto.cssStyleClass}">
+									<rich:toolTip for="nome4">
+										<h:panelGroup rendered="#{lancItem.alocacaoDto.remanejado}">
+											<h:outputText value="Remanejado" styleClass="SomenteNegrito" />
+											<br />
+										</h:panelGroup>
+										<h:outputText value=" **  Matrícula Encerrada: **"
+											styleClass="styleAlunoRemanejado,SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.motivoEncerramentoMatricula}" />
+										<br />
+										<h:outputText value="#{lancItem.alocacaoDto.nome}"
+											styleClass="SomenteNegrito" />
+										<br />
+										<h:outputText value="Data Nascimento: "
+											styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.dtNascimento}" />
+										<br />
+										<h:outputText value="Mãe: " styleClass="SomenteNegrito" />
+										<h:outputText value="#{lancItem.alocacaoDto.nomeMae}" />
+									</rich:toolTip>
+								</h:outputText>
+							</h:panelGroup>
+						</h:panelGroup>
+					</rich:column>
+					
+					<rich:column rendered="#{not NotaFaltaService.disciplinaUsaConceito and NotaFaltaService.renderizaColunaNota}">
+						<f:facet name="header">
+							<h:outputText value="NOTA RECUPERAÇÃO" styleClass="SomenteNegrito"/>
+						</f:facet>
+						<h:inputText id="idCampoNota" value="#{lancItem.notaRecuperacao}" styleClass="campoNotaFalta" maxlength="4" converter="#{NotaConverter}" converterMessage="Erro no Lançamento de Nota, caracter inválido!" disabled="#{lancItem.alocacaoDto.remanejado}">
+							<a4j:support event="onchange" action="#{NotaFaltaService.validaNotaRecuperacao(lancItem)}" ajaxSingle="true" reRender="areaDisciplina"/>					
+						</h:inputText>
+						<rich:toolTip for="idCampoNota">
+							<h:outputText value="NOTA RECUPERAÇÃO" />
+						</rich:toolTip>
+					</rich:column>
+
+					<rich:column rendered="#{NotaFaltaService.disciplinaUsaConceito}">
+						<f:facet name="header">
+							<h:outputText value="CONCEITO RECUPERAÇÃO" styleClass="SomenteNegrito"/>
+						</f:facet>
+						<h:selectOneMenu id="idComboConceito" value="#{lancItem.conceitoRecuperacao}"  disabled="#{lancItem.alocacaoDto.remanejado}">
+							<a4j:support event="onchange" ajaxSingle="true" action="#{NotaFaltaService.notificaModificacao}" reRender="areaDisciplina"/>
+							<s:selectItems var="cItem" value="#{NotaFaltaService.conceitos}" label="#{cItem.label}" noSelectionLabel=" "/>
+							<s:convertEntity/>				
+						</h:selectOneMenu>
+						<rich:toolTip for="idComboConceito">
+							<h:outputText value="CONCEITO RECUPERAÇÃO" />
+						</rich:toolTip>
+					</rich:column>
+					
+					
+					<rich:column rendered="#{NotaFaltaService.renderizaColunaFalta}">
+						<f:facet name="header">
+							<h:outputText value="FALTA RECUPERAÇÃO" styleClass="SomenteNegrito"/>
+						</f:facet>
+						<h:inputText id="idCampoFalta" value="#{lancItem.faltaRecuperacao}" styleClass="campoNotaFalta" maxlength="3" converterMessage="Erro no Lançamento de Falta, caracter inválido!" disabled="#{lancItem.alocacaoDto.remanejado}">
+							<a4j:support event="onchange" ajaxSingle="true" action="#{NotaFaltaService.notificaModificacao}" reRender="areaDisciplina"/>						
+						</h:inputText>
+						<rich:toolTip for="idCampoFalta">
+							<h:outputText value="FALTA RECUPERAÇÃO" />
+						</rich:toolTip>
+					</rich:column>
+
+				</rich:dataTable>
+				
+			</h:panelGroup>
+		</h:panelGroup>
+
+	</table>
+	
+	<script type="text/javascript">
+
+
+	  function ajaxRemoteCall() {
+		Seam.Remoting.getContext().setConversationId(#{conversation.id});
+	    Seam.Component.getInstance("NotaFaltaService").existeModificacao(myCallback);
+	  }
+
+
+
+	  function myCallback(result) {
+		    if ( result == 'sim' ){
+		    	var escolha = confirm('Deseja sair deste lançamento sem salvar ?  (Existem lançamento alterados que não foram salvos!');
+		    	if ( escolha == true ){
+		    		Seam.Component.getInstance("NotaFaltaService").sairSemSalvar('sim');
+		    	}
+		    	else{
+		    		Seam.Component.getInstance("NotaFaltaService").sairSemSalvar('nao');
+		    	}	
+		    }
+	  }
+		
+	</script>
+	
+	</ui:define>
+		
+	</ui:composition>
+
+</html>

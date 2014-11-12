@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="navegacao">
+		<h:commandButton action="voltar" value="Voltar" immediate="true" styleClass="botaoNavegacaoIncluir" image="/img/voltar.jpg"/>
+		<h:panelGroup id="areaGravarRemanejamento">
+			<h:panelGroup rendered="#{not empty AlocacaoService.turmaDestinoRemanejamento}">
+				<h:commandButton  action="#{AlocacaoService.remanejar}" styleClass="botaoNavegacaoIncluir" image="/img/gravar.jpg" value="Remanejar" onclick="return confirm('Confirma este remanejamento ? ')"/>
+			</h:panelGroup>
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		<br/>
+		<br/>
+		<h:outputText value="Remanejamento de Aluno"  styleClass="SomenteNegrito"/>
+		<br/>
+		<br/>	
+			
+		<h:selectOneListbox size="5" style="width: 300px" >
+			<s:selectItems var="item" value="#{AlocacaoList.alunosAlocadosSelecionados}" label="#{item.nome}"/>
+		</h:selectOneListbox>
+		
+		<br/>
+		<br/>
+		<h:outputText value="Turno* :"/>
+		<h:selectOneMenu value="#{AlocacaoService.turnoDestinoRemanejamento}" required="true" label="Turno">
+			<a4j:support event="onchange" action="#{AlocacaoService.validaSelecaoTurnoRemanejamento}" reRender="areaTurma" ajaxSingle="true"/>
+			<s:selectItems var="i" value="#{AlocacaoList.turnosDisponiveisParaRemanejamento}" label="#{i.nome}" noSelectionLabel="selecione.."/>
+			<s:convertEntity/>
+		</h:selectOneMenu>
+		<br/>
+		<br/>
+		<h:panelGroup id="areaTurma">
+			<h:panelGroup rendered="#{not empty AlocacaoService.turnoDestinoRemanejamento}">
+				<h:outputText value="Turma* :" />
+				<h:selectOneMenu value="#{AlocacaoService.turmaDestinoRemanejamento}" required="true" label="Turma">
+					<a4j:support event="onchange" ajaxSingle="true" reRender="areaGravarRemanejamento"/>
+					<s:selectItems var="turmaItem" value="#{AlocacaoService.turmasDisponiveisParaRemanejamento}" label="#{turmaItem.nome} #{turmaItem.tooltip}" noSelectionLabel="selecione.."/>
+					<s:convertEntity/>
+				</h:selectOneMenu>
+			</h:panelGroup>
+		</h:panelGroup>
+		<br/>
+		<br/>
+	</ui:define>
+	
+	
+</ui:composition>
+	
+	
+</html>

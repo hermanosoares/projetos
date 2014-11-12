@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+			<h:commandButton action="#{ConceitoService.grava}" image="/img/gravar.jpg" styleClass="botaoNavegacao"/>
+			<h:commandButton action="cancela" image="/img/cancelar.jpg" immediate="true" styleClass="botaoNavegacao"/>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+		
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h:outputText value="Conceito:" />
+			<h:selectOneMenu value="#{ConceitoService.tipoConceito}" >
+				<s:selectItems var="item" value="#{TiposConceito}" noSelectionLabel="selecione.." label="#{item}"/>
+				<s:convertEnum/>
+			</h:selectOneMenu>
+			<h:commandButton action="#{ConceitoService.addConceito}" image="/img/adicionar.jpg" styleClass="botaoDefaultCss"/>
+			
+			
+			<br/>
+			<br/>
+			<rich:dataTable value="#{ConceitoService.conceitos}" var="cItem" rendered="#{not empty ConceitoService.conceitos}">
+			
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Conceito" />
+					</f:facet>
+					<h:outputText value="#{cItem.tipoConceito}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Rótulo" />
+					</f:facet>
+					<rich:inplaceInput value="#{cItem.label}" required="true" converter="#{EmptyConverter}" label="Rótulo"/>				
+				</rich:column>
+
+
+				<rich:column>
+					<h:commandButton action="#{ConceitoService.remove(cItem)}" image="/img/removerX.jpg" styleClass="botaoRemoverX" immediate="true"/>
+				</rich:column>
+
+			</rich:dataTable>
+			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

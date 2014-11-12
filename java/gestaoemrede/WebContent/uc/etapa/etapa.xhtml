@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/template.xhtml">
+	
+		<ui:define name="navegacao">
+		
+			 <div id="tabelacentelizada500px">
+					<h:commandButton styleClass="botaoNavegacao"
+						image="/img/gravar.jpg" value="gravar" action="#{EtapaService.grava}">
+					</h:commandButton>
+					<h:commandButton styleClass="botaoNavegacaoEspaco" immediate="true" action="list" value="cancelar" image="/img/cancelar.jpg" />
+			</div>
+			
+		</ui:define>
+	
+	<ui:define name="conteudo">
+	
+	<div id="tabelacentelizada500px">
+			
+			<table width="500px;" style="margin:0 auto;"> <br /><br /><br />
+				<h:outputText value="Série: " styleClass="SomenteNegrito"/>
+				<h:outputText value="#{serieEntity.nome}" />
+				<tr class="espacoFormulario"></tr>
+				<tr>
+					<td><h:graphicImage value="/img/etapa.jpg" alt="Etapa" /></td>
+				</tr>
+				<tr class="espacoFormulario"></tr>
+			</table>
+			
+			
+			<table width="500" border="0px;" style="margin:0 auto;">
+			
+			<tr>
+				<td><h:outputText value="Modalidade:" /></td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:selectOneMenu value="#{EtapaService.tipoEtapaTemporalSelecionada}" required="#{empty serieEntity.etapas}" label="Modalidade">
+						<s:selectItems var="tempoItem" value="#{TiposEtapasTemporal}" label="#{tempoItem}" noSelectionLabel="selecione.."/>
+						<a4j:support event="onchange" reRender="tabelaEtapa" action="#{EtapaService.fabricaEtapas}" ajaxSingle="true"/>
+						<s:convertEnum/>
+					</h:selectOneMenu>
+					
+					<h:commandButton styleClass="botaoNavegacao"  action="#{EtapaService.removeEtapas}" image="/img/removeretapas.png" value="Remover Etapas"  />
+				</td>
+			</tr>
+			
+		</table>
+		
+		<h:panelGroup id="tabelaEtapa">
+			
+			
+			
+			<rich:dataTable  styleClass="tabelaTamanhoCentralizado" value="#{serieEntity.etapas}" rowClasses="ClasseCss2,ClasseCss1" var="item" rendered="#{not empty serieEntity.etapas}">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrição" />			
+					</f:facet>
+					
+					<rich:inplaceInput value="#{item.nome}" label="Descrição"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Desc. Reduzida" />			
+					</f:facet>
+					
+					<rich:inplaceInput value="#{item.nomeReduzido}" label="Descrição Reduzida"/>
+				</h:column>
+	
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nota Máxima Etapa" />			
+					</f:facet>
+					
+					<rich:inplaceInput value="#{item.notaMaximaEtapa}" label="Nota Máxima Etapa" required="true"/>
+				</h:column>
+				
+			</rich:dataTable>
+			
+			
+
+		</h:panelGroup>
+				
+	</div>			
+	</ui:define>
+
+
+	</ui:composition>
+
+</html>

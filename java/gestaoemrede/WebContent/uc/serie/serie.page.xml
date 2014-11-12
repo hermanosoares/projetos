@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      action="#{ConversationHelper.BeginJoinConversationManual}">
+	
+<navigation>
+
+	<rule if-outcome="list">
+		<end-conversation before-redirect="true"/>
+		<raise-event type="SerieList.evento.recarregar"/>
+		<redirect view-id="/uc/serie/serielist.xhtml"/>
+	</rule>
+
+	<rule if-outcome="add_edit">
+		<begin-conversation join="true"/>
+		<redirect view-id="/uc/serie/serie.xhtml"/>
+	</rule>
+
+</navigation>
+
+</page>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+      
+   
+
+	<ui:composition template="/template.xhtml">
+	
+	
+		
+   		 <ui:define name="navegacao">
+   		 
+   		 <div id="passos">
+   		 <h:panelGroup id="p1" styleClass="informacoesUsuario">
+   		 	<h:commandButton styleClass="passoicone" image="/img/passo1.jpg" value="" />
+				<rich:toolTip for="p1" style="color: black;">
+				     <span style="white-space:nowrap">
+							Informações do Aluno e EducaCenso.
+				      </span>
+				</rich:toolTip>
+   		 </h:panelGroup>
+   		 	
+		<h:panelGroup id="p2" styleClass="informacoesUsuario">
+		   		<h:commandButton action="#{AlunoService.validaCadastro1}" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo2.jpg" value=""/>
+				<rich:toolTip for="p2" style="color: black;">
+				     <span style="white-space:nowrap">
+							Informações de Filiação e Endereço.
+				      </span>
+				</rich:toolTip>
+		</h:panelGroup>
+		
+		<h:panelGroup id="p3" styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina3" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo3.jpg" value="" />
+	   		<rich:toolTip for="p3" style="color: black;">
+				     <span style="white-space:nowrap">
+							Documentos do aluno (parte 1).
+				      </span>
+			</rich:toolTip>
+	   	</h:panelGroup>
+	   	
+	   	<h:panelGroup id="p4" styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina4" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo4.jpg" value="" />
+	   		<rich:toolTip for="p4" style="color: black;">
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 2).
+				 </span>
+			</rich:toolTip>
+	   	</h:panelGroup>
+	   	
+	   	<h:panelGroup  id="p5" styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina5" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo5.jpg" value="" />
+	   		<rich:toolTip for="p5" style="color: black;">
+				<span style="white-space:nowrap">
+					Informações de contato.
+				 </span>
+			</rich:toolTip>
+	   	</h:panelGroup>
+	   	
+	   	<h:panelGroup id="p6" styleClass="informacoesUsuario">
+	   		<h:commandButton action="pagina6" styleClass="passoicone" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo6.jpg" value="" />
+	   		<rich:toolTip for="p6" style="color: black;">
+				<span style="white-space:nowrap">
+					Resumo do cadastro.
+				 </span>
+			</rich:toolTip>
+		</h:panelGroup>
+	</div>
+	
+   		 <div id="topoBotao">
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" image="/img/proximo.jpg" action="#{AlunoService.validaCadastro1}" value="" />
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" action="#{AlunoService.concluirCadastro}" value="concluir"/>
+			<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/cancelar.jpg" action="#{AlunoService.cancelar}" value="cancelar"  immediate="true"/>
+		 </div>
+		
+		</ui:define>
+	
+	
+	
+	
+	
+	<ui:define name="conteudo">		
+	
+		
+   		 <f:view>
+   		 
+
+   		 <h:form id="cadastro">
+
+   		 <div id="cadastroUnico">
+   		 
+		    <table width="750" border="0">   
+   		 
+			  <tr>
+			  	<td><h:outputText styleClass="campoPequeno" value="Código do Aluno no Educacenso" /></td>
+			    <td><h:outputText style="margin-left:10px;" styleClass="campoPequeno" value="Nome do Aluno:*"  /></td>
+			    <td><h:outputText styleClass="campoPequeno" style="width:115px; margin-right:10px; margin-left:10px;" value="Sexo:*" /></td>
+			    <td><h:outputText styleClass="campoPequeno" value="Data de Nascimento:*" /></td>
+			  </tr>
+			  
+			  <tr>
+			  	<td> <h:inputText styleClass="inputwidth127" id="codEducacenso" value="#{alunoEntity.codeducacenso}"  maxlength="12" converter="#{EmptyConverter}">
+			  			<rich:jQuery selector="#codEducacenso" query="numeric()" timing="onload"/>
+			  		</h:inputText> 
+			  	</td>
+			  	
+
+			    <td>
+			    
+				    <h:inputText styleClass="inputwidth340" id="camponome" value="#{pessoaEntity.nome}" autocomplete="false" validator="ValidatorCampoNome" required="true" label="Nome do Aluno"  converter="#{EmptyConverter}">
+						<f:attribute name="nomedocampo" value="Nome do Aluno"/>
+				    	<rich:jQuery selector="#camponome" query="capitalize()" timing="onload"/>
+				    </h:inputText>
+			    </td>
+			    
+			    <td><h:selectOneMenu id="campoSexoid" value="#{pessoaEntity.sexo}" styleClass="inputwidth115" validator="ValidatorCampoSexo" required="true" label="#{messages['rotulo.sexo']}">
+				  		<s:selectItems var="s" value="#{FabricaSexo}" label="#{s}" noSelectionLabel=" "/>
+				    </h:selectOneMenu>
+				 </td>
+			    <td>
+				    	<h:inputText styleClass="inputwidth95" id="campodtnascimento" label="Dt. Nasc. Aluno" value="#{pessoaEntity.dtNascimento}" validator="ValidatorCampoDtNascimento" required="true" converter="#{EmptyConverter}" >
+						  	<s:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/> 
+					    	<rich:jQuery selector="#campodtnascimento" query="mask('99/99/9999')" timing="onload"/>
+				    	</h:inputText>
+			    </td>
+			  </tr>
+			  <tr class="espacoFormulario"></tr>
+			  </table>
+
+			<table width="750" border="0">
+			<tr>
+				<td><h:outputText value="Nome da Mãe:*" /></td>
+				<td><h:outputText value="Data de Nascimento:*" /></td>
+			</tr>
+			
+			<tr>
+				<td><h:inputText styleClass="inputwidth430" value="#{pessoaEntity.nomeMae}" id="camponomemae" required="true" label="Nome da Mãe"  converter="#{EmptyConverter}" validator="ValidatorCampoNome">
+					<rich:jQuery selector="#camponomemae" query="capitalize()" timing="onload"/>
+					<f:attribute name="nomedocampo" value="Nome da Mãe"/>
+				    </h:inputText>
+				</td>
+				<td>
+					<h:inputText styleClass="inputwidth180" id="campodtnascimento2" label="Dt. Nascimento da Mãe" value="#{pessoaEntity.dtNascimentoMae}" validator="ValidatorCampoDtNascimento"  maxlength="10" required="true">
+				   		<rich:jQuery selector="#campodtnascimento2" query="mask('99/99/9999')" timing="onload"/>
+						</h:inputText>
+					</td>
+				<td><h:outputText value="Falecida:" /> <h:selectBooleanCheckbox styleClass="inputwidth15" value="#{pessoaEntity.maeFalecida}" /></td>
+			</tr>
+			<tr class="espacoFormulario"></tr><tr class="espacoFormulario"></tr>
+			</table>
+			
+			<table width="750" border="0">
+				<tr>
+					<td><h:outputText value="Nome do Pai:" /></td>
+					<td><h:outputText value="Data de Nascimento:" /></td>
+					
+				</tr>
+				
+				<tr>
+					<td><h:inputText styleClass="inputwidth430" value="#{pessoaEntity.nomePai}" id="camponomepai" converter="#{EmptyConverter}" validator="ValidatorCampoNome">
+							<f:attribute name="nomedocampo" value="Nome do Pai"/>
+							<rich:jQuery selector="#camponomepai" query="capitalize()" timing="onload"/>
+				    	</h:inputText>
+					</td>
+					<td><h:inputText styleClass="inputwidth180" id="campodtnascimento1" label="#{messages['rotulo.dt.nascimento']}" value="#{pessoaEntity.dtNascimentoPai}" validator="ValidatorCampoDtNascimento"  maxlength="10" >
+			   		<rich:jQuery selector="#campodtnascimento1" query="mask('99/99/9999')" timing="onload"/>
+					</h:inputText></td>
+					<td><h:outputText value="Falecido:" /> <h:selectBooleanCheckbox styleClass="inputwidth15" value="#{pessoaEntity.paiFalecido}" /></td>
+				</tr>
+
+			
+		<tr class="espacoFormulario"></tr><tr class="espacoFormulario"></tr>
+		</table>
+
+		<h:panelGroup id="areaResponsavel">
+			<h:panelGroup rendered="#{pessoaEntity.paiFalecido eq true or pessoaEntity.maeFalecida eq true}">
+			<table width="750" border="0">
+				<tr>
+					<td><h:outputText value="Nome do Responsável:" /></td>
+				</tr>
+				
+				<tr>
+					<td><h:inputText styleClass="inputwidth430" value="#{pessoaEntity.nomeResponsavel}" id="camponomeResponsavel" converter="#{EmptyConverter}" validator="ValidatorCampoNome">
+							<f:attribute name="nomedocampo" value="Nome do Pai"/>
+							<rich:jQuery selector="#camponomeResponsavel" query="capitalize()" timing="onload"/>
+				    	</h:inputText>
+					</td>
+				</tr>
+
+			
+		<tr class="espacoFormulario"></tr>
+		<tr class="espacoFormulario"></tr>
+		</table>
+		</h:panelGroup>
+		</h:panelGroup>
+		
+				<h:panelGroup id="panelDocumentos">
+					<h:panelGroup>
+		
+						<table width="750" border="0">
+							<tr>
+								<td><h:outputText value="CPF: " /></td>
+								<td><h:outputText value="SSP:" /></td>
+								<td><h:outputText value="RG:" /></td>
+							</tr>
+
+								<tr>
+	
+								<td><h:inputText styleClass="inputwidth210" id="campoCPF" value="#{pessoaEntity.cpf}" autocomplete="false" maxlength="14" converter="#{EmptyConverter}">
+									<rich:jQuery selector="#campoCPF" query="mask('999.999.999-99')" timing="onload" />
+								</h:inputText></td>
+
+								<td><h:selectOneMenu styleClass="inputwidth210sm" value="#{pessoaEntity.rgorgaoexpedido}">
+									<s:selectItems var="item" value="#{SiglasEstadosBrasileiros}"
+										noSelectionLabel=" " label="#{item}"></s:selectItems>
+								</h:selectOneMenu></td>
+
+								<td>
+									<h:inputText styleClass="inputwidth210" id="campoRG" value="#{pessoaEntity.rg}" autocomplete="false"	converter="#{EmptyConverter}" maxlength="12">
+										<rich:jQuery selector="#campoRG" query="numeric()" timing="onload"/>
+									</h:inputText>
+								</td>
+	
+								</tr>
+	
+
+	
+	
+							<tr class="espacoFormulario"></tr>
+	
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+						
+					</h:panelGroup>
+				</h:panelGroup>
+				
+			</div>
+			<tr class="espacoFormulario"></tr>
+			
+			
+		
+   		 
+   		</h:form>
+  
+  
+ 
+   		
+   		 </f:view>
+   		 
+		<script language="javascript">
+			inicializaFocoCursor("RootId:cadastro:camponome");
+		</script>
+
+		
+	</ui:define>
+
+	</ui:composition>
+
+</html>
+

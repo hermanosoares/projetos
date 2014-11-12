@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+      
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="navegacao">
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/webcam.js"/>
+	
+	
+	<div id="passos">
+   		
+   		<rich:panel styleClass="informacoesUsuario">
+   		 	<h:commandButton styleClass="passoicone" action="pagina1" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo1.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações do Aluno e EducaCenso.
+				      </span>
+				</rich:toolTip>
+   		 </rich:panel>
+		
+		<rich:panel styleClass="informacoesUsuario">
+		   		<h:commandButton styleClass="passoicone" action="pagina2" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo2.jpg" value="" />
+				<rich:toolTip>
+				     <span style="white-space:nowrap">
+							Informações de Filiação e Endereço.
+				      </span>
+				</rich:toolTip>
+		</rich:panel>
+		
+   		<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" action="pagina3" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo3.jpg"  value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 1).
+				</span>
+		</rich:toolTip>
+	   	</rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" action="pagina4" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo4.jpg" value="" immediate="true"/>
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Documentos do aluno (parte 2).
+				 </span>
+			</rich:toolTip>
+	    	</rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   			<h:commandButton styleClass="passoicone" action="#{AlunoService.anterior}" style="filter:alpha(opacity:40);opacity:0.4;" onmouseover="this.style.filter='alpha(opacity:100)';this.style.opacity='1'" onmouseout="this.style.filter='alpha(opacity:40)';this.style.opacity='0.4'" image="/img/passo5.jpg"  value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Informações de contato.
+				 </span>
+			</rich:toolTip>
+	   	    </rich:panel>
+	   	
+	   	<rich:panel styleClass="informacoesUsuario">
+	   		<h:commandButton styleClass="passoicone" image="/img/passo6.jpg"  value="" />
+	   		<rich:toolTip>
+				<span style="white-space:nowrap">
+					Resumo do cadastro.
+				 </span>
+			</rich:toolTip>
+		    </rich:panel>
+   		
+ 	</div>
+	
+	<div id="topoBotao">
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 0;" image="/img/anterior.jpg" action="#{AlunoService.anterior}" value="#{messages['rotulo.anterior']}" />
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/proximo.jpg" action="#{AlunoService.proximo}" value="#{messages['rotulo.proximo']}" />	
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/gravar.jpg" action="#{AlunoService.concluirCadastro}" value="#{messages['rotulo.gravar']}" />
+		<h:commandButton style="width: 110px; height: 28px; border: 0px; margin:8px 0 0 8px;" image="/img/cancelar.jpg" action="#{AlunoService.cancelar}" value="" />
+	</div>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		<f:view>
+
+		<script language="JavaScript">
+			webcam.set_api_url('#{facesContext.externalContext.request.contextPath}/capturafoto?cid=#{conversation.id}');
+			webcam.set_quality( 100 ); // JPEG quality (1 - 100)
+			webcam.set_shutter_sound( true ); // play shutter click sound
+		</script>
+		
+		<!-- Next, write the movie to the page at 320x240 -->
+		<div id="conteudoTiraFoto">
+		
+		<div id="painelDeFoto">
+			<script language="JavaScript">
+				document.write( webcam.get_html(340, 280) );
+			</script>
+	
+				<script language="JavaScript">
+					webcam.set_hook( 'onComplete', 'my_completion_handler' );
+					webcam.set_hook( 'onError', 'my_completionError_handler' );
+		
+					function my_completionError_handler(msg){
+						alert(msg);
+					}
+					
+					function my_completion_handler(msg) {
+						webcam.reset();
+					}
+			  	</script>
+	  	</div>
+	  	
+	  	<div id="painelDeFotoRight">	  	
+		  	<rich:panel style="width: 340px; height:280px;">
+		  		<f:facet name="header">
+		  			<h:outputText value="Foto de #{pessoaEntity.nome}" />
+		  		</f:facet>
+		  		<s:graphicImage id="areaFoto" value="#{FotoCapturada}" width="320px" height="240px"/>
+			</rich:panel>
+			
+			 <a4j:commandButton image="/img/capturafoto.png" styleClass="btnWebCan" onclick="webcam.snap();" reRender="areaFoto,idMensagemGlobal" requestDelay="5000"/>
+			 <a4j:commandButton image="/img/limpafoto.png" styleClass="btnWebCanLimpaFoto" action="#{pessoaEntity.limpaFoto}" reRender="areaFoto"/>
+		</div>
+	</div>
+		
+		<div id="cadastroUnico">
+			<div id="uploadDeFoto">
+				 <h:panelGroup>
+					  <rich:panel id="uploadComponent" style="width: 750px; height: 140px">
+					  	<f:facet name="header">
+					  		<h:outputText value="Upload de Imagem" />
+					  	</f:facet>
+					  	
+						  <rich:fileUpload styleClass="tamanhoUploadFotoInterno" fileUploadListener="#{pessoaEntity.uploadFoto}" 
+						  				   maxFilesQuantity="1" immediate="true" ajaxSingle="true" 
+						  				   acceptedTypes="jpg,png,gif" cancelEntryControlLabel="Cancelar" 
+						  				   addControlLabel="Adicionar" clearControlLabel="Limpar Todos." 
+						  				   uploadControlLabel="Enviar" doneLabel="Upload Completo" 
+						  				   progressLabel="enviando imagem.." immediateUpload="true"
+						  				   autoclear="true" transferErrorLabel="erro enviando imagem"
+						  				   allowFlash="true" 
+						  				   listWidth="200px"
+						  				   listHeight="70px"
+						  				   >
+						  	 	<a4j:support event="onuploadcomplete" reRender="areaFoto, uploadComponent"/>
+						  </rich:fileUpload>
+						 						  				    
+					  </rich:panel>
+				  </h:panelGroup>
+			  </div>
+			  
+		</div>	
+	
+	
+	</f:view>
+			 
+	</ui:define>
+</ui:composition>      
+
+</html>
