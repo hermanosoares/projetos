@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/bulk/global/!svn/ver/410/gestaoemrede/src
+END
+ehcache.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/bulk/global/!svn/ver/322/gestaoemrede/src/ehcache.xml
+END
+funcoes.sql
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/bulk/global/!svn/ver/159/gestaoemrede/src/funcoes.sql
+END
+seam.properties
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/bulk/global/!svn/ver/159/gestaoemrede/src/seam.properties
+END
+messages_en.properties
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/bulk/global/!svn/ver/159/gestaoemrede/src/messages_en.properties
+END
+security.drl
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/bulk/global/!svn/ver/159/gestaoemrede/src/security.drl
+END
+import.sql
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/bulk/global/!svn/ver/398/gestaoemrede/src/import.sql
+END
+messages_pt_BR.properties
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/bulk/global/!svn/ver/288/gestaoemrede/src/messages_pt_BR.properties
+END
+_log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/bulk/global/!svn/ver/322/gestaoemrede/src/_log4j.properties
+END
+app.properties
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/bulk/global/!svn/ver/391/gestaoemrede/src/app.properties
+END
+log4j.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/bulk/global/!svn/ver/322/gestaoemrede/src/log4j.xml
+END

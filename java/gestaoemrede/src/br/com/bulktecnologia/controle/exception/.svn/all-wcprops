@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/exception
+END
+MatriculaException.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/bulk/global/!svn/ver/370/gestaoemrede/src/br/com/bulktecnologia/controle/exception/MatriculaException.java
+END
+BusinessException.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/bulk/global/!svn/ver/159/gestaoemrede/src/br/com/bulktecnologia/controle/exception/BusinessException.java
+END
+CadastroPessoaException.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/bulk/global/!svn/ver/199/gestaoemrede/src/br/com/bulktecnologia/controle/exception/CadastroPessoaException.java
+END
+EmailDuplicadoException.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/controle/exception/EmailDuplicadoException.java
+END

@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/bulk/global/!svn/ver/398/gestaoemrede/src/br/com/bulktecnologia/comuns/util
+END
+SQLHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/bulk/global/!svn/ver/369/gestaoemrede/src/br/com/bulktecnologia/comuns/util/SQLHelper.java
+END
+FileUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/bulk/global/!svn/ver/159/gestaoemrede/src/br/com/bulktecnologia/comuns/util/FileUtils.java
+END
+AcentuacaoUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/bulk/global/!svn/ver/159/gestaoemrede/src/br/com/bulktecnologia/comuns/util/AcentuacaoUtil.java
+END
+TurmaToolTipUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/bulk/global/!svn/ver/389/gestaoemrede/src/br/com/bulktecnologia/comuns/util/TurmaToolTipUtil.java
+END
+EnumHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/bulk/global/!svn/ver/392/gestaoemrede/src/br/com/bulktecnologia/comuns/util/EnumHelper.java
+END
+DataUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/bulk/global/!svn/ver/334/gestaoemrede/src/br/com/bulktecnologia/comuns/util/DataUtil.java
+END
+SimilaridadeUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/bulk/global/!svn/ver/389/gestaoemrede/src/br/com/bulktecnologia/comuns/util/SimilaridadeUtils.java
+END
+ConversationHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/393/gestaoemrede/src/br/com/bulktecnologia/comuns/util/ConversationHelper.java
+END
+EntityHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/bulk/global/!svn/ver/295/gestaoemrede/src/br/com/bulktecnologia/comuns/util/EntityHelper.java
+END
+SendMailImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/bulk/global/!svn/ver/201/gestaoemrede/src/br/com/bulktecnologia/comuns/util/SendMailImpl.java
+END
+ClassIntrospectorUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/bulk/global/!svn/ver/391/gestaoemrede/src/br/com/bulktecnologia/comuns/util/ClassIntrospectorUtil.java
+END
+PostgresqlGrantUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/bulk/global/!svn/ver/398/gestaoemrede/src/br/com/bulktecnologia/comuns/util/PostgresqlGrantUtils.java
+END
+JSFUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/bulk/global/!svn/ver/306/gestaoemrede/src/br/com/bulktecnologia/comuns/util/JSFUtil.java
+END
+TurmaHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/bulk/global/!svn/ver/373/gestaoemrede/src/br/com/bulktecnologia/comuns/util/TurmaHelper.java
+END
+SendMail.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/bulk/global/!svn/ver/184/gestaoemrede/src/br/com/bulktecnologia/comuns/util/SendMail.java
+END
+JPGCompress.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/bulk/global/!svn/ver/289/gestaoemrede/src/br/com/bulktecnologia/comuns/util/JPGCompress.java
+END
+ExceptionUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/bulk/global/!svn/ver/159/gestaoemrede/src/br/com/bulktecnologia/comuns/util/ExceptionUtil.java
+END

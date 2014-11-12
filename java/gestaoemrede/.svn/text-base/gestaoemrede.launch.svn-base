@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.hibernate.eclipse.launch.ConsoleConfigurationLaunchConfigurationType">
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="gestaoemrede"/>
+<stringAttribute key="org.hibernate.eclipse.launch.CONFIGURATION_FACTORY" value="JPA"/>
+<stringAttribute key="org.hibernate.eclipse.launch.CONNECTION_PROFILE_NAME" value="POSTGRES_LOCAL"/>
+<listAttribute key="org.hibernate.eclipse.launch.FILE_MAPPINGS"/>
+<stringAttribute key="org.hibernate.eclipse.launch.PERSISTENCE_UNIT_NAME" value="jiniPU"/>
+<stringAttribute key="org.hibernate.eclipse.launchDIALECT" value="org.hibernate.dialect.PostgreSQLDialect"/>
+</launchConfiguration>

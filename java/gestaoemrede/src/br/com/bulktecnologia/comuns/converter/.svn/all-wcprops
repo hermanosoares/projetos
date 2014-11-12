@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/bulk/global/!svn/ver/399/gestaoemrede/src/br/com/bulktecnologia/comuns/converter
+END
+EmptyConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/bulk/global/!svn/ver/159/gestaoemrede/src/br/com/bulktecnologia/comuns/converter/EmptyConverter.java
+END
+FacesMessageSessionScoped.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/bulk/global/!svn/ver/362/gestaoemrede/src/br/com/bulktecnologia/comuns/converter/FacesMessageSessionScoped.java
+END
+PortugueseLatin1TextConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/bulk/global/!svn/ver/324/gestaoemrede/src/br/com/bulktecnologia/comuns/converter/PortugueseLatin1TextConverter.java
+END
+NotaConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bulk/global/!svn/ver/399/gestaoemrede/src/br/com/bulktecnologia/comuns/converter/NotaConverter.java
+END
+TipoSerieConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/338/gestaoemrede/src/br/com/bulktecnologia/comuns/converter/TipoSerieConverter.java
+END
+PhoneMaskConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/bulk/global/!svn/ver/275/gestaoemrede/src/br/com/bulktecnologia/comuns/converter/PhoneMaskConverter.java
+END

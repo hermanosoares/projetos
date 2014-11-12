@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems VERSION="2.0.0" application-name="educaweb"
+ model-entity="FileSystems" workspace-home="./WebContent/WEB-INF">
+ <file-system NAME="WEB-INF" location="%workspace.home%" model-entity="FileSystemFolder"/>
+ <file-system NAME="WEB-ROOT" info="Content-Type=Web"
+  location="%workspace.home%/.." model-entity="FileSystemFolder"/>
+ <file-system NAME="src" location="%workspace.home%/../../src" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib" location="%workspace.home%/lib" model-entity="FileSystemFolder"/>
+ <file-system NAME="educaweb" location="%eclipse.project%" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-annotations-api.jar"
+  location="D:\tomcat6\lib\annotations-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina-ant.jar"
+  location="D:\tomcat6\lib\catalina-ant.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina-ha.jar"
+  location="D:\tomcat6\lib\catalina-ha.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina-tribes.jar"
+  location="D:\tomcat6\lib\catalina-tribes.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-catalina.jar"
+  location="D:\tomcat6\lib\catalina.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-api.jar" location="D:\tomcat6\lib\el-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasper-el.jar"
+  location="D:\tomcat6\lib\jasper-el.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasper-jdt.jar"
+  location="D:\tomcat6\lib\jasper-jdt.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasper.jar" location="D:\tomcat6\lib\jasper.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsp-api.jar"
+  location="D:\tomcat6\lib\jsp-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ojdbc6.jar" location="D:\tomcat6\lib\ojdbc6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-servlet-api.jar"
+  location="D:\tomcat6\lib\servlet-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-coyote.jar"
+  location="D:\tomcat6\lib\tomcat-coyote.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-dbcp.jar"
+  location="D:\tomcat6\lib\tomcat-dbcp.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-i18n-es.jar"
+  location="D:\tomcat6\lib\tomcat-i18n-es.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-i18n-fr.jar"
+  location="D:\tomcat6\lib\tomcat-i18n-fr.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-tomcat-i18n-ja.jar"
+  location="D:\tomcat6\lib\tomcat-i18n-ja.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-p6spy-1.3.jar"
+  location="D:\tomcat6\lib\p6spy-1.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-resources.jar"
+  location="C:\Program Files\Java\jdk1.6.0_16\jre\lib\resources.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dnsns.jar"
+  location="C:\Program Files\Java\jdk1.6.0_16\jre\lib\ext\dnsns.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-localedata.jar"
+  location="C:\Program Files\Java\jdk1.6.0_16\jre\lib\ext\localedata.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunjce_provider.jar"
+  location="C:\Program Files\Java\jdk1.6.0_16\jre\lib\ext\sunjce_provider.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunmscapi.jar"
+  location="C:\Program Files\Java\jdk1.6.0_16\jre\lib\ext\sunmscapi.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunpkcs11.jar"
+  location="C:\Program Files\Java\jdk1.6.0_16\jre\lib\ext\sunpkcs11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hsqldb.jar" location="D:\tomcat6\lib\hsqldb.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-javaee.jar"
+  location="D:\jdevstudio\eclipse\configuration\org.eclipse.osgi\bundles\551\1\.cp\lib\javaee-5.0\jboss-javaee.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-antlr.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\antlr.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-beanutils.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\commons-beanutils.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-collections.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\commons-collections.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-digester.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\commons-digester.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-lang.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\commons-lang.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-commons-logging.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\commons-logging.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-concurrent.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\concurrent.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dom4j.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\dom4j.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ejb3-persistence.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\ejb3-persistence.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-envers-1.2.2.ga-hibernate-3.3.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\envers-1.2.2.ga-hibernate-3.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-annotations.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\hibernate-annotations.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-commons-annotations.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\hibernate-commons-annotations.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-core.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\hibernate-core.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-entitymanager.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\hibernate-entitymanager.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-validator.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\hibernate-validator.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-javassist.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\javassist.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-common-core.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-common-core.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-el.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-el.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-seam-debug.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-seam-debug.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-seam-remoting.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-seam-remoting.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-seam-ui.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-seam-ui.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-seam.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-seam.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-api.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jsf-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-facelets.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jsf-facelets.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-impl.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jsf-impl.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jstl.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jstl.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jta.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jta.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-log4j.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\log4j.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-lucene-core-2.4.1.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\lucene-core-2.4.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-persistence-api.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\persistence-api.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-standard.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\standard.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-postgresql-8.4-701.jdbc4.jar"
+  location="D:\tomcat6\lib\postgresql-8.4-701.jdbc4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-dsn.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\dsn.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-imap.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\imap.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-mail.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\mail.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-mailapi.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\mailapi.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-pop3.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\pop3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-smtp.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\smtp.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-xseam-0.7.2.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\xseam-0.7.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-ehcache-core-2.1.0.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\ehcache-core-2.1.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-slf4j-api-1.5.11.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\slf4j-api-1.5.11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-slf4j-jdk14-1.5.11.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\slf4j-jdk14-1.5.11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-testng-5.12.1.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\testng-5.12.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-richfaces-api-3.3.3.Final.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\richfaces-api-3.3.3.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-richfaces-impl-3.3.3.Final.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\richfaces-impl-3.3.3.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-richfaces-impl-jsf2-3.3.3.Final.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\richfaces-impl-jsf2-3.3.3.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-richfaces-ui-3.3.3.Final.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\richfaces-ui-3.3.3.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-seam-pdf.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jboss-seam-pdf.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-itext.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\itext.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-itext-rtf.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\itext-rtf.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jasperreports-3.7.4.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jasperreports-3.7.4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-groovy-all-1.5.5.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\groovy-all-1.5.5.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jfreechart-1.0.12.jar"
+  location="D:\BULK\projeto\gestaoemrede\WebContent\WEB-INF\lib\jfreechart-1.0.12.jar" model-entity="FileSystemJar"/>
+ <web SERVLET_VERSION="2.4" model-entity="JstWeb" model-path="/web.xml">
+  <module URI="/WEB-INF/faces-config.xml" model-entity="WebJSFModule"
+   model-path="/faces-config.xml" src="src" web-root="WEB-ROOT"/>
+ </web>
+</file-systems>
